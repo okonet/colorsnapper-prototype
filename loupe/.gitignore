@@ -1,0 +1,3 @@
+/public/javascripts/generated/*.js
+/public/stylesheets/*.css
+.sass-cache

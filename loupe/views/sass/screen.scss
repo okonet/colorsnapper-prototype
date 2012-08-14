@@ -1,0 +1,28 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+@import "compass/css3";
+
+body {
+  background-color: #88d;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.loupe {
+  position: absolute;
+  border: 2px solid rgba(255,255,255,0.5);
+  @include box-shadow(
+    0 0 0 1px rgba(0,0,0,0.25),
+    0 0 0 1px rgba(0,0,0,0.25) inset,
+    0 2px 8px rgba(0,0,0,0.25)
+  );
+  width: 42px;
+  height: 42px;
+  @include border-radius(42px);
+  @include translate(-50%, -50%);
+}
