@@ -25,4 +25,6 @@ body {
   height: 42px;
   @include border-radius(42px);
   @include translate(-50%, -50%);
+  @include transition-property(width, height, border-radius);
+  @include transition-duration(150ms);
 }
