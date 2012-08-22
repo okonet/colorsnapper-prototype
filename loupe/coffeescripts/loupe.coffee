@@ -1,9 +1,9 @@
 class window.Loupe
 
   zoom        : 10
-  aperture    : 25
+  aperture    : 25 * 3
   apertureMin : 25
-  apertureMax : 25 * 4
+  apertureMax : 25 * 16
 
   diameter    : 25
   diameterMax : 25 * 15
@@ -26,23 +26,24 @@ class window.Loupe
       @aperture = Math.max @aperture, @apertureMin
       @aperture = Math.min @aperture, @apertureMax
 
-      console.log @aperture
-
-      dMax = (@zoom-1) * @aperture
+      dMax = @getDiameter @zoom, @aperture
       if @diameter >= dMax or @diameter >= @diameterMax
+        e.preventDefault()
+        e.stopPropagation()
         @diameter -= deltaY
         @diameter = Math.min @diameter, dMax * 1.2
         _renderDebounced @diameter
         _revertToMaxDiameter()
+        off
       else
         @render()
 
-    key 'alt + =, ctrl+=', =>
+    key 'alt + =, ctrl+=, =', =>
       ++@zoom if 2 <= @zoom < 10
       @render()
       off
 
-    key 'alt+-, ctrl+-', =>
+    key 'alt+-, ctrl+-, -', =>
       @zoom-- if 2 < @zoom <= 10
       @render()
       off
@@ -55,9 +56,12 @@ class window.Loupe
     @diameter = Math.min @diameter, Math.min @diameterMax, @apertureMax * (@zoom-1)
     @render()
 
+  getDiameter: (zoom, aperture) ->
+    (zoom-1) * aperture
+
   render: (diameter) =>
     unless diameter?
-      diameter = (@zoom - 1) * @aperture
+      diameter = @getDiameter @zoom, @aperture
       diameter = Math.min diameter, @diameterMax
       @diameter = diameter
 
