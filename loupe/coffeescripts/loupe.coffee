@@ -1,12 +1,12 @@
 class CS.Loupe
 
   zoom        : 10
-  aperture    : 25 * 3
-  apertureMin : 25
-  apertureMax : 25 * 16
+  aperture    : 24 * 3
+  apertureMin : 24
+  apertureMax : 24 * 16
 
-  diameter    : 25
-  diameterMax : 25 * 15
+  diameter    : 24
+  diameterMax : 24 * 15
 
   borderMin   : 2
   borderMax   : 6
