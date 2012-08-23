@@ -15,12 +15,12 @@ class CS.Loupe
 
   constructor: ->
     @el = $(".loupe")
-    @ctx = document.getElementById('canvas').getContext('2d')
-    @overlay = new CS.Overlay @
 
-    $("canvas").drawImage({
-      source: "images/bg1.png"
-    })
+    @ctx = $('canvas').get(0).getContext('2d')
+    @ctx.webkitImageSmoothingEnabled = no
+    @drawImage "images/bg1.png"
+
+    @overlay = new CS.Overlay @
 
     $(document).on "mousemove", (e) =>
       @el.css
@@ -60,12 +60,20 @@ class CS.Loupe
     _revertToMaxDiameter = _.debounce @revertToMaxDiameter, 150
     @render()
 
-  getDiameter: (zoom, aperture) ->
-    (zoom-1) * aperture
+  drawImage: (src) ->
+    img = new Image()
+    img.onload = => @ctx.drawImage(img, 0, 0)
+    img.src = src;
 
   getPixelAt: (x, y) ->
     pixel = @ctx.getImageData(x, y, 1, 1).data
     [pixel[0], pixel[1], pixel[2]]
+
+  getRegion: (x, y, width, height) ->
+    @ctx.getImageData(x, y, width, height).data
+
+  getDiameter: (zoom, aperture) ->
+    (zoom-1) * aperture
 
   revertToMaxDiameter: =>
     @diameter = Math.min @diameter, Math.min @diameterMax, @apertureMax * (@zoom-1)
