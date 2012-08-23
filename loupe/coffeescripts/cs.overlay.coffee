@@ -30,12 +30,6 @@ class CS.Overlay
     @el.css "background-color", "rgb(#{pixel.join(',')})"
     $(".loupe__color").html "#{format.join(' ')}"
 
-    @loupe.el[if @brightness(pixel[0], pixel[1], pixel[2]) > 155 then "addClass" else "removeClass"]("loupe_invert")
+    @loupe.el[if @loupe.canvas.getBrightness(pixel[0], pixel[1], pixel[2]) > 155 then "addClass" else "removeClass"]("loupe_invert")
     @pixel = pixel
 
-  brightness: (r, g, b) ->
-    Math.sqrt(
-      r * r * .241 +
-      g * g * .691 +
-      b * b * .068
-    )

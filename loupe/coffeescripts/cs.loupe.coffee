@@ -1,7 +1,7 @@
 class CS.Loupe
 
-  zoom        : 10
-  aperture    : 24 * 3
+  zoom        : 2
+  aperture    : 24
   apertureMin : 24
   apertureMax : 24 * 16
 
@@ -16,9 +16,8 @@ class CS.Loupe
   constructor: ->
     @el = $(".loupe")
 
-    @ctx = $('canvas').get(0).getContext('2d')
-    @ctx.webkitImageSmoothingEnabled = no
-    @drawImage "images/bg1.png"
+    @canvas = new CS.Canvas("canvas")
+    @canvas.drawImage "images/bg1.png"
 
     @overlay = new CS.Overlay @
 
@@ -27,7 +26,7 @@ class CS.Loupe
         top  : e.clientY
         left : e.clientX
 
-      @overlay.render @getPixelAt e.clientX, e.clientY
+      @overlay.render @canvas.getPixelAt e.clientX, e.clientY
 
     $(document).on "mousewheel", (e, delta, deltaX, deltaY) =>
       @aperture -= (deltaY * @thersold)
@@ -59,18 +58,6 @@ class CS.Loupe
     _renderDebounced = _.debounce @render, 10
     _revertToMaxDiameter = _.debounce @revertToMaxDiameter, 150
     @render()
-
-  drawImage: (src) ->
-    img = new Image()
-    img.onload = => @ctx.drawImage(img, 0, 0)
-    img.src = src;
-
-  getPixelAt: (x, y) ->
-    pixel = @ctx.getImageData(x, y, 1, 1).data
-    [pixel[0], pixel[1], pixel[2]]
-
-  getRegion: (x, y, width, height) ->
-    @ctx.getImageData(x, y, width, height).data
 
   getDiameter: (zoom, aperture) ->
     (zoom-1) * aperture
