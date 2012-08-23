@@ -17,9 +17,11 @@ class CS.Loupe
     @el = $(".loupe")
 
     @canvas = new CS.Canvas("canvas")
-    @canvas.drawImage "images/bg1.png"
+    @canvas.drawImage "images/bg1.png", =>
+      @canvas.scaleRegion 0, 0, 50, 50, 2
 
     @overlay = new CS.Overlay @
+
 
     $(document).on "mousemove", (e) =>
       @el.css
