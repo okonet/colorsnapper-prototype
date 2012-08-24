@@ -1,9 +1,9 @@
 class CS.Loupe
 
   zoom        : 2
-  aperture    : 24
+  aperture    : 24 * 5
   apertureMin : 24
-  apertureMax : 24 * 16
+  apertureMax : 24 * 5
 
   diameter    : 24
   diameterMax : 24 * 15
@@ -15,20 +15,24 @@ class CS.Loupe
 
   constructor: ->
     @el = $(".loupe")
+    @magnifier = new CS.Canvas("<canvas id='magnifier'>")
+    @el.append @magnifier.el
 
-    @canvas = new CS.Canvas("canvas")
-    @canvas.drawImage "images/bg1.png", =>
-      @canvas.scaleRegion 0, 0, 50, 50, 2
+    @screen = new CS.Canvas("#canvas")
+    @screen.drawImage "images/bg1.png", (imageData) =>
+      @screenImageData = imageData
+      # @magnifier.el.attr('width', imageData.width).attr('height', imageData.height)
+      # @magnifier.getContext().putImageData(imageData, 0, 0)
+      # @screen.scaleRegion 0, 0, 50, 50, 2
 
     @overlay = new CS.Overlay @
 
 
     $(document).on "mousemove", (e) =>
-      @el.css
-        top  : e.clientY
-        left : e.clientX
-
-      @overlay.render @canvas.getPixelAt e.clientX, e.clientY
+      @posX = e.clientX
+      @posY = e.clientY
+      @render()
+      @overlay.render @screen.getPixelAt @posX, @posY
 
     $(document).on "mousewheel", (e, delta, deltaX, deltaY) =>
       @aperture -= (deltaY * @thersold)
@@ -68,6 +72,12 @@ class CS.Loupe
     @diameter = Math.min @diameter, Math.min @diameterMax, @apertureMax * (@zoom-1)
     @render()
 
+  magnify: ->
+    width = @diameter
+    height = @diameter
+    @magnifier.setDimensions width, height
+    @magnifier.drawScaledRegion @screen, @posX-width / @zoom, @posY-height / @zoom, width, height, @zoom
+
   render: (diameter) =>
     unless diameter?
       diameter = @getDiameter @zoom, @aperture
@@ -78,7 +88,13 @@ class CS.Loupe
     border = Math.max border, @borderMin
     border = Math.min border, @borderMax
 
+    @magnifier.el.css
+      borderRadius : diameter
+    @magnify()
+
     @el.css
+      top          : @posY
+      left         : @posX
       width        : diameter
       height       : diameter
       borderRadius : diameter
