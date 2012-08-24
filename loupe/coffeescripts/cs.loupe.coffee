@@ -1,7 +1,7 @@
 class CS.Loupe
 
-  zoom        : 2
-  aperture    : 24 * 5
+  zoom        : 10
+  aperture    : 24
   apertureMin : 24
   apertureMax : 24 * 5
 
@@ -15,15 +15,12 @@ class CS.Loupe
 
   constructor: ->
     @el = $(".loupe")
-    @magnifier = new CS.Canvas("<canvas id='magnifier'>")
+    @magnifier = new CS.Canvas("<canvas class='loupe__canvas'>")
     @el.append @magnifier.el
 
     @screen = new CS.Canvas("#canvas")
     @screen.drawImage "images/bg1.png", (imageData) =>
       @screenImageData = imageData
-      # @magnifier.el.attr('width', imageData.width).attr('height', imageData.height)
-      # @magnifier.getContext().putImageData(imageData, 0, 0)
-      # @screen.scaleRegion 0, 0, 50, 50, 2
 
     @overlay = new CS.Overlay @
 
@@ -73,10 +70,9 @@ class CS.Loupe
     @render()
 
   magnify: ->
-    width = @diameter
-    height = @diameter
+    width = height = @diameter
     @magnifier.setDimensions width, height
-    @magnifier.drawScaledRegion @screen, @posX-width / @zoom, @posY-height / @zoom, width, height, @zoom
+    @magnifier.drawScaledRegion @screen, @posX, @posY, @diameter/2, @zoom
 
   render: (diameter) =>
     unless diameter?
@@ -88,8 +84,6 @@ class CS.Loupe
     border = Math.max border, @borderMin
     border = Math.min border, @borderMax
 
-    @magnifier.el.css
-      borderRadius : diameter
     @magnify()
 
     @el.css

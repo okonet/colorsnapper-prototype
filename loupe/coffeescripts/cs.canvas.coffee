@@ -29,13 +29,30 @@ class CS.Canvas
       b * b * .068
     )
 
-  drawScaledRegion: (canvas, x, y, width, height, scale) ->
-    newWidth  = width * scale
-    newHeight = height * scale
+  drawScaledRegion: (canvas, x, y, radius, scale) ->
+    diameter = radius * 2
+
+    theX = (x * scale) - (radius - scale / 2)
+    theY = (y * scale) - (radius - scale / 2)
+
+    cX = cY = radius
+
     @ctx.webkitImageSmoothingEnabled = no
     @ctx.save()
-    @ctx.translate -(x * scale + width / 2), -(y * scale + width / 2)
+
+    @ctx.beginPath()
+    @ctx.arc cX, cY, radius, 0, Math.PI * 2, no
+    @ctx.clip()
+
+    @ctx.translate -theX, -theY
     @ctx.scale scale, scale
-    @ctx.clearRect 0, 0, newWidth, newHeight
     @ctx.drawImage canvas.el[0], 0, 0
     @ctx.restore()
+
+    @ctx.lineWidth = 1;
+    @ctx.strokeStyle = 'rgba(255,255,255,.5)'
+    @ctx.stroke()
+
+    @ctx.lineWidth = 1;
+    @ctx.strokeStyle = 'rgb(255,255,255)'
+    @ctx.strokeRect cX-scale/2, cY-scale/2, scale, scale
