@@ -1,20 +1,28 @@
 class CS.Overlay
 
+  types: ["none", "simple", "full"]
   pixel: [0,0,0]
   altFormat: no
+  overlayType: 1
 
   constructor: (@loupe) ->
     @el = $(".loupe__overlay")
     $(document).on "keydown", => @toggleFormat() if key.alt
     $(document).on "keyup", => @toggleFormat() if @altFormat
+    key '/', @toggle
+    @changeType @overlayType
 
   toggleFormat: ->
     @altFormat = !@altFormat
     $(".loupe__format").text if @altFormat then "NSColor RGBA" else "CSS Hex"
     @render @pixel
 
-  toggle: ->
-    @el.toggleClass("loupe__overlay_simple")
+  toggle: =>
+    if ++@overlayType > 2 then @overlayType = 0
+    @changeType @overlayType
+
+  changeType: (type) ->
+    @el.attr("class", "loupe__overlay loupe__overlay_#{@types[type]}")
 
   render: (pixel) ->
     format = []

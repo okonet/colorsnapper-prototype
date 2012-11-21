@@ -75,6 +75,10 @@ p {
       font: bold 10px "Lucida Grande";
     }
 
+  .loupe__overlay_none {
+    display: none;
+  }
+
   .loupe__overlay_simple {
     height: 26px;
     width: 24px;
