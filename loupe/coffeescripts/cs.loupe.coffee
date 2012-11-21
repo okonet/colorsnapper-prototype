@@ -12,7 +12,7 @@ class CS.Loupe
   diameterMax : 24 * 15
 
   borderMin   : 2
-  borderMax   : 6
+  borderMax   : 10
 
   thersold    : 8
 
@@ -82,7 +82,7 @@ class CS.Loupe
       diameter = Math.min diameter, @diameterMax
       @diameter = diameter
 
-    border = @zoom / 1.5
+    border = @zoom / 1.25
     border = Math.max border, @borderMin
     border = Math.min border, @borderMax
 
