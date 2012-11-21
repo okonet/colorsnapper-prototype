@@ -1,9 +1,9 @@
 class CS.Loupe
 
-  zoom        : 10
-  aperture    : 24
-  apertureMin : 24
-  apertureMax : 24 * 5
+  zoom        : 2
+  aperture    : 24 * 2
+  apertureMin : 24 * 2
+  apertureMax : 24 * 15
 
   diameter    : 24
   diameterMax : 24 * 15
@@ -23,7 +23,6 @@ class CS.Loupe
       @screenImageData = imageData
 
     @overlay = new CS.Overlay @
-
 
     $(document).on "mousemove", (e) =>
       @posX = e.clientX
