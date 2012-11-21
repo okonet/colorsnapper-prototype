@@ -53,7 +53,9 @@ class CS.Canvas
     @ctx.strokeStyle = 'rgba(255,255,255,.5)'
     @ctx.stroke()
 
+    p = canvas.getPixelAt(x, y)
+
     scale += if scale % 2 then 2 else 1
     @ctx.lineWidth = 1;
-    @ctx.strokeStyle = 'rgb(255,255,255)'
+    @ctx.strokeStyle = if @getBrightness(p[0], p[1], p[2]) < 155 then 'rgb(255,255,255)' else 'rgb(0,0,0)'
     @ctx.strokeRect cX-scale/2, cY-scale/2, scale, scale
