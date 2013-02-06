@@ -1,5 +1,8 @@
 class CS.Loupe
 
+  MIN_ZOOM    : 2
+  MAX_ZOOM    : 10
+
   zoom        : 2
   aperture    : 24 * 2
   apertureMin : 24 * 2
@@ -48,12 +51,12 @@ class CS.Loupe
         @render()
 
     key 'alt + =, ctrl+=, =', =>
-      ++@zoom if 2 <= @zoom < 10
+      ++@zoom if @MIN_ZOOM <= @zoom < @MAX_ZOOM
       @render()
       off
 
     key 'alt+-, ctrl+-, -', =>
-      @zoom-- if 2 < @zoom <= 10
+      @zoom-- if @MIN_ZOOM < @zoom <= @MAX_ZOOM
       @render()
       off
 
