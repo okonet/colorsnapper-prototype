@@ -19,8 +19,12 @@ class CS.Canvas
     @el[0].getContext('2d')
 
   getPixelAt: (x, y) ->
-    pixel = @ctx.getImageData(x, y, 1, 1).data
-    [pixel[0], pixel[1], pixel[2]]
+    try
+      pixel = @ctx.getImageData(x, y, 1, 1).data
+      [pixel[0], pixel[1], pixel[2]]
+    catch error
+      throw new Error error
+
 
   getBrightness: (r, g, b) ->
     Math.sqrt(
