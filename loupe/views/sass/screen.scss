@@ -3,8 +3,10 @@
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 
+@import "compass";
 @import "compass/reset";
 @import "compass/css3";
+@import "menu";
 
 body {
   background-color: #88d;
@@ -30,24 +32,6 @@ p {
   height: 42px;
   @include border-radius(42px);
   @include translate(-50%, -50%);
-  // @include transition-property(width, height, border-radius);
-  // @include transition-duration(150ms);
-
-  // &:after {
-  //   $aperture-size: 3px;
-  //   position: absolute;
-  //   left: 50%;
-  //   top: 50%;
-  //   margin-top: -($aperture-size / 2 + 1px);
-  //   margin-left: -($aperture-size / 2 + 1px);
-  //   width: $aperture-size;
-  //   height: $aperture-size;
-  //   border: 1px solid #FFF;
-  //   content: "";
-  // }
-  // &.loupe_invert:after {
-  //   border-color: #000;
-  // }
 }
 
   .loupe__overlay {

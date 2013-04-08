@@ -50,6 +50,17 @@ class CS.Loupe
       else
         @render()
 
+    $(document).on 'click', (e) =>
+      e.preventDefault()
+      @menu ?= new CS.Menu()
+      @menu.show()
+
+    $(document).on 'menu:shown', (e) =>
+      @el.hide()
+
+    $(document).on 'menu:hidden', (e) =>
+      @el.show()
+
     key 'alt + =, ctrl+=, =', =>
       ++@zoom if @MIN_ZOOM <= @zoom < @MAX_ZOOM
       @render()
