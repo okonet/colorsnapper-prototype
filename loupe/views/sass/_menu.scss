@@ -29,34 +29,6 @@ $activeColor: #4277e0;
   }
 }
 
-  .menu__group:first-child {
-    .menu__item:first-child {
-      @include border-top-radius($borderRadius);
-    }
-  }
-  .menu__group:last-child {
-    .menu__item:last-child {
-      border-bottom-width: 0;
-      @include border-bottom-radius($borderRadius);
-    }
-  }
-
-  .menu__item {
-    padding: 7px;
-    list-style: none;
-    border-bottom: 1px solid #bbb;
-    @include clearfix;
-
-    &.active {
-      border-bottom-color: darken($activeColor, 10);
-      @include background(linear-gradient(darken($activeColor, 20) 5%, darken($activeColor, 10) 5%, $activeColor));
-      color: #fff;
-      text-shadow: 0 1px 0 darken($activeColor, 40);
-      .menu__subtitle {
-        color: #bbb;
-      }
-    }
-  }
   .menu__header {
     padding: 7px;
     padding-bottom: 14px;
@@ -66,50 +38,76 @@ $activeColor: #4277e0;
     box-shadow: 0 0 6px rgba(#000, 0.75) inset;
     @include clearfix;
   }
-  .menu__sample {
-    position: relative;
-    float: left;
-    margin-left: 7px;
-    width: $sampleSize;
-    height: $sampleSize;
-    @include border-radius($borderRadius - 1px);
-    @include box-shadow(
-      0 1px 4px 0px rgba(#000, 1),
-      0 0 0 1px rgba(#fff, 0.6) inset,
-      0 0 0 2px rgba(#000, 0.3) inset
-    );
-
-    &:first-child {
-      margin-left: 0;
-    }
-
-    &.active {
-      border-color: $activeColor;
+    .menu__sample {
+      position: relative;
+      float: left;
+      margin-left: 7px;
+      width: $sampleSize;
+      height: $sampleSize;
+      @include border-radius($borderRadius - 1px);
       @include box-shadow(
-        0 0 0 1px darken(#fbd73f, 20),
-        0 0 0 1px #fbd73f inset,
-        0 0 0 2px lighten(#fbd73f, 20) inset,
-        0 0 0 3px rgba(#000, 0.2) inset
+        0 1px 4px 0px rgba(#000, 1),
+        0 0 0 1px rgba(#fff, 0.6) inset,
+        0 0 0 2px rgba(#000, 0.3) inset
       );
-      &:after {
-        position: absolute;
-        left: 50%;
-        bottom: -14px;
-        margin-left: -8px;
-        width: 16px;
-        height: 8px;
-        background: inline-image("callout.svg") 0 0 no-repeat;
-        content: "";
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &.active {
+        border-color: $activeColor;
+        @include box-shadow(
+          0 0 0 1px darken(#fbd73f, 20),
+          0 0 0 1px #fbd73f inset,
+          0 0 0 2px lighten(#fbd73f, 20) inset,
+          0 0 0 3px rgba(#000, 0.2) inset
+        );
+        &:after {
+          position: absolute;
+          left: 50%;
+          bottom: -14px;
+          margin-left: -8px;
+          width: 16px;
+          height: 8px;
+          background: inline-image("callout.svg") 0 0 no-repeat;
+          content: "";
+        }
       }
     }
-  }
 
-  .menu__title {
-    display: inline-block;
-    font-weight: bold;
-    width: 8em;
+  .menu__items {
+    padding-top: 4px;
   }
-  .menu__subtitle {
-    color: #666;
-    font-size: .85em;
-  }
+    .menu__group:last-child {
+      .menu__item:last-child {
+        border-bottom-width: 0;
+        @include border-bottom-radius($borderRadius);
+      }
+    }
+
+    .menu__item {
+      padding: 7px;
+      list-style: none;
+      border-bottom: 1px solid #bbb;
+      @include clearfix;
+
+      &.active {
+        border-bottom-color: darken($activeColor, 10);
+        @include background(linear-gradient(darken($activeColor, 20) 5%, darken($activeColor, 10) 5%, $activeColor));
+        color: #fff;
+        text-shadow: 0 1px 0 darken($activeColor, 40);
+        .menu__subtitle {
+          color: #bbb;
+        }
+      }
+    }
+    .menu__title {
+      display: inline-block;
+      font-weight: bold;
+      width: 8em;
+    }
+    .menu__subtitle {
+      color: #666;
+      font-size: .85em;
+    }
