@@ -1,6 +1,8 @@
-$borderRadius: 4px;
+$menuBackgroundColor: #f3f3f3;
+$menuBorderWidth: 5px;
+$menuBorderRadius: 4px;
 $sampleSize: 48px;
-$activeColor: #4277e0;
+$activeColor: #366bda;
 
 .menu {
   position: absolute;
@@ -9,12 +11,12 @@ $activeColor: #4277e0;
   margin-top: -200px;
   margin-left: -150px;
   font: 14px "Lucida Grande", Helvetica, sans-serif;
-  background-color: #e3e3e3;
-  border: 7px solid #e3e3e3;
-  @include border-radius($borderRadius + 3);
+  background-color: $menuBackgroundColor;
+  border: $menuBorderWidth solid $menuBackgroundColor;
+  @include border-radius($menuBorderRadius + 3);
   @include box-shadow(
-    0 0 0 10px rgba(#fff, .5),
-    0 4px 16px 10px rgba(#000, .35)
+    0 0 0 1px rgba(darken($menuBackgroundColor, 40%), .5),
+    0 4px 16px rgba(#000, .25)
   );
   @include transition-timing-function(cubic-bezier(0.770, 0.000, 0.175, 1.000));
   @include transition(
@@ -35,21 +37,21 @@ $activeColor: #4277e0;
 }
 
   .menu__header {
-    padding: 7px;
+    padding: $menuBorderWidth;
     padding-bottom: 14px;
     font-size: 1.35em;
     @include background(linear-gradient(#555, #333));
-    @include border-top-radius($borderRadius);
+    @include border-top-radius($menuBorderRadius);
     box-shadow: 0 1px 4px #000 inset;
     @include clearfix;
   }
     .menu__sample {
       position: relative;
       float: left;
-      margin-left: 7px;
+      margin-left: $menuBorderWidth;
       width: $sampleSize;
       height: $sampleSize;
-      @include border-radius($borderRadius - 1px);
+      @include border-radius($menuBorderRadius - 1px);
       @include box-shadow(
         0 1px 4px 0px rgba(#000, 1),
         0 0 0 1px rgba(#fff, 0.6) inset,
@@ -82,27 +84,32 @@ $activeColor: #4277e0;
     }
 
   .menu__items {
-    padding-top: 4px;
+    margin-top: $menuBorderWidth;
   }
+    .menu__group {
+      .menu__item:last-child {
+        border-bottom-color: #ccc;
+      }
+    }
     .menu__group:last-child {
       .menu__item:last-child {
         border-bottom-width: 0;
-        @include border-bottom-radius($borderRadius);
+        @include border-bottom-radius($menuBorderRadius);
       }
     }
 
     .menu__item {
       position: relative;
-      padding: 7px;
+      padding: $menuBorderWidth;
       list-style: none;
-      border-bottom: 1px solid #bbb;
+      border-bottom: 1px solid transparent;
       @include clearfix;
 
       &:after {
         position: absolute;
         top: 50%;
         right: .5em;
-        color: #999;
+        color: #bbb;
         margin-top: -.55em;
         font-size: 1em;
         text-align: right;
@@ -140,6 +147,8 @@ $activeColor: #4277e0;
       width: 8em;
     }
     .menu__subtitle {
+      display: inline-block;
       color: #666;
       font-size: .85em;
+      width: 15em;
     }
