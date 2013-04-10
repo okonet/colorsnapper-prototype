@@ -8,6 +8,7 @@ class CS.Menu
     key 'left, right', @switchColor
     key 'up, down', @switchItem
     key 'enter', @selectColorFormat
+    key 'esc', @hide
 
   switchColor: (evt, handler) =>
     switch handler.key
@@ -53,6 +54,6 @@ class CS.Menu
     @el.removeClass 'hidden'
     $(document).trigger 'menu:shown'
 
-  hide: ->
+  hide: =>
     @el.addClass 'hidden'
     $(document).trigger 'menu:hidden'

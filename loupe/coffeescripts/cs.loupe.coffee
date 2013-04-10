@@ -56,9 +56,11 @@ class CS.Loupe
       @menu.show()
 
     $(document).on 'menu:shown', (e) =>
+      $('body').removeClass('loupe-visible')
       @el.hide()
 
     $(document).on 'menu:hidden', (e) =>
+      $('body').addClass('loupe-visible')
       @el.show()
 
     key 'alt + =, ctrl+=, =', =>
