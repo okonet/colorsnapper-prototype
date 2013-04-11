@@ -1,6 +1,6 @@
 $menuBackgroundColor: #f3f3f3;
 $menuBorderWidth: 5px;
-$menuBorderRadius: 4px;
+$menuBorderRadius: 5px;
 $sampleSize: 48px;
 $activeColor: #366bda;
 
@@ -14,9 +14,8 @@ $activeColor: #366bda;
   width: 320px;
   background-color: $menuBackgroundColor;
   border: $menuBorderWidth solid $menuBackgroundColor;
-  @include border-radius($menuBorderRadius + 3);
+  @include border-radius($menuBorderRadius + 2);
   @include box-shadow(
-    0 0 0 1px rgba(darken($menuBackgroundColor, 40%), .5),
     0 4px 16px rgba(#000, .25)
   );
   @include transition-timing-function(cubic-bezier(0.770, 0.000, 0.175, 1.000));
@@ -58,6 +57,7 @@ $activeColor: #366bda;
       right: 0;
       width: $menuBorderWidth * 4;
       height: 100%;
+      @include border-top-radius($menuBorderRadius);
       @include background(linear-gradient(left, rgba(#666, 0), rgba(#000, .45) 75%, rgba(#000, .65)));
       content: "";
     }
@@ -68,7 +68,7 @@ $activeColor: #366bda;
       width: $sampleSize;
       height: $sampleSize;
       opacity: .5;
-      @include border-radius($menuBorderRadius - 1px);
+      @include border-radius($menuBorderRadius - 2);
       @include box-shadow(
         0 1px 4px 0px rgba(#000, 1),
         0 0 0 1px rgba(#fff, 0.6) inset,
