@@ -11,6 +11,7 @@ $activeColor: #366bda;
   margin-top: -200px;
   margin-left: -150px;
   font: 14px "Lucida Grande", Helvetica, sans-serif;
+  width: 320px;
   background-color: $menuBackgroundColor;
   border: $menuBorderWidth solid $menuBackgroundColor;
   @include border-radius($menuBorderRadius + 3);
@@ -37,49 +38,91 @@ $activeColor: #366bda;
 }
 
   .menu__header {
+    position: relative;
     padding: $menuBorderWidth;
     padding-bottom: 14px;
     font-size: 1.35em;
-    @include background(linear-gradient(#555, #333));
+    white-space: nowrap;
+    @include background(
+      linear-gradient(rgba(#888, .5), rgba(#222, .5)),
+      inline-image('micro_carbon.png')
+    );
     @include border-top-radius($menuBorderRadius);
     box-shadow: 0 1px 4px #000 inset;
-    @include clearfix;
+    height: $sampleSize;
+    overflow: hidden;
+
+    &:after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: $menuBorderWidth * 4;
+      height: 100%;
+      @include background(linear-gradient(left, rgba(#666, 0), rgba(#000, .45) 75%, rgba(#000, .65)));
+      content: "";
+    }
   }
     .menu__sample {
       position: relative;
-      float: left;
-      margin-left: $menuBorderWidth;
+      display: inline-block;
       width: $sampleSize;
       height: $sampleSize;
+      opacity: .5;
       @include border-radius($menuBorderRadius - 1px);
       @include box-shadow(
         0 1px 4px 0px rgba(#000, 1),
         0 0 0 1px rgba(#fff, 0.6) inset,
         0 0 0 2px rgba(#000, 0.3) inset
       );
+      @include transition(opacity .25s .125s ease-in-out);
 
       &:first-child {
         margin-left: 0;
       }
 
       &.active {
-        border-color: $activeColor;
-        @include box-shadow(
-          0 0 0 1px darken(#fbd73f, 20),
-          0 0 0 1px #fbd73f inset,
-          0 0 0 2px lighten(#fbd73f, 20) inset,
-          0 0 0 3px rgba(#000, 0.2) inset
-        );
-        &:after {
-          position: absolute;
-          left: 50%;
-          bottom: -14px;
-          margin-left: -8px;
-          width: 16px;
-          height: 8px;
-          background: inline-image("callout.svg") 0 0 no-repeat;
-          content: "";
-        }
+        opacity: 1;
+      }
+
+      &:after {
+        position: absolute;
+        left: 50%;
+        bottom: -14px;
+        margin-left: -8px;
+        width: 16px;
+        height: 8px;
+        background: inline-image("callout.svg") 0 0 no-repeat;
+        content: "";
+        @include translateY(8px);
+        @include transition(transform .25s .125s ease-in-out);
+      }
+
+      &.active:after {
+        @include translateY(0);
+      }
+    }
+
+    .menu__sample-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin: $menuBorderWidth;
+      width: $sampleSize;
+      height: $sampleSize;
+      border-color: $activeColor;
+      @include border-radius($menuBorderRadius - 1px);
+      @include box-shadow(
+        0 0 0 1px darken(#fbd73f, 20),
+        0 0 0 1px #fbd73f inset,
+        0 0 0 2px lighten(#fbd73f, 20) inset,
+        0 0 0 3px rgba(#000, 0.2) inset
+      );
+      @include transition(transform .25s ease-in-out);
+    }
+
+    @for $i from 1 through 6 {
+      .menu__sample_#{$i}.active ~ .menu__sample-overlay {
+        @include translateX(($sampleSize + $menuBorderWidth + 1) * ($i - 1));
       }
     }
 
@@ -128,7 +171,6 @@ $activeColor: #366bda;
       &.menu__item_0:after { content: "⌘0"; }
 
       &.active {
-        border-bottom-color: darken($activeColor, 10);
         background-color: $activeColor;
         color: #fff;
         .menu__subtitle {
