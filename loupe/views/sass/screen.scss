@@ -53,8 +53,8 @@ p {
     box-shadow: 0 0 0 1px rgba(0,0,0,.3), 0 2px 6px rgba(0,0,0,.35);
     border-radius: 2px;
     @include transition(
-      color 50ms ease-in-out,
-      background-color 50ms ease-in-out
+      color 100ms,
+      background-color 25ms
     );
   }
   .loupe_invert .loupe__overlay {
