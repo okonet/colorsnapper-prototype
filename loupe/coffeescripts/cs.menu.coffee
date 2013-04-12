@@ -6,7 +6,7 @@ class CS.Menu
   constructor: ->
     @el = $(".menu")
     key 'left, right', @switchColor
-    key 'up, down', @switchItem
+    key 'up, down, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0', @switchItem
     key 'enter', @selectColorFormat
     key 'esc', @hide
 
@@ -23,6 +23,10 @@ class CS.Menu
         @selectMenuItem -1
       when "down"
         @selectMenuItem 1
+      else
+        keyIndex = if handler.key > 0 then (handler.key - 1) else 9
+        @selectMenuItem(keyIndex - @activeFormat)
+        _.delay @hide, 250
 
   selectHistoryItem: (dir) ->
     $items = $('.menu__sample', @el)
