@@ -26,14 +26,14 @@ class CS.Menu
 
   selectHistoryItem: (dir) ->
     $items = $('.menu__sample', @el)
-    $activeItem = $('.menu__sample.active', @el)
-    $activeItem.removeClass 'active'
+    @$activeItem?.removeClass 'active'
     @activeColor += dir
     if @activeColor >= $items.length and dir > 0
       @activeColor = 0
     else if @activeColor < 0 and dir < 0
       @activeColor = $items.length - 1
-    $($items.get(@activeColor)).addClass('active')
+    @$activeItem = $($items.get(@activeColor))
+    @$activeItem.addClass('active')
 
   selectMenuItem: (dir) ->
     $items = $('.menu__item', @el)
