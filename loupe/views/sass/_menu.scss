@@ -1,8 +1,10 @@
-$menuBackgroundColor: rgba(#f3f3f3, .95);
+$menuBackgroundColor: rgba(#fcfcfc, .95);
 $menuBorderWidth: 5px;
 $menuBorderRadius: 5px;
 $menuCalloutSize: 8px;
 $menuSampleSize: 48px;
+$menuActiveColor1: #658cf5;
+$menuActiveColor2: #2765f2;
 $menuActiveColor: #366bda;
 
 .menu {
@@ -19,10 +21,8 @@ $menuActiveColor: #366bda;
   @include box-shadow(0 4px 32px rgba(#000, .35));
   @include transition-timing-function(cubic-bezier(0.770, 0.000, 0.175, 1.000));
   @include transition(
-    background-color .5s,
     opacity 125ms,
     -webkit-transform 250ms);
-  -webkit-font-smoothing: antialiased;
 
   &.hidden {
     opacity: 0;
@@ -112,8 +112,7 @@ $menuActiveColor: #366bda;
       margin: $menuBorderWidth;
       width: $menuSampleSize;
       height: $menuSampleSize;
-      border-color: $menuActiveColor;
-      @include border-radius($menuBorderRadius - 1px);
+      border-radius: $menuBorderRadius - 1px;
       @include box-shadow(
         0 0 0 1px darken(#fbd73f, 20),
         0 0 0 1px #fbd73f inset,
@@ -131,16 +130,24 @@ $menuActiveColor: #366bda;
 
   .menu__items {
     margin-top: $menuBorderWidth;
+    border-radius: $menuBorderRadius - 1px;
+    @include transition(background-color .5s);
   }
     .menu__group {
       .menu__item:last-child {
-        border-bottom-color: #ccc;
+        border-bottom-color: #e5e5e4;
+      }
+    }
+    .menu__group:first-child {
+      .menu__item:first-child {
+        border-top-width: 0;
+        @include border-top-radius($menuBorderRadius - 2px);
       }
     }
     .menu__group:last-child {
       .menu__item:last-child {
         border-bottom-width: 0;
-        @include border-bottom-radius($menuBorderRadius);
+        @include border-bottom-radius($menuBorderRadius - 2px);
       }
     }
 
@@ -148,6 +155,7 @@ $menuActiveColor: #366bda;
       position: relative;
       padding: $menuBorderWidth;
       list-style: none;
+      border-top: 1px solid transparent;
       border-bottom: 1px solid transparent;
       @include clearfix;
 
@@ -155,7 +163,7 @@ $menuActiveColor: #366bda;
         position: absolute;
         top: 50%;
         right: .5em;
-        color: #bbb;
+        color: rgba(#000, .15);
         margin-top: -.55em;
         font-size: 1em;
         text-align: right;
@@ -174,10 +182,12 @@ $menuActiveColor: #366bda;
       &.menu__item_0:after { content: "⌘0"; }
 
       &.active {
-        background-color: $menuActiveColor;
+        @include background(linear-gradient($menuActiveColor1, $menuActiveColor2));
+        border-top-color: darken($menuActiveColor1, 7%);
+        border-bottom-color: darken($menuActiveColor2, 7%)!important;
         color: #fff;
         .menu__subtitle {
-          color: #ccc;
+          color: #fff;
         }
 
         &:after {
@@ -188,12 +198,12 @@ $menuActiveColor: #366bda;
     }
     .menu__title {
       display: inline-block;
-      font-weight: bold;
+      font-size: 14px;
       width: 8em;
     }
     .menu__subtitle {
       display: inline-block;
-      color: #666;
-      font-size: .85em;
+      color: rgba(#000, .45);
+      font-size: 12px;
       width: 15em;
     }
