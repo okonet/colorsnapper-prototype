@@ -11,14 +11,17 @@ $menuActiveColor: #366bda;
   position: absolute;
   top: 50%;
   left: 50%;
-  padding: $menuBorderWidth;
   margin-top: -200px;
   margin-left: -150px;
   font: 14px "Lucida Grande", Helvetica, sans-serif;
   width: 320px;
   background-color: $menuBackgroundColor;
   @include border-radius($menuBorderRadius + 2);
-  @include box-shadow(0 4px 32px rgba(#000, .35));
+  @include box-shadow(
+    0 0 0 1px rgba(#f9f9fc, 1) inset,
+    0 0 0 1px rgba(#122a3c, .1),
+    0 4px 32px 2px rgba(#01192b, .35)
+  );
   @include transition-timing-function(cubic-bezier(0.770, 0.000, 0.175, 1.000));
   @include transition(
     opacity 125ms,
@@ -38,6 +41,7 @@ $menuActiveColor: #366bda;
 
   .menu__header {
     position: relative;
+    margin: $menuBorderWidth;
     padding: $menuBorderWidth;
     padding-bottom: 14px;
     font-size: 1.35em;
@@ -134,26 +138,19 @@ $menuActiveColor: #366bda;
     @include transition(background-color .5s);
   }
     .menu__group {
+      margin-bottom: $menuBorderRadius;
+      border-bottom: 1px solid #e5e5e4;
       .menu__item:last-child {
-        border-bottom-color: #e5e5e4;
-      }
-    }
-    .menu__group:first-child {
-      .menu__item:first-child {
-        border-top-width: 0;
-        @include border-top-radius($menuBorderRadius - 2px);
+        margin-bottom: $menuBorderRadius;
       }
     }
     .menu__group:last-child {
-      .menu__item:last-child {
-        border-bottom-width: 0;
-        @include border-bottom-radius($menuBorderRadius - 2px);
-      }
+      border-bottom: none;
     }
 
     .menu__item {
       position: relative;
-      padding: $menuBorderWidth;
+      padding: $menuBorderWidth - 2px $menuBorderWidth * 2;
       list-style: none;
       border-top: 1px solid transparent;
       border-bottom: 1px solid transparent;
