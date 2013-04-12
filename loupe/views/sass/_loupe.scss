@@ -1,0 +1,53 @@
+.loupe {
+  position: absolute;
+  border: 2px solid rgba(255,255,255,0.5);
+  @include box-shadow(
+    0 0 0 1px rgba(0,0,0,0.25),
+    0 0 0 1px rgba(0,0,0,0.25) inset,
+    0 2px 8px rgba(0,0,0,0.25)
+  );
+  width: 42px;
+  height: 42px;
+  @include border-radius(42px);
+  @include translate(-50%, -50%);
+}
+
+  .loupe__overlay {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -15px;
+    margin-left: 20px;
+    padding: 3px 4px;
+    color: #FFF;
+    font: 9px/1 "Monaco";
+    text-shadow: 0 1px 0 rgba(0,0,0,.7);
+    white-space: nowrap;
+    background: rgba(0,0,0,0.45);
+    border: 1px solid rgba(255,255,255,.7);
+    box-shadow: 0 0 0 1px rgba(0,0,0,.3), 0 2px 6px rgba(0,0,0,.35);
+    border-radius: 2px;
+    @include transition(
+      color 100ms,
+      background-color 25ms
+    );
+  }
+  .loupe_invert .loupe__overlay {
+    color: #000;
+    text-shadow: 0 1px 0 rgba(255,255,255,.7);
+  }
+    .loupe__format {
+      margin-bottom: .5em;
+      font: bold 10px "Lucida Grande";
+    }
+
+  .loupe__overlay_none {
+    display: none;
+  }
+
+  .loupe__overlay_simple {
+    height: 26px;
+    width: 24px;
+  }
+    .loupe__overlay_simple .loupe__format,
+    .loupe__overlay_simple .loupe__color { display: none; }
