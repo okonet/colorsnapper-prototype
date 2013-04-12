@@ -1,25 +1,25 @@
-$menuBackgroundColor: #f3f3f3;
+$menuBackgroundColor: rgba(#f3f3f3, .95);
 $menuBorderWidth: 5px;
 $menuBorderRadius: 5px;
-$sampleSize: 48px;
-$activeColor: #366bda;
+$menuCalloutSize: 8px;
+$menuSampleSize: 48px;
+$menuActiveColor: #366bda;
 
 .menu {
   position: absolute;
   top: 50%;
   left: 50%;
+  padding: $menuBorderWidth;
   margin-top: -200px;
   margin-left: -150px;
   font: 14px "Lucida Grande", Helvetica, sans-serif;
   width: 320px;
   background-color: $menuBackgroundColor;
-  border: $menuBorderWidth solid $menuBackgroundColor;
   @include border-radius($menuBorderRadius + 2);
-  @include box-shadow(
-    0 4px 16px rgba(#000, .25)
-  );
+  @include box-shadow(0 4px 32px rgba(#000, .35));
   @include transition-timing-function(cubic-bezier(0.770, 0.000, 0.175, 1.000));
   @include transition(
+    background-color .5s,
     opacity 125ms,
     -webkit-transform 250ms);
   -webkit-font-smoothing: antialiased;
@@ -48,7 +48,7 @@ $activeColor: #366bda;
     );
     @include border-top-radius($menuBorderRadius);
     box-shadow: 0 1px 4px #000 inset;
-    height: $sampleSize;
+    height: $menuSampleSize;
     overflow: hidden;
 
     &:after {
@@ -65,8 +65,8 @@ $activeColor: #366bda;
     .menu__sample {
       position: relative;
       display: inline-block;
-      width: $sampleSize;
-      height: $sampleSize;
+      width: $menuSampleSize;
+      height: $menuSampleSize;
       opacity: .5;
       @include border-radius($menuBorderRadius - 2);
       @include box-shadow(
@@ -89,9 +89,12 @@ $activeColor: #366bda;
         left: 50%;
         bottom: -14px;
         margin-left: -8px;
-        width: 16px;
-        height: 8px;
-        background: inline-image("callout.svg") 0 0 no-repeat;
+        width: 0;
+        height: 0;
+        border-top: 0;
+        border-left: $menuCalloutSize solid transparent;
+        border-right: $menuCalloutSize solid transparent;
+        border-bottom: $menuCalloutSize solid $menuBackgroundColor;
         content: "";
         @include translateY(8px);
         @include transition(transform .25s .125s ease-in-out);
@@ -107,9 +110,9 @@ $activeColor: #366bda;
       top: 0;
       left: 0;
       margin: $menuBorderWidth;
-      width: $sampleSize;
-      height: $sampleSize;
-      border-color: $activeColor;
+      width: $menuSampleSize;
+      height: $menuSampleSize;
+      border-color: $menuActiveColor;
       @include border-radius($menuBorderRadius - 1px);
       @include box-shadow(
         0 0 0 1px darken(#fbd73f, 20),
@@ -122,7 +125,7 @@ $activeColor: #366bda;
 
     @for $i from 1 through 6 {
       .menu__sample_#{$i}.active ~ .menu__sample-overlay {
-        @include translateX(($sampleSize + $menuBorderWidth + 1) * ($i - 1));
+        @include translateX(($menuSampleSize + $menuBorderWidth + 1) * ($i - 1));
       }
     }
 
@@ -171,7 +174,7 @@ $activeColor: #366bda;
       &.menu__item_0:after { content: "⌘0"; }
 
       &.active {
-        background-color: $activeColor;
+        background-color: $menuActiveColor;
         color: #fff;
         .menu__subtitle {
           color: #ccc;
