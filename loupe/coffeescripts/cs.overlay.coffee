@@ -3,7 +3,7 @@ class CS.Overlay
   types: ["none", "simple", "full"]
   pixel: [0,0,0]
   altFormat: no
-  overlayType: 2
+  overlayType: parseInt localStorage.getItem('CS:overlayType') or 2
 
   constructor: (@loupe) ->
     @el = $(".loupe__overlay")
@@ -22,6 +22,7 @@ class CS.Overlay
     @changeType @overlayType
 
   changeType: (type) ->
+    localStorage.setItem('CS:overlayType', type)
     @el.attr("class", "loupe__overlay loupe__overlay_#{@types[type]}")
 
   render: (pixel) ->

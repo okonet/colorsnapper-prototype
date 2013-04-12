@@ -4,7 +4,7 @@ class CS.Loupe
   MAX_ZOOM    : 10
   WHEEL_SPEED : .5
 
-  zoom        : 2
+  zoom        : parseInt localStorage.getItem('CS:zoom') or 2 # Get values from localStorage
   aperture    : 24 * 2
   apertureMin : 24 * 2
   apertureMax : 24 * 15
@@ -52,11 +52,13 @@ class CS.Loupe
     key 'alt + =, ctrl+=, =', =>
       ++@zoom if @MIN_ZOOM <= @zoom < @MAX_ZOOM
       @render()
+      localStorage.setItem('CS:zoom', @zoom)
       off
 
     key 'alt+-, ctrl+-, -', =>
       @zoom-- if @MIN_ZOOM < @zoom <= @MAX_ZOOM
       @render()
+      localStorage.setItem('CS:zoom', @zoom)
       off
 
     $(document).on "mousewheel", @onMouseWheel
@@ -71,7 +73,7 @@ class CS.Loupe
     @diameter = Math.min @diameter, Math.min @diameterMax, @apertureMax * (@zoom-1)
     @render()
 
-  magnify: ->
+  magnify: =>
     width = height = @diameter
     @magnifier.setDimensions width, height
     @magnifier.drawScaledRegion @screen, @posX, @posY, @diameter/2, @zoom
