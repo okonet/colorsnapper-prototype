@@ -52,7 +52,10 @@ p {
     border: 1px solid rgba(255,255,255,.7);
     box-shadow: 0 0 0 1px rgba(0,0,0,.3), 0 2px 6px rgba(0,0,0,.35);
     border-radius: 2px;
-    @include transition(all 20ms ease-in-out);
+    @include transition(
+      color 50ms ease-in-out,
+      background-color 50ms ease-in-out
+    );
   }
   .loupe_invert .loupe__overlay {
     color: #000;
