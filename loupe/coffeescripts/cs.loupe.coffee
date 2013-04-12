@@ -2,6 +2,7 @@ class CS.Loupe
 
   MIN_ZOOM    : 2
   MAX_ZOOM    : 10
+  WHEEL_SPEED : .5
 
   zoom        : 2
   aperture    : 24 * 2
@@ -14,7 +15,6 @@ class CS.Loupe
   borderMin   : 2
   borderMax   : 10
 
-  thersold    : 8
 
   constructor: ->
     @el = $(".loupe")
@@ -34,25 +34,9 @@ class CS.Loupe
       @render()
       @overlay.render @screen.getPixelAt @posX, @posY
 
-    $(document).on "mousewheel", (e, delta, deltaX, deltaY) =>
-      @aperture -= (deltaY * @thersold)
-      @aperture = Math.max @aperture, @apertureMin
-      @aperture = Math.min @aperture, @apertureMax
-
-      dMax = @getDiameter @zoom, @aperture
-      if @diameter >= dMax or @diameter >= @diameterMax
-        e.preventDefault()
-        e.stopPropagation()
-        @diameter -= deltaY
-        @diameter = Math.min @diameter, dMax * 1.2
-        _renderDebounced @diameter
-        _revertToMaxDiameter()
-        off
-      else
-        @render()
-
     $(document).on 'click', (e) =>
       e.preventDefault()
+      e.stopPropagation()
       if key.alt
         @menu ?= new CS.Menu()
         @menu.show()
@@ -75,11 +59,12 @@ class CS.Loupe
       @render()
       off
 
-    _renderDebounced = _.debounce @render, 10
-    _revertToMaxDiameter = _.debounce @revertToMaxDiameter, 150
+    $(document).on "mousewheel", @onMouseWheel
+    @revertToMaxDiameterDebounced = _.debounce @revertToMaxDiameter, 150
     @render()
 
   getDiameter: (zoom, aperture) ->
+    aperture -= aperture % 2 # Ensure that aperture is always even to prevent fuzziness
     (zoom-1) * aperture
 
   revertToMaxDiameter: =>
@@ -110,3 +95,9 @@ class CS.Loupe
       height       : diameter
       borderRadius : diameter
       borderWidth  : border
+
+  onMouseWheel: (e, delta, deltaX, deltaY) =>
+    @aperture -= (deltaY * @WHEEL_SPEED)
+    @aperture = Math.max @aperture, @apertureMin
+    @aperture = Math.min @aperture, @apertureMax
+    @render()
