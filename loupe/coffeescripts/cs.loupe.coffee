@@ -20,6 +20,7 @@ class CS.Loupe
     @el = $(".loupe")
     @magnifier = new CS.Canvas("<canvas class='loupe__canvas'>")
     @el.append @magnifier.el
+    $('body').addClass('cs-loupe')
 
     @screen = new CS.Canvas("#canvas")
     @screen.drawImage "images/bg1.png", (imageData) =>
@@ -52,15 +53,16 @@ class CS.Loupe
 
     $(document).on 'click', (e) =>
       e.preventDefault()
-      @menu ?= new CS.Menu()
-      @menu.show()
+      if key.alt
+        @menu ?= new CS.Menu()
+        @menu.show()
 
     $(document).on 'menu:shown', (e) =>
-      $('body').removeClass('loupe-visible')
+      $('body').removeClass('cs-loupe')
       @el.hide()
 
     $(document).on 'menu:hidden', (e) =>
-      $('body').addClass('loupe-visible')
+      $('body').addClass('cs-loupe')
       @el.show()
 
     key 'alt + =, ctrl+=, =', =>
