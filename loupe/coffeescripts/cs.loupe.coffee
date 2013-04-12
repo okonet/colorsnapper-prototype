@@ -5,7 +5,7 @@ class CS.Loupe
   WHEEL_SPEED : .5
 
   zoom        : parseInt localStorage.getItem('CS:zoom') or 2 # Get values from localStorage
-  aperture    : 24 * 2
+  aperture    : parseInt localStorage.getItem('CS:aperture') or 48
   apertureMin : 24 * 2
   apertureMax : 24 * 15
 
@@ -102,4 +102,5 @@ class CS.Loupe
     @aperture -= (deltaY * @WHEEL_SPEED)
     @aperture = Math.max @aperture, @apertureMin
     @aperture = Math.min @aperture, @apertureMax
+    localStorage.setItem('CS:aperture', @aperture)
     @render()
