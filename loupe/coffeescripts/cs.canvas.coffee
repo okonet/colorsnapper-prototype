@@ -25,14 +25,6 @@ class CS.Canvas
     catch error
       throw new Error error
 
-
-  getBrightness: (r, g, b) ->
-    Math.sqrt(
-      r * r * .241 +
-      g * g * .691 +
-      b * b * .068
-    )
-
   drawScaledRegion: (canvas, x, y, radius, scale) ->
     diameter = radius * 2
 
@@ -61,5 +53,5 @@ class CS.Canvas
 
     scale += if scale % 2 then 2 else 1
     @ctx.lineWidth = 1;
-    @ctx.strokeStyle = if @getBrightness(p[0], p[1], p[2]) < 155 then 'rgb(255,255,255)' else 'rgb(0,0,0)'
+    @ctx.strokeStyle = if CS.getBrightness(p[0], p[1], p[2]) < 155 then 'rgb(255,255,255)' else 'rgb(0,0,0)'
     @ctx.strokeRect cX-scale/2, cY-scale/2, scale, scale
