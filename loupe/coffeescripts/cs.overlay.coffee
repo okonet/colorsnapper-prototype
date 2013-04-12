@@ -31,9 +31,9 @@ class CS.Overlay
       format[1] = pixel[1].toString(16).toUpperCase()
       format[2] = pixel[2].toString(16).toUpperCase()
     else
-      format[0] = pixel[0]
-      format[1] = pixel[1]
-      format[2] = pixel[2]
+      format[0] = "#{(pixel[0] / 255).toPrecision(4).replace('0.', '.')}"
+      format[1] = "#{(pixel[1] / 255).toPrecision(4).replace('0.', '.')}"
+      format[2] = "#{(pixel[2] / 255).toPrecision(4).replace('0.', '.')}"
 
     @el.css "background-color", "rgb(#{pixel.join(',')})"
     $(".loupe__color").html "#{format.join(' ')}"
