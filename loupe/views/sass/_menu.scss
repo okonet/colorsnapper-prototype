@@ -3,6 +3,7 @@ $menuBorderWidth: 5px;
 $menuBorderRadius: 5px;
 $menuCalloutSize: 8px;
 $menuSampleSize: 48px;
+$menuSeparatorColor: #e5e5e4;
 $menuActiveColor1: #658cf5;
 $menuActiveColor2: #2765f2;
 $menuActiveColor: #366bda;
@@ -139,7 +140,7 @@ $menuActiveColor: #366bda;
   }
     .menu__group {
       margin-bottom: $menuBorderRadius;
-      border-bottom: 1px solid #e5e5e4;
+      border-bottom: 1px solid $menuSeparatorColor;
       .menu__item:last-child {
         margin-bottom: $menuBorderRadius;
       }
@@ -158,25 +159,26 @@ $menuActiveColor: #366bda;
 
       &:after {
         position: absolute;
-        top: 50%;
+        top: 3px;
         right: .5em;
-        color: rgba(#000, .15);
-        margin-top: -.55em;
-        font-size: 1em;
-        text-align: right;
-        width: 2em;
+        color: rgba(#122a3c, .25);
+        font-size: 12px;
+        text-align: center;
+        width: 15px;
+        border: 1px solid rgba(darken($menuSeparatorColor, 10%), .55);
+        border-radius: 2px;
       }
 
-      &.menu__item_1:after { content: "⌘1"; }
-      &.menu__item_2:after { content: "⌘2"; }
-      &.menu__item_3:after { content: "⌘3"; }
-      &.menu__item_4:after { content: "⌘4"; }
-      &.menu__item_5:after { content: "⌘5"; }
-      &.menu__item_6:after { content: "⌘6"; }
-      &.menu__item_7:after { content: "⌘7"; }
-      &.menu__item_8:after { content: "⌘8"; }
-      &.menu__item_9:after { content: "⌘9"; }
-      &.menu__item_0:after { content: "⌘0"; }
+      &.menu__item_1:after { content: "1"; }
+      &.menu__item_2:after { content: "2"; }
+      &.menu__item_3:after { content: "3"; }
+      &.menu__item_4:after { content: "4"; }
+      &.menu__item_5:after { content: "5"; }
+      &.menu__item_6:after { content: "6"; }
+      &.menu__item_7:after { content: "7"; }
+      &.menu__item_8:after { content: "8"; }
+      &.menu__item_9:after { content: "9"; }
+      &.menu__item_0:after { content: "0"; }
 
       &.active {
         @include background(linear-gradient($menuActiveColor1, $menuActiveColor2));
