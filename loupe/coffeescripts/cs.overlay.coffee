@@ -3,7 +3,7 @@ class CS.Overlay
   types: ["none", "simple", "full"]
   pixel: [0,0,0]
   altFormat: no
-  overlayType: 1
+  overlayType: 2
 
   constructor: (@loupe) ->
     @el = $(".loupe__overlay")
