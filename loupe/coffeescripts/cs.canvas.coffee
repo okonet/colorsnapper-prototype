@@ -49,7 +49,7 @@ class CS.Canvas
     @ctx.strokeStyle = 'rgba(255,255,255,.5)'
     @ctx.stroke()
 
-    p = canvas.getPixelAt(x, y)
+    @targetPixel = p = canvas.getPixelAt(x, y)
 
     scale += if scale % 2 then 2 else 1
     @ctx.lineWidth = 1;

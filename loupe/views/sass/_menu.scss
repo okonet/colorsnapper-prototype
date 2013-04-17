@@ -17,16 +17,16 @@ $menuActiveColor: #366bda;
   font: 14px "Lucida Grande", Helvetica, sans-serif;
   width: 320px;
   background-color: $menuBackgroundColor;
-  @include border-radius($menuBorderRadius + 2);
-  @include box-shadow(
+  border-radius: $menuBorderRadius + 2;
+  box-shadow:
     0 0 0 1px rgba(#f9f9fc, 1) inset,
     0 0 0 1px rgba(#122a3c, .1),
-    0 4px 32px 2px rgba(#01192b, .35)
-  );
-  @include transition-timing-function(cubic-bezier(0.770, 0.000, 0.175, 1.000));
-  @include transition(
+    0 4px 32px 2px rgba(#01192b, .35);
+
+  transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
+  transition:
     opacity 125ms,
-    -webkit-transform 250ms);
+    -webkit-transform 250ms;
 
   &.hidden {
     opacity: 0;

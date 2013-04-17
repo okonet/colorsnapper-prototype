@@ -11,22 +11,24 @@ class CS.Menu
     jwerty.key 'esc', @hide
 
   switchColor: (evt, key) =>
-    switch key
-      when "→"
-        @selectHistoryItem 1
-      when "←"
-        @selectHistoryItem -1
+    if @isVisible
+      switch key
+        when "→"
+          @selectHistoryItem 1
+        when "←"
+          @selectHistoryItem -1
 
   switchItem: (evt, key) =>
-    switch key
-      when "↑"
-        @selectMenuItem -1
-      when "↓"
-        @selectMenuItem 1
-      else
-        keyIndex = if parseInt(key, 10) > 0 then (parseInt(key, 10) - 1) else 9
-        @selectMenuItem(keyIndex - @activeFormat)
-        _.delay @hide, 250
+    if @isVisible
+      switch key
+        when "↑"
+          @selectMenuItem -1
+        when "↓"
+          @selectMenuItem 1
+        else
+          keyIndex = if parseInt(key, 10) > 0 then (parseInt(key, 10) - 1) else 9
+          @selectMenuItem(keyIndex - @activeFormat)
+          _.delay @hide, 250
 
   selectHistoryItem: (dir) ->
     $items = $('.menu__sample', @el)
@@ -56,9 +58,11 @@ class CS.Menu
     @hide()
 
   show: ->
+    @isVisible = yes
     @el.removeClass 'hidden'
     $(document).trigger 'menu:shown'
 
   hide: =>
+    @isVisible = no
     @el.addClass 'hidden'
     $(document).trigger 'menu:hidden'

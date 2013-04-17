@@ -63,3 +63,20 @@
   }
     .loupe__overlay_simple .loupe__format,
     .loupe__overlay_simple .loupe__color { display: none; }
+
+  .loupe__flyer {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+
+    &.toMenu {
+      width: $menuSampleSize;
+      height: $menuSampleSize;
+      opacity: 0;
+      transition:
+        width .5s,
+        height .5s,
+        opacity .4s .3s;
+    }
+  }
+

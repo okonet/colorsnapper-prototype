@@ -32,32 +32,34 @@ class CS.Loupe
     jwerty.key 'esc', @hide
 
     $(document).on "mousemove", (e) =>
-      @posX = e.clientX
-      @posY = e.clientY
-      @render()
-      @overlay.render @screen.getPixelAt @posX, @posY
+      if @isVisible
+        @posX = e.clientX
+        @posY = e.clientY
+        @render()
+        @overlay.render @screen.getPixelAt @posX, @posY
 
     $(document).on 'click', (e) =>
-      e.preventDefault()
-      e.stopPropagation()
-      @simulatePick()
-      if jwerty.is('⌥', e)
-        @menu ?= new CS.Menu()
-        @menu.show()
+      if @isVisible
+        e.preventDefault()
+        e.stopPropagation()
+        @simulatePick(e)
+        if jwerty.is('⌥', e)
+          @menu ?= new CS.Menu()
+          @menu.show()
 
     $(document).on 'menu:shown', @hide
 
     jwerty.key '⌘+]', =>
-      ++@zoom if @MIN_ZOOM <= @zoom < @MAX_ZOOM
-      @render()
-      localStorage.setItem('CS:zoom', @zoom)
-      off
+      if @isVisible
+        ++@zoom if @MIN_ZOOM <= @zoom < @MAX_ZOOM
+        @render()
+        localStorage.setItem('CS:zoom', @zoom)
 
     jwerty.key '⌘+[', =>
-      @zoom-- if @MIN_ZOOM < @zoom <= @MAX_ZOOM
-      @render()
-      localStorage.setItem('CS:zoom', @zoom)
-      off
+      if @isVisible
+        @zoom-- if @MIN_ZOOM < @zoom <= @MAX_ZOOM
+        @render()
+        localStorage.setItem('CS:zoom', @zoom)
 
     $(document).on "mousewheel", @onMouseWheel
     @revertToMaxDiameterDebounced = _.debounce @revertToMaxDiameter, 150
@@ -66,6 +68,9 @@ class CS.Loupe
   getDiameter: (zoom, aperture) ->
     aperture -= aperture % 2 # Ensure that aperture is always even to prevent fuzziness
     (zoom-1) * aperture
+
+  getActualColor: ->
+    "rgb(#{@magnifier.targetPixel.join(",")})"
 
   revertToMaxDiameter: =>
     @diameter = Math.min @diameter, Math.min @diameterMax, @apertureMax * (@zoom-1)
@@ -103,17 +108,47 @@ class CS.Loupe
     localStorage.setItem('CS:aperture', @aperture)
     @render()
 
-  simulatePick: ->
+  simulatePick: (evt) ->
     @el.addClass('picked')
     _.delay @hide, 500
+    _.delay =>
+      animateToMenu = @menu? and @menu.isVisible
+      endX = $(window).width() - 100
+      endY = 0
+
+      if animateToMenu
+        endX = $(window).width()/2 - 140
+        endY = $(window).height()/2 - 190
+
+      $flyer = $("<div class='loupe__flyer'>")
+        .appendTo($('body'))
+        .css 'background-color', @getActualColor()
+
+      $flyer.animate
+          duration: 350
+          path: new $.path.bezier
+            start:
+              x: evt.pageX
+              y: evt.pageY
+              angle: 90
+              length: .1
+            end:
+              x: endX
+              y: endY
+              angle: -30
+              length: .5
+
+      $flyer.addClass('toMenu') if animateToMenu
+
+    , 200
 
   show: =>
-    console.log 'Show CS loupe'
+    @isVisible = yes
     $('body').addClass('cs-loupe')
     @el.show()
 
   hide: =>
-    console.log 'Hide CS loupe'
+    @isVisible = no
     $('body').removeClass('cs-loupe')
     @el.removeClass('picked')
     @el.hide()
