@@ -28,6 +28,9 @@ class CS.Loupe
 
     @overlay = new CS.Overlay @
 
+    jwerty.key 'ctrl+⌘+C', @show
+    jwerty.key 'esc', @hide
+
     $(document).on "mousemove", (e) =>
       @posX = e.clientX
       @posY = e.clientY
@@ -37,25 +40,20 @@ class CS.Loupe
     $(document).on 'click', (e) =>
       e.preventDefault()
       e.stopPropagation()
-      if key.alt
+      @simulatePick()
+      if jwerty.is('⌥', e)
         @menu ?= new CS.Menu()
         @menu.show()
 
-    $(document).on 'menu:shown', (e) =>
-      $('body').removeClass('cs-loupe')
-      @el.hide()
+    $(document).on 'menu:shown', @hide
 
-    $(document).on 'menu:hidden', (e) =>
-      $('body').addClass('cs-loupe')
-      @el.show()
-
-    key 'alt + =, ctrl+=, =', =>
+    jwerty.key '⌘+]', =>
       ++@zoom if @MIN_ZOOM <= @zoom < @MAX_ZOOM
       @render()
       localStorage.setItem('CS:zoom', @zoom)
       off
 
-    key 'alt+-, ctrl+-, -', =>
+    jwerty.key '⌘+[', =>
       @zoom-- if @MIN_ZOOM < @zoom <= @MAX_ZOOM
       @render()
       localStorage.setItem('CS:zoom', @zoom)
@@ -63,7 +61,7 @@ class CS.Loupe
 
     $(document).on "mousewheel", @onMouseWheel
     @revertToMaxDiameterDebounced = _.debounce @revertToMaxDiameter, 150
-    @render()
+    @hide()
 
   getDiameter: (zoom, aperture) ->
     aperture -= aperture % 2 # Ensure that aperture is always even to prevent fuzziness
@@ -104,3 +102,18 @@ class CS.Loupe
     @aperture = Math.min @aperture, @apertureMax
     localStorage.setItem('CS:aperture', @aperture)
     @render()
+
+  simulatePick: ->
+    @el.addClass('picked')
+    _.delay @hide, 500
+
+  show: =>
+    console.log 'Show CS loupe'
+    $('body').addClass('cs-loupe')
+    @el.show()
+
+  hide: =>
+    console.log 'Hide CS loupe'
+    $('body').removeClass('cs-loupe')
+    @el.removeClass('picked')
+    @el.hide()

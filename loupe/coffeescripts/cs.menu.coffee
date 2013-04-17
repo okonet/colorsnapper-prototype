@@ -5,26 +5,26 @@ class CS.Menu
 
   constructor: ->
     @el = $(".menu")
-    key 'left, right', @switchColor
-    key 'up, down, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0', @switchItem
-    key 'enter', @selectColorFormat
-    key 'esc', @hide
+    jwerty.key '←/→', @switchColor
+    jwerty.key '↑/↓/[0-9]', @switchItem
+    jwerty.key 'enter', @selectColorFormat
+    jwerty.key 'esc', @hide
 
-  switchColor: (evt, handler) =>
-    switch handler.key
-      when "right"
+  switchColor: (evt, key) =>
+    switch key
+      when "→"
         @selectHistoryItem 1
-      when "left"
+      when "←"
         @selectHistoryItem -1
 
-  switchItem: (evt, handler) =>
-    switch handler.key
-      when "up"
+  switchItem: (evt, key) =>
+    switch key
+      when "↑"
         @selectMenuItem -1
-      when "down"
+      when "↓"
         @selectMenuItem 1
       else
-        keyIndex = if handler.key > 0 then (handler.key - 1) else 9
+        keyIndex = if parseInt(key, 10) > 0 then (parseInt(key, 10) - 1) else 9
         @selectMenuItem(keyIndex - @activeFormat)
         _.delay @hide, 250
 

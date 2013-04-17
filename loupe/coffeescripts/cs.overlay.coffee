@@ -7,9 +7,9 @@ class CS.Overlay
 
   constructor: (@loupe) ->
     @el = $(".loupe__overlay")
-    $(document).on "keydown", => @toggleFormat() if key.alt
+    $(document).on "keydown", (e) => @toggleFormat() if e.altKey
     $(document).on "keyup", => @toggleFormat() if @altFormat
-    key '/', @toggle
+    jwerty.key [['/']], @toggle
     @changeType @overlayType
 
   toggleFormat: ->
