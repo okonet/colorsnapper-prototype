@@ -6,7 +6,7 @@ class CS.Menu
   constructor: ->
     @el = $(".menu")
     jwerty.key '←/→', @switchColor
-    jwerty.key '↑/↓/[0-9]', @switchItem
+    jwerty.key '↑/↓/0/1/2/3/4/5/6/7/8/9', @switchItem
     jwerty.key 'enter', @selectColorFormat
     jwerty.key 'esc', @hide
 
