@@ -45,6 +45,7 @@ class CS.Loupe
         @simulatePick(e)
         if jwerty.is('⌥', e)
           @menu ?= new CS.Menu()
+          @menu.addColor @getActualColor()
           @menu.show()
 
     $(document).on 'menu:shown', @hide
