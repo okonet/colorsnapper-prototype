@@ -13,7 +13,7 @@ class CS.Canvas
       @ctx.drawImage img, 0, 0
       imageData = @ctx.getImageData(0, 0, img.width, img.height)
       callback imageData
-    img.src = src;
+    img.src = src
 
   getContext: ->
     @el[0].getContext('2d')
