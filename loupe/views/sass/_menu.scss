@@ -1,8 +1,9 @@
 $menuBackgroundColor: rgba(#fcfcfc, .95);
 $menuBorderWidth: 5px;
 $menuBorderRadius: 5px;
+$menuSampleBorderRadius: 3px;
 $menuCalloutSize: 8px;
-$menuSampleSize: 48px;
+$menuSampleSize: 42px;
 $menuSeparatorColor: #e5e5e4;
 $menuActiveColor1: #658cf5;
 $menuActiveColor2: #2765f2;
@@ -13,9 +14,9 @@ $menuActiveColor: #366bda;
   top: 50%;
   left: 50%;
   margin-top: -200px;
-  margin-left: -150px;
+  margin-left: -(($menuSampleSize + 6) * 10) / 2;
   font: 14px "Lucida Grande", Helvetica, sans-serif;
-  width: 320px;
+  width: ($menuSampleSize + 6) * 10 + 12;
   background-color: $menuBackgroundColor;
   border-radius: $menuBorderRadius + 2;
   box-shadow:
@@ -42,53 +43,41 @@ $menuActiveColor: #366bda;
 
   .menu__history {
     position: relative;
-    margin: $menuBorderWidth;
-    padding: $menuBorderWidth;
+    padding: 2 * $menuBorderWidth;
     padding-bottom: 14px;
     font-size: 1.35em;
     white-space: nowrap;
-    @include background(
-      linear-gradient(rgba(#888, .5), rgba(#222, .5)),
-      inline-image('micro_carbon.png')
-    );
+    background: #E8E8E8;
     @include border-top-radius($menuBorderRadius);
-    box-shadow: 0 1px 4px #000 inset;
+    box-shadow: 0 0 1px rgba(0,0,0,.5) inset;
     height: $menuSampleSize;
-    overflow: hidden;
+    overflow-y: hidden;
+    overflow-x: auto;
 
-    &:after {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: $menuBorderWidth * 4;
-      height: 100%;
-      @include border-top-radius($menuBorderRadius);
-      @include background(linear-gradient(left, rgba(#666, 0), rgba(#000, .45) 75%, rgba(#000, .65)));
-      content: "";
-    }
+    // &:after {
+    //   position: absolute;
+    //   top: 0;
+    //   right: 0;
+    //   width: $menuBorderWidth * 4;
+    //   height: 100%;
+    //   @include border-top-radius($menuBorderRadius);
+    //   @include background(linear-gradient(left, rgba(#666, 0), rgba(#000, .45) 75%, rgba(#000, .65)));
+    //   content: "";
+    // }
   }
     .menu__sample {
       position: relative;
       display: inline-block;
       width: $menuSampleSize;
       height: $menuSampleSize;
-      opacity: .5;
-      @include border-radius($menuBorderRadius - 2);
-      @include box-shadow(
-        0 1px 4px 0px rgba(#000, 1),
-        0 0 0 1px rgba(#fff, 0.6) inset,
-        0 0 0 2px rgba(#000, 0.3) inset
-      );
-      @include transition(opacity .25s .125s ease-in-out);
+      border-radius: $menuSampleBorderRadius;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, .25) inset;
 
       &:first-child {
         margin-left: 0;
       }
 
-      &.active {
-        opacity: 1;
-      }
-
+      &:before,
       &:after {
         position: absolute;
         left: 50%;
@@ -105,6 +94,12 @@ $menuActiveColor: #366bda;
         @include transition(transform .25s .125s ease-in-out);
       }
 
+      &:before {
+        bottom: -13px;
+        border-bottom: $menuCalloutSize solid #cdcdcd;
+      }
+
+      &.active:before,
       &.active:after {
         @include translateY(0);
       }
@@ -112,18 +107,13 @@ $menuActiveColor: #366bda;
 
     .menu__sample-overlay {
       position: absolute;
-      top: 0;
-      left: 0;
+      top: 2px;
+      left: 2px;
       margin: $menuBorderWidth;
-      width: $menuSampleSize;
-      height: $menuSampleSize;
+      width: $menuSampleSize + 2px;
+      height: $menuSampleSize + 2px;
       border-radius: $menuBorderRadius - 1px;
-      @include box-shadow(
-        0 0 0 1px darken(#fbd73f, 20),
-        0 0 0 1px #fbd73f inset,
-        0 0 0 2px lighten(#fbd73f, 20) inset,
-        0 0 0 3px rgba(#000, 0.2) inset
-      );
+      border: 2px solid #4990E2;
       @include transition(transform .25s ease-in-out);
     }
 
@@ -152,10 +142,16 @@ $menuActiveColor: #366bda;
     .menu__item {
       position: relative;
       padding: $menuBorderWidth - 2px $menuBorderWidth * 2;
+      padding-left: 32px;
       list-style: none;
       border-top: 1px solid transparent;
       border-bottom: 1px solid transparent;
-      @include clearfix;
+
+      @each $format in generic, css, osx, ios, android, cg, opengl {
+        &.menu__item_#{$format} {
+          background: image-url("/images/formats/format-icon_#{$format}.png") 10px 4px no-repeat;
+        }
+      }
 
       &:after {
         position: absolute;
@@ -181,10 +177,18 @@ $menuActiveColor: #366bda;
       &.menu__item_0:after { content: "0"; }
 
       &.active {
-        @include background(linear-gradient($menuActiveColor1, $menuActiveColor2));
         border-top-color: darken($menuActiveColor1, 7%);
         border-bottom-color: darken($menuActiveColor2, 7%)!important;
         color: #fff;
+        background: linear-gradient($menuActiveColor1, $menuActiveColor2);
+
+        @each $format in generic, css, osx, ios, android, cg, opengl {
+          &.menu__item_#{$format} {
+            background: image-url("/images/formats/format-icon_#{$format}-active.png") 10px 4px no-repeat,
+                        linear-gradient($menuActiveColor1, $menuActiveColor2) 0 0;
+          }
+        }
+
         .menu__subtitle {
           color: #fff;
         }
@@ -195,14 +199,13 @@ $menuActiveColor: #366bda;
         }
       }
     }
+
     .menu__title {
-      display: inline-block;
+      display: block;
       font-size: 14px;
-      width: 8em;
     }
     .menu__subtitle {
-      display: inline-block;
+      display: block;
       color: rgba(#000, .45);
       font-size: 12px;
-      width: 15em;
     }
