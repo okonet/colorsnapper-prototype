@@ -12,7 +12,7 @@ class CS.Menu
     jwerty.key 'esc', @hide
 
   addColor: (color) ->
-    $sample = $("<li clsas='menu__sample menu__sample_1 active'></li>").css('background-color', color)
+    $sample = $("<li class='menu__sample menu__sample_1 active'></li>").css('background-color', color)
     @$historyEl.find('.active').removeClass 'active'
     @$historyEl.prepend $sample
     console.log color
