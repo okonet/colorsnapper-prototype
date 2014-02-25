@@ -13,8 +13,8 @@ $menuActiveColor: #366bda;
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-top: -200px;
-  margin-left: -(($menuSampleSize + 6) * 10) / 2;
+  // margin-top: -200px;
+  // margin-left: -(($menuSampleSize + 6) * 10) / 2;
   font: 14px "Lucida Grande", Helvetica, sans-serif;
   width: ($menuSampleSize + 6) * 10 + 12;
   background-color: $menuBackgroundColor;
@@ -28,6 +28,8 @@ $menuActiveColor: #366bda;
   transition:
     opacity 125ms,
     -webkit-transform 250ms;
+
+  @include transform(translate(-50%, -50%));
 
   &.hidden {
     opacity: 0;
