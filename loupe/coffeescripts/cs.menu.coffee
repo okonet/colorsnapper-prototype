@@ -12,8 +12,6 @@ class CS.Menu
     jwerty.key 'enter', @confirmSelection
     jwerty.key 'esc', @hide
 
-    @showRecentFormats()
-
   addColor: (color) ->
     @historyList.addColorSample(color)
 
@@ -37,6 +35,7 @@ class CS.Menu
       @hide() # Pretend we've selected a color format to copy into clipboard
 
   show: ->
+    @showRecentFormats()
     @isVisible = yes
     @el.removeClass 'hidden'
     $(document).trigger 'menu:shown'

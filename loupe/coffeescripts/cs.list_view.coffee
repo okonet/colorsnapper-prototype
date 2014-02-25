@@ -23,8 +23,6 @@ class CS.ListView
 
   show: ->
     @isVisible = yes
-    @el.show()
 
   hide: =>
     @isVisible = no
-    @el.hide()
