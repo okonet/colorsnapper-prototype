@@ -103,11 +103,12 @@ class CS.Loupe
       borderWidth  : border
 
   onMouseWheel: (e, delta, deltaX, deltaY) =>
-    @aperture -= (deltaY * @WHEEL_SPEED)
-    @aperture = Math.max @aperture, @apertureMin
-    @aperture = Math.min @aperture, @apertureMax
-    localStorage.setItem('CS:aperture', @aperture)
-    @render()
+    if @isVisible
+      @aperture -= (deltaY * @WHEEL_SPEED)
+      @aperture = Math.max @aperture, @apertureMin
+      @aperture = Math.min @aperture, @apertureMax
+      localStorage.setItem('CS:aperture', @aperture)
+      @render()
 
   simulatePick: (evt) ->
     @el.addClass('picked')
