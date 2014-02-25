@@ -7,7 +7,8 @@ class CS.Menu
     @el = $(".menu")
     @$historyEl = $('.menu__history', @el)
     jwerty.key '←/→', @switchColor
-    jwerty.key '↑/↓/0/1/2/3/4/5/6/7/8/9', @switchItem
+    jwerty.key '↑/↓', @switchItem
+    jwerty.key '0/1/2/3/4/5/6/7/8/9', @switchAndSelectItem
     jwerty.key 'enter', @selectColorFormat
     jwerty.key 'esc', @hide
 
@@ -26,16 +27,28 @@ class CS.Menu
           @selectHistoryItem -1
 
   switchItem: (evt, key) =>
+    @selectMenuItem(if key is "↑" then -1 else 1) if @isVisible
+
+  switchAndSelectItem: (evt, key) =>
     if @isVisible
-      switch key
-        when "↑"
-          @selectMenuItem -1
-        when "↓"
-          @selectMenuItem 1
-        else
-          keyIndex = if parseInt(key, 10) > 0 then (parseInt(key, 10) - 1) else 9
-          @selectMenuItem(keyIndex - @activeFormat)
-          _.delay @hide, 250
+      keyIndex = if parseInt(key, 10) is 0 then 9 else (parseInt(key, 10) - 1)
+      @selectMenuItem(keyIndex - @activeFormat)
+
+      # Blink selection before closing
+      $activeItem = $('.menu__item.active', @el)
+      _.delay =>
+        $activeItem.removeClass 'active'
+        _.delay =>
+          $activeItem.addClass 'active'
+          _.delay =>
+            $activeItem.removeClass 'active'
+            _.delay =>
+              $activeItem.addClass 'active'
+              _.delay @hide, 250
+            , 100
+          , 100
+        , 100
+      , 100
 
   selectHistoryItem: (dir) ->
     $items = $('.menu__sample', @el)
