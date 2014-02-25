@@ -25,12 +25,6 @@ class CS.FormatsList extends CS.ListView
         $activeItem.removeClass "active"
         _.delay =>
           $activeItem.addClass "active"
-          _.delay =>
-            $activeItem.removeClass "active"
-            _.delay =>
-              $activeItem.addClass "active"
-              _.delay @menu.hide, 250
-            , 100
-          , 100
+          _.delay @menu.hide, 150
         , 100
-      , 100
+      , 50
