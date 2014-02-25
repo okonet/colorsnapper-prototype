@@ -34,7 +34,7 @@ $menuActiveColor: #366bda;
   &.hidden {
     opacity: 0;
     visibility: hidden;
-    @include scale(.5);
+    @include transform(translate(-50%, -50%) scale(.5));
     @include transition(
       visibility 1ms 250ms,
       opacity 125ms 50ms,
