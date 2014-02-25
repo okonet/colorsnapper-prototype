@@ -53,19 +53,8 @@ $menuActiveColor: #366bda;
     @include border-top-radius($menuBorderRadius);
     box-shadow: 0 0 1px rgba(0,0,0,.5) inset;
     height: $menuSampleSize;
-    overflow-y: hidden;
-    overflow-x: auto;
-
-    // &:after {
-    //   position: absolute;
-    //   top: 0;
-    //   right: 0;
-    //   width: $menuBorderWidth * 4;
-    //   height: 100%;
-    //   @include border-top-radius($menuBorderRadius);
-    //   @include background(linear-gradient(left, rgba(#666, 0), rgba(#000, .45) 75%, rgba(#000, .65)));
-    //   content: "";
-    // }
+    overflow: hidden;
+    // overflow-x: auto;
   }
     .menu__sample {
       position: relative;
@@ -116,20 +105,43 @@ $menuActiveColor: #366bda;
       height: $menuSampleSize + 2px;
       border-radius: $menuBorderRadius - 1px;
       border: 2px solid #4990E2;
-      @include transition(transform .25s ease-in-out);
+      @include transition(transform .15s ease-out);
     }
 
-    @for $i from 1 through 6 {
+    @for $i from 1 through 10 {
       .menu__sample_#{$i}.active ~ .menu__sample-overlay {
         @include translateX(($menuSampleSize + $menuBorderWidth + 1) * ($i - 1));
       }
     }
 
+  .menu__formats {
+    overflow: auto;
+    @include transition(all .5s);
+  }
+  // View states
+  .menu_recent {
+    .menu__formats {
+      height: 288px;
+    }
+    .menu__items_recent {
+      display: block;
+    }
+  }
+  .menu_all {
+    .menu__formats {
+      height: 432px;
+    }
+    .menu__items_all {
+      display: block;
+    }
+  }
+
   .menu__items {
+    display: none;
     margin-top: $menuBorderWidth;
     border-radius: $menuBorderRadius - 1px;
-    @include transition(background-color .5s);
   }
+
     .menu__group {
       margin-bottom: $menuBorderRadius;
       border-bottom: 1px solid $menuSeparatorColor;

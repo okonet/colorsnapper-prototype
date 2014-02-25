@@ -5,77 +5,36 @@ class CS.Menu
 
   constructor: ->
     @el = $(".menu")
-    @$historyEl = $('.menu__history', @el)
-    jwerty.key '←/→', @switchColor
-    jwerty.key '↑/↓', @switchItem
-    jwerty.key '0/1/2/3/4/5/6/7/8/9', @switchAndSelectItem
-    jwerty.key 'enter', @selectColorFormat
+    @historyList = new CS.HistoryList(".menu__history", this)
+    @recentFormatsList = new CS.FormatsList(".menu__items_recent", this)
+    @formatsList = new CS.FormatsList(".menu__items_all", this)
+
+    jwerty.key 'enter', @confirmSelection
     jwerty.key 'esc', @hide
 
+    @showRecentFormats()
+
   addColor: (color) ->
-    $sample = $("<li class='menu__sample menu__sample_1 active'></li>").css('background-color', color)
-    @$historyEl.find('.active').removeClass 'active'
-    @$historyEl.prepend $sample
-    console.log color
+    @historyList.addColorSample(color)
 
-  switchColor: (evt, key) =>
-    if @isVisible
-      switch key
-        when "→"
-          @selectHistoryItem 1
-        when "←"
-          @selectHistoryItem -1
+  showRecentFormats: ->
+    @el.removeClass "menu_all"
+    @el.addClass "menu_recent"
+    @recentFormatsList.show()
+    @formatsList.hide()
 
-  switchItem: (evt, key) =>
-    @selectMenuItem(if key is "↑" then -1 else 1) if @isVisible
+  showAllFormats: ->
+    @el.removeClass "menu_recent"
+    @el.addClass "menu_all"
+    @recentFormatsList.hide()
+    @formatsList.show()
 
-  switchAndSelectItem: (evt, key) =>
-    if @isVisible
-      keyIndex = if parseInt(key, 10) is 0 then 9 else (parseInt(key, 10) - 1)
-      @selectMenuItem(keyIndex - @activeFormat)
-
-      # Blink selection before closing
-      $activeItem = $('.menu__item.active', @el)
-      _.delay =>
-        $activeItem.removeClass 'active'
-        _.delay =>
-          $activeItem.addClass 'active'
-          _.delay =>
-            $activeItem.removeClass 'active'
-            _.delay =>
-              $activeItem.addClass 'active'
-              _.delay @hide, 250
-            , 100
-          , 100
-        , 100
-      , 100
-
-  selectHistoryItem: (dir) ->
-    $items = $('.menu__sample', @el)
-    @$activeItem ?= $items.closest('.active')
-    @$activeItem.removeClass 'active'
-    @activeColor += dir
-    if @activeColor >= $items.length and dir > 0
-      @activeColor = 0
-    else if @activeColor < 0 and dir < 0
-      @activeColor = $items.length - 1
-    @$activeItem = $($items.get(@activeColor))
-    @$activeItem.addClass('active')
-
-  selectMenuItem: (dir) ->
-    $items = $('.menu__item', @el)
-    $activeItem = $('.menu__item.active', @el)
-    $activeItem.removeClass 'active'
-    @activeFormat += dir
-    if @activeFormat >= $items.length and dir > 0
-      @activeFormat = 0
-    else if @activeFormat < 0 and dir < 0
-      @activeFormat = $items.length - 1
-    $($items.get(@activeFormat)).addClass('active')
-
-  selectColorFormat: (evt) =>
+  confirmSelection: (evt) =>
     evt.preventDefault()
-    @hide()
+    if @recentFormatsList.isVisible and $("#showAllFormats").hasClass("active")
+      @showAllFormats()
+    else
+      @hide() # Pretend we've selected a color format to copy into clipboard
 
   show: ->
     @isVisible = yes

@@ -1,0 +1,30 @@
+class CS.FormatsList extends CS.ListView
+
+  itemSelector: ".menu__item"
+  previousItemShortcut: "↑"
+  nextItemShortcut: "↓"
+
+  constructor: ->
+    super
+    jwerty.key '0/1/2/3/4/5/6/7/8/9', @switchAndSelectItem
+
+  switchAndSelectItem: (evt, key) =>
+    if @isVisible
+      keyIndex = if parseInt(key, 10) is 0 then 9 else (parseInt(key, 10) - 1)
+      @selectItem(keyIndex - @activeItemIdx)
+
+      # Blink selection before closing
+      $activeItem = $("#{ @itemSelector }.active", @el)
+      _.delay =>
+        $activeItem.removeClass "active"
+        _.delay =>
+          $activeItem.addClass "active"
+          _.delay =>
+            $activeItem.removeClass "active"
+            _.delay =>
+              $activeItem.addClass "active"
+              _.delay @menu.hide, 250
+            , 100
+          , 100
+        , 100
+      , 100
