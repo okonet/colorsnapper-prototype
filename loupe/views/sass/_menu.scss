@@ -126,10 +126,10 @@ $menuActiveColor: #366bda;
       overflow: hidden;
     }
     .menu__items_recent {
-      @include translateX(0);
+      @include translateY(0);
     }
     .menu__items_all {
-      @include translateX(100%);
+      @include translateY(100%);
     }
   }
   .menu_all {
@@ -138,10 +138,10 @@ $menuActiveColor: #366bda;
       overflow: auto;
     }
     .menu__items_recent {
-      @include translateX(-100%);
+      @include translateY(-100%);
     }
     .menu__items_all {
-      @include translateX(0);
+      @include translateY(0);
     }
   }
 
