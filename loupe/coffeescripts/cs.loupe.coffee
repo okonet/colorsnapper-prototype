@@ -50,13 +50,13 @@ class CS.Loupe
 
     $(document).on 'menu:shown', @hide
 
-    jwerty.key '⌘+]', =>
+    jwerty.key ']', =>
       if @isVisible
         ++@zoom if @MIN_ZOOM <= @zoom < @MAX_ZOOM
         @render()
         localStorage.setItem('CS:zoom', @zoom)
 
-    jwerty.key '⌘+[', =>
+    jwerty.key '[', =>
       if @isVisible
         @zoom-- if @MIN_ZOOM < @zoom <= @MAX_ZOOM
         @render()
