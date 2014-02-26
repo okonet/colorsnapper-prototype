@@ -1,13 +1,13 @@
 class CS.ListView
 
-  activeItemIdx: 0
+  isVisible: no
+  activeItemIdx: -1
 
   constructor: (selector, @menu) ->
     @el = $(selector)
     @$items = $(@itemSelector, @el)
 
     @el.on "click", @itemSelector, @onItemClicked
-
     jwerty.key "#{ @previousItemShortcut }/#{ @nextItemShortcut }", @switchItem
 
   switchItem: (evt, key) =>
@@ -38,4 +38,8 @@ class CS.ListView
     @isVisible = yes
 
   hide: =>
+    @el.scrollTop = 0
+    $activeItem = $("#{ @itemSelector }.active", @el)
+    $activeItem.removeClass "active"
+    @activeItemIdx = -1
     @isVisible = no

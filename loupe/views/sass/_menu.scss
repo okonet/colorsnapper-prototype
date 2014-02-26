@@ -59,14 +59,12 @@ $menuActiveColor: #366bda;
     .menu__sample {
       position: relative;
       display: inline-block;
+      padding: 0;
+      margin-right: 10px;
       width: $menuSampleSize;
       height: $menuSampleSize;
       border-radius: $menuSampleBorderRadius;
       box-shadow: 0 0 0 1px rgba(0, 0, 0, .25) inset;
-
-      &:first-child {
-        margin-left: 0;
-      }
 
       &:before,
       &:after {
@@ -108,9 +106,9 @@ $menuActiveColor: #366bda;
       @include transition(transform .15s ease-out);
     }
 
-    @for $i from 1 through 10 {
-      .menu__sample_#{$i}.active ~ .menu__sample-overlay {
-        @include translateX(($menuSampleSize + $menuBorderWidth + 1) * ($i - 1));
+    @for $i from 1 through 20 {
+      .menu__sample:nth-child(#{$i}).active ~ .menu__sample-overlay {
+        @include translateX(($menuSampleSize + $menuBorderWidth * 2) * ($i - 1));
       }
     }
 
@@ -122,13 +120,15 @@ $menuActiveColor: #366bda;
   // View states
   .menu_recent {
     .menu__formats {
-      height: 288px;
+      height: 240px;
       overflow: hidden;
     }
     .menu__items_recent {
+      visibility: auto;
       @include opacity(1);
     }
     .menu__items_all {
+      visibility: hidden;
       @include opacity(0);
     }
   }
@@ -138,6 +138,7 @@ $menuActiveColor: #366bda;
       overflow: auto;
     }
     .menu__items_recent {
+      visibility: hidden;
       @include opacity(0);
 
       @for $i from 1 through 20 {
@@ -147,6 +148,7 @@ $menuActiveColor: #366bda;
       }
     }
     .menu__items_all {
+      visibility: auto;
       @include opacity(1);
     }
   }
@@ -156,21 +158,8 @@ $menuActiveColor: #366bda;
     top: 0;
     margin-top: $menuBorderWidth;
     width: 100%;
-    @include transition(opacity .25s);
+    @include transition(opacity .25s, visibility 0 .25s);
   }
-
-    .menu__group {
-      margin-bottom: $menuBorderRadius;
-      border-bottom: 1px solid $menuSeparatorColor;
-
-      &:last-child {
-        border-bottom: none;
-      }
-
-      .menu__item:last-child {
-        margin-bottom: $menuBorderRadius;
-      }
-    }
 
     .menu__item {
       position: relative;
@@ -188,28 +177,19 @@ $menuActiveColor: #366bda;
         }
       }
 
+      // Shortcuts
+      @for $i from 1 through 9 {
+        &.menu__item:nth-of-type(#{ $i }):after { content: "⌘#{$i}"; }
+      }
+      &.menu__item:nth-of-type(10):after { content: "⌘0"; }
+
       &:after {
         position: absolute;
-        top: 3px;
+        top: 50%;
         right: .5em;
-        color: rgba(#122a3c, .25);
-        font-size: 12px;
-        text-align: center;
-        width: 15px;
-        border: 1px solid rgba(darken($menuSeparatorColor, 10%), .55);
-        border-radius: 2px;
+        font-size: 13px;
+        line-height: 0;
       }
-
-      &.menu__item_1:after { content: "1"; }
-      &.menu__item_2:after { content: "2"; }
-      &.menu__item_3:after { content: "3"; }
-      &.menu__item_4:after { content: "4"; }
-      &.menu__item_5:after { content: "5"; }
-      &.menu__item_6:after { content: "6"; }
-      &.menu__item_7:after { content: "7"; }
-      &.menu__item_8:after { content: "8"; }
-      &.menu__item_9:after { content: "9"; }
-      &.menu__item_0:after { content: "0"; }
 
       &.active {
         border-top-color: darken($menuActiveColor1, 7%);
@@ -232,9 +212,14 @@ $menuActiveColor: #366bda;
 
         &:after {
           color: #fff;
-          content: "↩";
+          content: "↩"!important;
         }
       }
+    }
+
+    .menu__item-separator {
+      margin-top: $menuBorderRadius;
+      border-bottom: 1px solid $menuSeparatorColor;
     }
 
     .menu__title {

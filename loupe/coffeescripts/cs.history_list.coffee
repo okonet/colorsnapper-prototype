@@ -9,7 +9,7 @@ class CS.HistoryList extends CS.ListView
     super
 
   addColorSample: (color) ->
-    $sample = $("<li class='menu__sample menu__sample_1 active'></li>").css('background-color', color)
+    $sample = $("<li class='menu__sample active'></li>").css('background-color', color)
     @el.find('.active').removeClass 'active'
     @el.prepend $sample
     console.log color

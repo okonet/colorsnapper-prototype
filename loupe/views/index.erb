@@ -17,155 +17,142 @@
   </div>
 
   <menu class="menu menu_recent hidden">
-    <ul class="menu__history">
-      <li class="menu__sample menu__sample_1 active" style="background-color:#f00"></li>
-      <li class="menu__sample menu__sample_2" style="background-color:#f55e00"></li>
-      <li class="menu__sample menu__sample_3" style="background-color:#279189"></li>
-      <li class="menu__sample menu__sample_4" style="background-color:#ffb700"></li>
-      <li class="menu__sample menu__sample_5" style="background-color:#00b7c7"></li>
-      <li class="menu__sample menu__sample_6" style="background-color:#00b400"></li>
-      <li class="menu__sample menu__sample_7" style="background-color:#ff2600"></li>
-      <li class="menu__sample menu__sample_8" style="background-color:#f55e00"></li>
-      <li class="menu__sample menu__sample_9" style="background-color:#279189"></li>
-      <li class="menu__sample menu__sample_10" style="background-color:#3377ba"></li>
-      <i class="menu__sample-overlay"></i>
+    <ul class="menu__history"><li class="menu__sample active" style="background-color:#f00"></li><li class="menu__sample" style="background-color:#f55e00"></li><li class="menu__sample" style="background-color:#279189"></li><li class="menu__sample" style="background-color:#ffb700"></li><li class="menu__sample" style="background-color:#00b7c7"></li><li class="menu__sample" style="background-color:#00b400"></li><li class="menu__sample" style="background-color:#ff2600"></li><li class="menu__sample" style="background-color:#f55e00"></li><li class="menu__sample" style="background-color:#279189"></li><li class="menu__sample" style="background-color:#3377ba"></li><i class="menu__sample-overlay"></i>
     </ul>
     <div class="menu__formats">
       <ul class="menu__items menu__items_recent">
-        <section class="menu__group">
-          <li class="menu__item menu__item_generic menu__item_pos1 active">
-            <span class="menu__title">Generic Hex</span>
-            <span class="menu__subtitle">0099FF</span>
-          </li>
-          <li class="menu__item menu__item_android menu__item_pos15">
-            <span class="menu__title">Android RGBA</span>
-            <span class="menu__subtitle">Color.argb(255, 0, 127, 255)</span>
-          </li>
-          <li class="menu__item menu__item_css menu__item_pos4">
-            <span class="menu__title">CSS RGBA</span>
-            <span class="menu__subtitle">rgba(0, 127, 255, 1)</span>
-          </li>
-          <li class="menu__item menu__item_osx menu__item_pos7">
-            <span class="menu__title">NSColor Calibrated RGB</span>
-            <span class="menu__subtitle">[NSColor colorWithCalibratedRed:0 green:0.5 blue:1 alpha:1]</span>
-          </li>
-          <li class="menu__item menu__item_cg  menu__item_pos17">
-            <span class="menu__title">CGColor RGB</span>
-            <span class="menu__subtitle">CGColorCreateGenericRGB(0, 0.5, 1, 1)</span>
-          </li>
-          <li class="menu__item menu__item_osx menu__item_pos6">
-            <span class="menu__title">NSColor sRGB</span>
-            <span class="menu__subtitle">[NSColor colorWithSRGBRed:0 green:0.5 blue:1 alpha:1]</span>
-          </li>
-        </section>
+        <li class="menu__item menu__item_generic menu__item_pos1">
+          <span class="menu__title">Generic Hex</span>
+          <span class="menu__subtitle">0099FF</span>
+        </li>
+        <li class="menu__item menu__item_android menu__item_pos15">
+          <span class="menu__title">Android RGBA</span>
+          <span class="menu__subtitle">Color.argb(255, 0, 127, 255)</span>
+        </li>
+        <li class="menu__item menu__item_css menu__item_pos4">
+          <span class="menu__title">CSS RGBA</span>
+          <span class="menu__subtitle">rgba(0, 127, 255, 1)</span>
+        </li>
+        <li class="menu__item menu__item_osx menu__item_pos7">
+          <span class="menu__title">NSColor Calibrated RGB</span>
+          <span class="menu__subtitle">[NSColor colorWithCalibratedRed:0 green:0.5 blue:1 alpha:1]</span>
+        </li>
+        <li class="menu__item menu__item_cg  menu__item_pos17">
+          <span class="menu__title">CGColor RGB</span>
+          <span class="menu__subtitle">CGColorCreateGenericRGB(0, 0.5, 1, 1)</span>
+        </li>
 
-        <section class="menu__group">
-          <li class="menu__item" id="showAllFormats">
-            <span class="menu__title">Show all formats...</span>
-          </li>
-        </section>
+        <div class="menu__item-separator"></div>
+
+        <li class="menu__item" id="showAllFormats">
+          <span class="menu__title">Show all formats...</span>
+        </li>
       </ul>
       <ul class="menu__items menu__items_all">
-        <section class="menu__group">
-          <li class="menu__item menu__item_generic menu__item_1">
-            <span class="menu__title">Generic Hex</span>
-            <span class="menu__subtitle">0099FF</span>
-          </li>
-          <li class="menu__item menu__item_generic menu__item_2">
-            <span class="menu__title">Generic 8-bit</span>
-            <span class="menu__subtitle">0, 127, 255</span>
-          </li>
-          <li class="menu__item menu__item_generic menu__item_3">
-            <span class="menu__title">Generic Decimal</span>
-            <span class="menu__subtitle">0.0, 0.5, 1</span>
-          </li>
-        </section>
-        <section class="menu__group">
-          <li class="menu__item menu__item_css menu__item_4">
-            <span class="menu__title">CSS Hex</span>
-            <span class="menu__subtitle">#09f</span>
-          </li>
-          <li class="menu__item menu__item_css menu__item_5">
-            <span class="menu__title">CSS RGB</span>
-            <span class="menu__subtitle">rgba(0, 127, 255)</span>
-          </li>
-          <li class="menu__item menu__item_css menu__item_6">
-            <span class="menu__title">CSS RGBA</span>
-            <span class="menu__subtitle">rgba(0, 127, 255, 1)</span>
-          </li>
-          <li class="menu__item menu__item_css menu__item_7">
-            <span class="menu__title">CSS HSL</span>
-            <span class="menu__subtitle">hsl(0, 50%, 100%)</span>
-          </li>
-          <li class="menu__item menu__item_css menu__item_8">
-            <span class="menu__title">CSS HSLA</span>
-            <span class="menu__subtitle">hsla(0, 50%, 100%, 1)</span>
-          </li>
-        </section>
-        <section class="menu__group">
-          <li class="menu__item menu__item_osx menu__item_9">
-            <span class="menu__title">NSColor sRGB</span>
-            <span class="menu__subtitle">[NSColor colorWithSRGBRed:0 green:0.5 blue:1 alpha:1]</span>
-          </li>
-          <li class="menu__item menu__item_osx menu__item_0">
-            <span class="menu__title">NSColor Calibrated RGB</span>
-            <span class="menu__subtitle">[NSColor colorWithCalibratedRed:0 green:0.5 blue:1 alpha:1]</span>
-          </li>
-          <li class="menu__item menu__item_osx">
-            <span class="menu__title">NSColor Calibrated HSB</span>
-            <span class="menu__subtitle">[NSColor colorWithCalibratedHue:0.58 saturation:1 brightness:1 alpha:1]</span>
-          </li>
-          <li class="menu__item menu__item_osx">
-            <span class="menu__title">NSColor Device RGB</span>
-            <span class="menu__subtitle">[NSColor colorWithDeviceRed:0 green:0.5 blue:1 alpha:1]</span>
-          </li>
-          <li class="menu__item menu__item_osx">
-            <span class="menu__title">NSColor Device HSB</span>
-            <span class="menu__subtitle">[NSColor colorWithDeviceHue:0.58 saturation:1 brightness:1 alpha:1]</span>
-          </li>
-        </section>
-        <section class="menu__group">
-          <li class="menu__item menu__item_ios">
-            <span class="menu__title">UIColor RGBA</span>
-            <span class="menu__subtitle">[UIColor colorWithRed:0 green:0.5 blue:1 alpha:1]</span>
-          </li>
-          <li class="menu__item menu__item_ios">
-            <span class="menu__title">UIColor HSBA</span>
-            <span class="menu__subtitle">[UIColor colorWithHue:0.58 saturation:1 brightness:1 alpha:1]</span>
-          </li>
-        </section>
-        <section class="menu__group">
-          <li class="menu__item menu__item_android">
-            <span class="menu__title">Android RGB</span>
-            <span class="menu__subtitle">Color.rgb(0, 127, 255)</span>
-          </li>
-          <li class="menu__item menu__item_android">
-            <span class="menu__title">Android RGBA</span>
-            <span class="menu__subtitle">Color.argb(255, 0, 127, 255)</span>
-          </li>
-        </section>
-        <section class="menu__group">
-          <li class="menu__item menu__item_cg">
-            <span class="menu__title">CGColor RGB</span>
-            <span class="menu__subtitle">CGColorCreateGenericRGB(0, 0.5, 1, 1)</span>
-          </li>
-        </section>
-        <section class="menu__group">
-          <li class="menu__item menu__item_opengl">
-            <span class="menu__title">OpenGL RGB</span>
-            <span class="menu__subtitle">glColor3f(0, 0.5, 1)</span>
-          </li>
-          <li class="menu__item menu__item_opengl">
-            <span class="menu__title">OpenGL RGBA</span>
-            <span class="menu__subtitle">glColor4f(0, 0.5, 1, 1)</span>
-          </li>
-        </section>
+        <li class="menu__item menu__item_generic menu__item_1">
+          <span class="menu__title">Generic Hex</span>
+          <span class="menu__subtitle">0099FF</span>
+        </li>
+        <li class="menu__item menu__item_generic menu__item_2">
+          <span class="menu__title">Generic 8-bit</span>
+          <span class="menu__subtitle">0, 127, 255</span>
+        </li>
+        <li class="menu__item menu__item_generic menu__item_3">
+          <span class="menu__title">Generic Decimal</span>
+          <span class="menu__subtitle">0.0, 0.5, 1</span>
+        </li>
 
-        <section class="menu__group">
-          <li class="menu__item">
-            <span class="menu__title">Modify color...</span>
-          </li>
-        </section>
+        <div class="menu__item-separator"></div>
+
+        <li class="menu__item menu__item_css menu__item_4">
+          <span class="menu__title">CSS Hex</span>
+          <span class="menu__subtitle">#09f</span>
+        </li>
+        <li class="menu__item menu__item_css menu__item_5">
+          <span class="menu__title">CSS RGB</span>
+          <span class="menu__subtitle">rgba(0, 127, 255)</span>
+        </li>
+        <li class="menu__item menu__item_css menu__item_6">
+          <span class="menu__title">CSS RGBA</span>
+          <span class="menu__subtitle">rgba(0, 127, 255, 1)</span>
+        </li>
+        <li class="menu__item menu__item_css menu__item_7">
+          <span class="menu__title">CSS HSL</span>
+          <span class="menu__subtitle">hsl(0, 50%, 100%)</span>
+        </li>
+        <li class="menu__item menu__item_css menu__item_8">
+          <span class="menu__title">CSS HSLA</span>
+          <span class="menu__subtitle">hsla(0, 50%, 100%, 1)</span>
+        </li>
+
+        <div class="menu__item-separator"></div>
+
+        <li class="menu__item menu__item_osx menu__item_9">
+          <span class="menu__title">NSColor sRGB</span>
+          <span class="menu__subtitle">[NSColor colorWithSRGBRed:0 green:0.5 blue:1 alpha:1]</span>
+        </li>
+        <li class="menu__item menu__item_osx menu__item_0">
+          <span class="menu__title">NSColor Calibrated RGB</span>
+          <span class="menu__subtitle">[NSColor colorWithCalibratedRed:0 green:0.5 blue:1 alpha:1]</span>
+        </li>
+        <li class="menu__item menu__item_osx">
+          <span class="menu__title">NSColor Calibrated HSB</span>
+          <span class="menu__subtitle">[NSColor colorWithCalibratedHue:0.58 saturation:1 brightness:1 alpha:1]</span>
+        </li>
+        <li class="menu__item menu__item_osx">
+          <span class="menu__title">NSColor Device RGB</span>
+          <span class="menu__subtitle">[NSColor colorWithDeviceRed:0 green:0.5 blue:1 alpha:1]</span>
+        </li>
+        <li class="menu__item menu__item_osx">
+          <span class="menu__title">NSColor Device HSB</span>
+          <span class="menu__subtitle">[NSColor colorWithDeviceHue:0.58 saturation:1 brightness:1 alpha:1]</span>
+        </li>
+
+        <div class="menu__item-separator"></div>
+
+        <li class="menu__item menu__item_ios">
+          <span class="menu__title">UIColor RGBA</span>
+          <span class="menu__subtitle">[UIColor colorWithRed:0 green:0.5 blue:1 alpha:1]</span>
+        </li>
+        <li class="menu__item menu__item_ios">
+          <span class="menu__title">UIColor HSBA</span>
+          <span class="menu__subtitle">[UIColor colorWithHue:0.58 saturation:1 brightness:1 alpha:1]</span>
+        </li>
+
+        <div class="menu__item-separator"></div>
+
+        <li class="menu__item menu__item_android">
+          <span class="menu__title">Android RGB</span>
+          <span class="menu__subtitle">Color.rgb(0, 127, 255)</span>
+        </li>
+        <li class="menu__item menu__item_android">
+          <span class="menu__title">Android RGBA</span>
+          <span class="menu__subtitle">Color.argb(255, 0, 127, 255)</span>
+        </li>
+
+        <div class="menu__item-separator"></div>
+
+        <li class="menu__item menu__item_cg">
+          <span class="menu__title">CGColor RGB</span>
+          <span class="menu__subtitle">CGColorCreateGenericRGB(0, 0.5, 1, 1)</span>
+        </li>
+
+        <div class="menu__item-separator"></div>
+
+        <li class="menu__item menu__item_opengl">
+          <span class="menu__title">OpenGL RGB</span>
+          <span class="menu__subtitle">glColor3f(0, 0.5, 1)</span>
+        </li>
+        <li class="menu__item menu__item_opengl">
+          <span class="menu__title">OpenGL RGBA</span>
+          <span class="menu__subtitle">glColor4f(0, 0.5, 1, 1)</span>
+        </li>
+
+        <div class="menu__item-separator"></div>
+
+        <li class="menu__item">
+          <span class="menu__title">Modify color...</span>
+        </li>
       </ul>
     </div>
   </menu>
