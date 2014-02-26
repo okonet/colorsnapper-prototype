@@ -38,7 +38,7 @@ class CS.ListView
     @isVisible = yes
 
   hide: =>
-    @el.scrollTop = 0
+    @el.parent().scrollTop(0)
     $activeItem = $("#{ @itemSelector }.active", @el)
     $activeItem.removeClass "active"
     @activeItemIdx = -1
