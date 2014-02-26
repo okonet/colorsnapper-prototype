@@ -22,6 +22,7 @@ class CS.Menu
     @formatsList.hide()
 
   showAllFormats: ->
+    $("#showAllFormats").removeClass("active")
     @el.removeClass "menu_recent"
     @el.addClass "menu_all"
     @recentFormatsList.hide()
