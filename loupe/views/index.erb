@@ -44,8 +44,11 @@
 
         <div class="menu__item-separator"></div>
 
-        <li class="menu__item" id="showAllFormats">
+        <li class="menu__item menu__item_all-formats" id="showAllFormats">
           <span class="menu__title">Show all formats...</span>
+        </li>
+        <li class="menu__item menu__item_modify">
+          <span class="menu__title">Modify color...</span>
         </li>
       </ul>
       <ul class="menu__items menu__items_all">
@@ -150,10 +153,15 @@
 
         <div class="menu__item-separator"></div>
 
-        <li class="menu__item">
+        <li class="menu__item menu__item_modify">
           <span class="menu__title">Modify color...</span>
         </li>
       </ul>
+
+      <section class="menu__color-panel">
+        <button class="menu__btn menu__btn_back" onclick="window.loupe.menu.showRecentFormats()">Back to formats...</button>
+        <img src="/images/color-panel.png" alt="">
+      </section>
     </div>
   </menu>
 

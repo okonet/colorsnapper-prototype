@@ -1,7 +1,6 @@
 class CS.Menu
 
-  activeColor: 0
-  activeFormat: 0
+  state: "recent"
 
   constructor: ->
     @el = $(".menu")
@@ -10,30 +9,52 @@ class CS.Menu
     @formatsList = new CS.FormatsList(".menu__items_all", this)
 
     jwerty.key 'enter', @confirmSelection
-    jwerty.key 'esc', @hide
+    jwerty.key 'esc', @onEscPressed
 
   addColor: (color) ->
     @historyList.addColorSample(color)
 
   showRecentFormats: ->
-    @el.removeClass "menu_all"
+    @state = "recent"
+    $(".menu__formats").scrollTop(0)
+    @el.removeClass "menu_all menu_color"
     @el.addClass "menu_recent"
     @recentFormatsList.show()
     @formatsList.hide()
 
   showAllFormats: ->
-    $("#showAllFormats").removeClass("active")
-    @el.removeClass "menu_recent"
+    @state = "all"
+    @el.removeClass "menu_recent menu_color"
     @el.addClass "menu_all"
     @recentFormatsList.hide()
     @formatsList.show()
 
+  showColorPanel: ->
+    @state = "color"
+    $(".menu__formats").scrollTop(0)
+    @el.removeClass "menu_all menu_recent"
+    @el.addClass "menu_color"
+
   confirmSelection: (evt) =>
     evt.preventDefault()
+    @previousState = @state
+
     if @recentFormatsList.isVisible and $("#showAllFormats").hasClass("active")
       @showAllFormats()
+    else if $(".menu__item_modify").hasClass("active")
+      @showColorPanel()
     else
       @hide() # Pretend we've selected a color format to copy into clipboard
+
+    $(".menu__item.active").removeClass("active")
+
+  onEscPressed: (evt) =>
+    evt.preventDefault()
+    if @state is "color"
+      # If color panel is visible, return to previous state
+      if @previousState is "recent" then @showRecentFormats() else @showAllFormats()
+    else
+      @hide() # otherwise hide the overlay
 
   show: ->
     @showRecentFormats()
@@ -41,7 +62,7 @@ class CS.Menu
     @el.removeClass 'hidden'
     $(document).trigger 'menu:shown'
 
-  hide: =>
+  hide: ->
     @isVisible = no
     @el.addClass 'hidden'
     $(document).trigger 'menu:hidden'
