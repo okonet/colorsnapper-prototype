@@ -118,7 +118,7 @@ $menuActiveColor: #366bda;
   // View states
   .menu_recent {
     .menu__formats {
-      height: 240px;
+      height: 250px;
       overflow: hidden;
     }
     .menu__items_recent {
@@ -132,7 +132,7 @@ $menuActiveColor: #366bda;
   }
   .menu_all {
     .menu__formats {
-      height: 432px;
+      height: 438px;
       overflow: auto;
     }
     .menu__items_recent {
@@ -226,6 +226,10 @@ $menuActiveColor: #366bda;
     }
     .menu__subtitle {
       display: block;
+      margin-top: 2px;
       color: rgba(#000, .45);
       font-size: 12px;
+      white-space: nowrap;
+      @include ellipsis;
+      width: 96%;
     }
