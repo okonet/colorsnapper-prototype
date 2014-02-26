@@ -156,7 +156,7 @@ $menuActiveColor: #366bda;
     top: 0;
     margin-top: $menuBorderWidth;
     width: 100%;
-    @include transition(opacity .5s .25s);
+    @include transition(opacity .25s);
   }
 
     .menu__group {
