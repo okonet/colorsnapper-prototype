@@ -126,10 +126,10 @@ $menuActiveColor: #366bda;
       overflow: hidden;
     }
     .menu__items_recent {
-      @include translateY(0);
+      @include opacity(1);
     }
     .menu__items_all {
-      @include translateY(100%);
+      @include opacity(0);
     }
   }
   .menu_all {
@@ -138,20 +138,25 @@ $menuActiveColor: #366bda;
       overflow: auto;
     }
     .menu__items_recent {
-      @include translateY(-100%);
+      @include opacity(0);
+
+      @for $i from 1 through 20 {
+        .menu__item_pos#{$i} {
+          @include translateY(36px * ($i - 1));
+        }
+      }
     }
     .menu__items_all {
-      @include translateY(0);
+      @include opacity(1);
     }
   }
 
   .menu__items {
     position: absolute;
     top: 0;
-    // display: none;
     margin-top: $menuBorderWidth;
     width: 100%;
-    @include transition(transform .35s);
+    @include transition(opacity .5s .25s);
   }
 
     .menu__group {
@@ -174,6 +179,7 @@ $menuActiveColor: #366bda;
       list-style: none;
       border-top: 1px solid transparent;
       border-bottom: 1px solid transparent;
+      @include transition(transform .25s);
 
       @each $format in generic, css, osx, ios, android, cg, opengl {
         &.menu__item_#{$format} {
