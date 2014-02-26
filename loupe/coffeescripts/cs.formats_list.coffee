@@ -25,6 +25,8 @@ class CS.FormatsList extends CS.ListView
         $activeItem.removeClass "active"
         _.delay =>
           $activeItem.addClass "active"
-          _.delay @menu.confirmSelection(evt), 150
+          _.delay =>
+            @menu.confirmSelection(evt)
+          6, 150
         , 100
       , 50
