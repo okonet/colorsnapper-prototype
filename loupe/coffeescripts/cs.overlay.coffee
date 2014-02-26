@@ -11,10 +11,11 @@ class CS.Overlay
     $(document).on "keyup", => @toggleFormat() if @altFormat
     jwerty.key [['/']], @toggle
     @changeType @overlayType
+    $(".loupe__format").text("NSColor Calibrated RGB")
 
   toggleFormat: ->
     @altFormat = !@altFormat
-    $(".loupe__format").text if @altFormat then "Show formats..." else "CSS Hex"
+    $(".loupe__format").text if @altFormat then "Show formats..." else "NSColor Calibrated RGB"
     @render @pixel
 
   toggle: =>
@@ -28,10 +29,16 @@ class CS.Overlay
   render: (pixel) ->
     format = []
     if not @altFormat
+      # HEX
+      # for c in [0..2]
+      #   hex = pixel[c].toString(16)
+      #   hex = if hex.length < 2 then "0#{ hex }" else hex
+      #   format[c] = hex.toUpperCase()
+
       for c in [0..2]
-        hex = pixel[c].toString(16)
-        hex = if hex.length < 2 then "0#{ hex }" else hex
-        format[c] = hex.toUpperCase()
+        decimal = pixel[c] / 255
+        format[c] = "#{(pixel[c] / 255).toPrecision(4).replace('0.', '.')}f"
+
     else
       format[0] = "#{ pixel[0] }"
       format[1] = "#{ pixel[1] }"
