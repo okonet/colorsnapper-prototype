@@ -119,7 +119,7 @@ $menuActiveColor: #366bda;
   // View states
   .menu_recent {
     .menu__formats {
-      height: 274px;
+      height: 282px;
       overflow: hidden;
     }
     .menu__items_recent {
@@ -258,3 +258,11 @@ $menuActiveColor: #366bda;
       @include ellipsis;
       width: 96%;
     }
+
+  .menu__color-panel {
+    .menu__btn_back {
+      position: absolute;
+      top: 5px;
+      left: 7px;
+    }
+  }

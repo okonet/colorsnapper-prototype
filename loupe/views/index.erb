@@ -21,6 +21,11 @@
     </ul>
     <div class="menu__formats">
       <ul class="menu__items menu__items_recent">
+        <li class="menu__item menu__item_modify">
+          <span class="menu__title">Modify color...</span>
+        </li>
+        <div class="menu__item-separator"></div>
+
         <li class="menu__item menu__item_generic menu__item_pos1">
           <span class="menu__title">Generic Hex</span>
           <span class="menu__subtitle">0099FF</span>
@@ -47,11 +52,13 @@
         <li class="menu__item menu__item_all-formats" id="showAllFormats">
           <span class="menu__title">Show all formats...</span>
         </li>
+      </ul>
+      <ul class="menu__items menu__items_all">
         <li class="menu__item menu__item_modify">
           <span class="menu__title">Modify color...</span>
         </li>
-      </ul>
-      <ul class="menu__items menu__items_all">
+        <div class="menu__item-separator"></div>
+
         <li class="menu__item menu__item_generic">
           <span class="menu__title">Generic Hex</span>
           <span class="menu__subtitle">0099FF</span>
@@ -150,16 +157,10 @@
           <span class="menu__title">OpenGL RGBA</span>
           <span class="menu__subtitle">glColor4f(0, 0.5, 1, 1)</span>
         </li>
-
-        <div class="menu__item-separator"></div>
-
-        <li class="menu__item menu__item_modify">
-          <span class="menu__title">Modify color...</span>
-        </li>
       </ul>
 
       <section class="menu__color-panel">
-        <button class="menu__btn menu__btn_back" onclick="window.loupe.menu.showRecentFormats()">Back to formats...</button>
+        <button class="menu__btn menu__btn_back" onclick="window.loupe.menu.showRecentFormats()">Back...</button>
         <img src="/images/color-panel.png" alt="">
       </section>
     </div>
