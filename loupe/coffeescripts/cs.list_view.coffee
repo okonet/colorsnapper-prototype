@@ -10,28 +10,34 @@ class CS.ListView
     @el.on "click", @itemSelector, @onItemClicked
     jwerty.key "#{ @previousItemShortcut }/#{ @nextItemShortcut }", @switchItem
 
+  getItems: ->
+    $(@itemSelector, @el)
+
+  getSelectedItem: ->
+    $(".active", @el)
+
   switchItem: (evt, key) =>
     if @isVisible
-      @$items = $(@itemSelector, @el)
+      $items = @getItems()
       dir = if key is @previousItemShortcut then -1 else 1
       @activeItemIdx += dir
-      if @activeItemIdx >= @$items.length and dir > 0
+      if @activeItemIdx >= $items.length and dir > 0
         @activeItemIdx = 0
       else if @activeItemIdx < 0 and dir < 0
-        @activeItemIdx = @$items.length - 1
+        @activeItemIdx = $items.length - 1
       @selectItemWithIndex(@activeItemIdx)
 
   selectItemWithIndex: (idx) ->
     if @isVisible
       $activeItem = $("#{ @itemSelector }.active", @el)
       $activeItem.removeClass "active"
-      $(@$items.get(idx)).addClass("active")
+      $(@getItems().get(idx)).addClass("active")
       @activeItemIdx = idx
 
   onItemClicked: (evt) =>
     evt.preventDefault()
     $clickedItem = $(evt.target).closest(@itemSelector)
-    idx = @$items.index($clickedItem)
+    idx = @getItems().index($clickedItem)
     @selectItemWithIndex(idx)
 
   show: ->
