@@ -186,8 +186,6 @@ $menuActiveColor: #366bda;
   }
 
   .menu_color {
-    // width: 410px;
-
     .menu__formats {
       height: 478px;
       overflow: hidden;
@@ -197,7 +195,7 @@ $menuActiveColor: #366bda;
       @include translateX(-100%);
     }
     .menu__color-panel {
-      @include translate(0, -34px);
+      @include translateX(0);
     }
   }
 
@@ -208,7 +206,6 @@ $menuActiveColor: #366bda;
     @include transition(transform .5s, opacity .25s, visibility 0 .25s);
   }
   .menu__color-panel {
-    top: 34px;
     z-index: 1;
   }
 
