@@ -37,6 +37,7 @@ class CS.HistoryList extends CS.ListView
 
   onDragStart: (evt) =>
     @draggedItem = evt.target
+    @el.addClass "dragging"
     @newItemBtn.addClass "drop-waiting"
     @newItemBtn.on "dragenter", @onDragEnter
     @newItemBtn.on "dragleave", @onDragLeave
@@ -45,6 +46,7 @@ class CS.HistoryList extends CS.ListView
 
   onDragEnd: (evt) =>
     @draggedItem = null
+    @el.removeClass "dragging"
     @newItemBtn.removeClass('drop-over')
     @newItemBtn.removeClass('drop-waiting')
     @newItemBtn.off "dragenter"
