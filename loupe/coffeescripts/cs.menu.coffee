@@ -1,5 +1,6 @@
 class CS.Menu
 
+  previousState: "recent"
   state: "recent"
 
   constructor: ->
@@ -15,6 +16,7 @@ class CS.Menu
     @historyList.addColorSample(color)
 
   showRecentFormats: ->
+    @previousState = @state
     @state = "recent"
     $(".menu__formats").scrollTop(0)
     @el.removeClass "menu_all menu_color"
@@ -23,13 +25,18 @@ class CS.Menu
     @formatsList.hide()
 
   showAllFormats: ->
+    @previousState = @state
     @state = "all"
     @el.removeClass "menu_recent menu_color"
     @el.addClass "menu_all"
     @recentFormatsList.hide()
     @formatsList.show()
 
+  showFormats: ->
+    if @previousState is "recent" then @showRecentFormats() else @showAllFormats()
+
   showColorPanel: ->
+    @previousState = @state
     @state = "color"
     $(".menu__formats").scrollTop(0)
     @el.removeClass "menu_all menu_recent"
@@ -41,8 +48,6 @@ class CS.Menu
 
     if @recentFormatsList.isVisible and $("#showAllFormats").hasClass("active")
       @showAllFormats()
-    else if $(".menu__item_modify").hasClass("active")
-      @showColorPanel()
     else
       @hide() # Pretend we've selected a color format to copy into clipboard
 
@@ -52,7 +57,7 @@ class CS.Menu
     evt.preventDefault()
     if @state is "color"
       # If color panel is visible, return to previous state
-      if @previousState is "recent" then @showRecentFormats() else @showAllFormats()
+      @showFormats()
     else
       @hide() # otherwise hide the overlay
 
