@@ -14,7 +14,8 @@ $menuActiveColor: #366bda;
   top: 50%;
   left: 50%;
   font: 14px "Lucida Grande", Helvetica, sans-serif;
-  width: ($menuSampleSize + 10) * 8 + 10;
+  // width: ($menuSampleSize + 10) * 8 + 10;
+  width: 410px;
   background-color: $menuBackgroundColor;
   border-radius: $menuBorderRadius + 2;
   box-shadow:
@@ -37,7 +38,7 @@ $menuActiveColor: #366bda;
     @include transition(
       visibility 1ms 250ms,
       opacity 125ms 50ms,
-      -webkit-transform 250ms
+      transform 250ms
     );
   }
 }
@@ -67,6 +68,10 @@ $menuActiveColor: #366bda;
       box-shadow: 0 0 0 1px rgba(0, 0, 0, .25) inset;
       opacity: 1;
       @include transition(width .25s, opacity .25s);
+
+      &:last-of-type {
+        margin-right: 0;
+      }
 
       &:before,
       &:after {
@@ -135,7 +140,7 @@ $menuActiveColor: #366bda;
   .menu__formats {
     position: relative;
     overflow: hidden;
-    @include transition(height .35s);
+    @include transition(height .5s);
   }
   // View states
   .menu_recent {
@@ -181,10 +186,10 @@ $menuActiveColor: #366bda;
   }
 
   .menu_color {
-    width: 410px;
+    // width: 410px;
 
     .menu__formats {
-      height: 548px;
+      height: 478px;
       overflow: hidden;
     }
     .menu__items_recent,
@@ -192,17 +197,19 @@ $menuActiveColor: #366bda;
       @include translateX(-100%);
     }
     .menu__color-panel {
-      @include translateX(0);
+      @include translate(0, -34px);
     }
   }
 
   .menu__color-panel,
   .menu__items {
     position: absolute;
-    top: 0;
-    margin-top: $menuBorderWidth;
     width: 100%;
-    @include transition(transform .35s, opacity .25s, visibility 0 .25s);
+    @include transition(transform .5s, opacity .25s, visibility 0 .25s);
+  }
+  .menu__color-panel {
+    top: 34px;
+    z-index: 1;
   }
 
     .menu__item {

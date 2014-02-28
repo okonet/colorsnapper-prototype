@@ -19,13 +19,17 @@
   <menu class="menu menu_recent hidden">
     <ul class="menu__history"><li class="menu__btn-new">+</li><li class="menu__sample active" style="background-color:#f00"></li><li class="menu__sample" style="background-color:#f55e00"></li><li class="menu__sample" style="background-color:#279189"></li><li class="menu__sample" style="background-color:#ffb700"></li><li class="menu__sample" style="background-color:#00b7c7"></li><li class="menu__sample" style="background-color:#00b400"></li><li class="menu__sample" style="background-color:#ff2600"></li><li class="menu__sample" style="background-color:#f55e00"></li><li class="menu__sample" style="background-color:#279189"></li><li class="menu__sample" style="background-color:#3377ba"></li><i class="menu__sample-overlay"></i>
     </ul>
+
+    <ul class="menu__toolbar toolbar">
+      <li class="toolbar__item toolbar__item_recent">Recently used formats</li>
+      <li class="toolbar__item toolbar__item_all">All formats</li>
+      <li class="toolbar__item toolbar__item_colortoolbar"></li>
+      <li class="toolbar__item toolbar__item_back" onclick="window.loupe.menu.showFormats()"></li>
+      <li class="toolbar__item toolbar__item_color" onclick="window.loupe.menu.showColorPanel()" alt="Modify color">Color panel</li>
+    </ul>
+
     <div class="menu__formats">
       <ul class="menu__items menu__items_recent">
-        <li class="menu__item menu__item_modify">
-          <span class="menu__title">Modify color...</span>
-        </li>
-        <div class="menu__item-separator"></div>
-
         <li class="menu__item menu__item_generic menu__item_pos1">
           <span class="menu__title">Generic Hex</span>
           <span class="menu__subtitle">0099FF</span>
@@ -54,11 +58,6 @@
         </li>
       </ul>
       <ul class="menu__items menu__items_all">
-        <li class="menu__item menu__item_modify">
-          <span class="menu__title">Modify color...</span>
-        </li>
-        <div class="menu__item-separator"></div>
-
         <li class="menu__item menu__item_generic">
           <span class="menu__title">Generic Hex</span>
           <span class="menu__subtitle">0099FF</span>
@@ -160,7 +159,6 @@
       </ul>
 
       <section class="menu__color-panel">
-        <button class="menu__btn menu__btn_back" onclick="window.loupe.menu.showRecentFormats()">Back...</button>
         <img src="/images/color-panel.png" alt="">
       </section>
     </div>
