@@ -31,12 +31,10 @@ $menuActiveColor: #366bda;
     width .35s,
     -webkit-transform 250ms;
 
-  // @include transform(translate(-50%, -50%));
-
   &.hidden {
     opacity: 0;
     visibility: hidden;
-    @include transform(translate(-50%, -50%) scale(.5));
+    @include transform(scale(.5));
     @include transition(
       visibility 1ms 250ms,
       opacity 125ms 50ms,
