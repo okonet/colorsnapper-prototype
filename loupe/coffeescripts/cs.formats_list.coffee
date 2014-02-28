@@ -30,3 +30,15 @@ class CS.FormatsList extends CS.ListView
           , 150
         , 100
       , 50
+
+  selectItemWithIndex: (idx) ->
+    super
+    $container = $(".menu__formats")
+    center = $container.height() / 2
+    itemHeight = $(@itemSelector, @el).height()
+    itemOffset = itemHeight * (idx + 1)
+    console.log itemOffset, center
+    if itemOffset > center
+      $container.scrollTop(Math.abs(center - itemOffset - itemHeight)) # Try to scroll item in the center
+    else
+      $container.scrollTop(0)

@@ -23,3 +23,7 @@ class CS.HistoryList extends CS.ListView
     colorToDuplicate = @getSelectedItem().css("background-color")
     @addColorSample(colorToDuplicate or "rgb(0,0,255)")
     @menu.showColorPanel()
+
+  selectItemWithIndex: (idx) ->
+    super
+    @el.scrollLeft((52 * idx)/2) # Try to scroll item in the center

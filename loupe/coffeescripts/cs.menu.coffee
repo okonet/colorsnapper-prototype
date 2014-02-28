@@ -62,7 +62,7 @@ class CS.Menu
       @hide() # otherwise hide the overlay
 
   show: ->
-    @showRecentFormats()
+    @showAllFormats()
     @isVisible = yes
     @el.removeClass 'hidden'
     $(document).trigger 'menu:shown'

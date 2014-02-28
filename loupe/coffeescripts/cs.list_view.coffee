@@ -17,6 +17,7 @@ class CS.ListView
     $(".active", @el)
 
   switchItem: (evt, key) =>
+    evt.preventDefault()
     if @isVisible
       $items = @getItems()
       dir = if key is @previousItemShortcut then -1 else 1
