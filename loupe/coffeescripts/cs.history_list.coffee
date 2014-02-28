@@ -10,6 +10,7 @@ class CS.HistoryList extends CS.ListView
     @isVisible = yes # History is always visible
     @newItemBtn = $(".toolbar__item_new")
     @newItemBtn.on "click", @onCreateColorClicked
+    @el.on "dblclick", @itemSelector, @onDblClick
     @el.on "dragstart", @itemSelector, @onDragStart
     @el.on "dragend", @itemSelector, @onDragEnd
 
@@ -34,6 +35,10 @@ class CS.HistoryList extends CS.ListView
   selectItemWithIndex: (idx) ->
     super
     @el.scrollLeft((52 * idx)/2) # Try to scroll item in the center
+
+  onDblClick: (evt) =>
+    evt.preventDefault()
+    @menu.showColorPanel()
 
   onDragStart: (evt) =>
     @draggedItem = evt.target

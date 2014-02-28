@@ -23,6 +23,6 @@ p {
 .cs-loupe {
   cursor: none;
 }
-[draggable] {
-  user-select: none;
+* {
+  -webkit-user-select: none;
 }

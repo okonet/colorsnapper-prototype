@@ -71,7 +71,10 @@ $menuActiveColor: #366bda;
       box-shadow: 0 0 0 1px rgba(0, 0, 0, .25) inset;
       opacity: 1;
       z-index: 1;
-      @include transition(width .25s, opacity .25s);
+      @include transition(
+        transform .5s,
+        opacity .5s
+      );
 
       &:last-of-type {
         margin-right: 0;
@@ -106,8 +109,8 @@ $menuActiveColor: #366bda;
     }
 
     .menu__sample_hidden {
-      width: 0;
       opacity: 0;
+      @include translateX(-120%);
     }
 
     .menu__sample-overlay {
