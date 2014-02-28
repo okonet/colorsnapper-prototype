@@ -45,8 +45,8 @@ class CS.Loupe
         @simulatePick(e)
         if jwerty.is('⌥', e)
           @menu ?= new CS.Menu()
-          @menu.addColor @getActualColor()
           @menu.show()
+          @menu.addColor @getActualColor()
 
     $(document).on 'menu:shown', @hide
 
@@ -112,37 +112,7 @@ class CS.Loupe
 
   simulatePick: (evt) ->
     @el.addClass('picked')
-    _.delay @hide, 500
-    _.delay =>
-      animateToMenu = @menu? and @menu.isVisible
-      endX = $(window).width() - 100
-      endY = 0
-
-      if animateToMenu
-        endX = $(window).width()/2 - 140
-        endY = $(window).height()/2 - 190
-
-      $flyer = $("<div class='loupe__flyer'>")
-        .appendTo($('body'))
-        .css 'background-color', @getActualColor()
-
-      $flyer.animate
-          duration: 350
-          path: new $.path.bezier
-            start:
-              x: evt.pageX
-              y: evt.pageY
-              angle: 90
-              length: .1
-            end:
-              x: endX
-              y: endY
-              angle: -30
-              length: .5
-
-      $flyer.addClass('toMenu') if animateToMenu
-
-    , 200
+    _.delay @hide, 250
 
   show: =>
     @isVisible = yes

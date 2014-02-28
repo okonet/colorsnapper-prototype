@@ -13,7 +13,9 @@ class CS.Menu
     jwerty.key 'esc', @onEscPressed
 
   addColor: (color) ->
-    @historyList.addColorSample(color)
+    _.delay =>
+      @historyList.addColorSample(color)
+    , 350
 
   showRecentFormats: ->
     @previousState = @state

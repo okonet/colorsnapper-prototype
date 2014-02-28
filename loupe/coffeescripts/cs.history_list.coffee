@@ -20,9 +20,13 @@ class CS.HistoryList extends CS.ListView
   onCreateColorClicked: (evt) =>
     evt.preventDefault()
     evt.stopPropagation()
-    colorToDuplicate = @getSelectedItem().css("background-color")
-    @addColorSample(colorToDuplicate or "rgb(0,0,255)")
-    @menu.showColorPanel()
+    if evt.altKey
+      @menu.hide()
+      window.loupe.show()
+    else
+      colorToDuplicate = @getSelectedItem().css("background-color")
+      @addColorSample(colorToDuplicate or "rgb(0,0,255)")
+      @menu.showColorPanel()
 
   selectItemWithIndex: (idx) ->
     super
