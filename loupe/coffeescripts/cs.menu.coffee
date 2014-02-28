@@ -12,6 +12,14 @@ class CS.Menu
     jwerty.key 'enter', @confirmSelection
     jwerty.key 'esc', @onEscPressed
 
+    $(document).on "keydown keyup", @toggleAltPressed
+
+  toggleAltPressed: (evt) =>
+    if evt.altKey
+      @el[0].classList.add("menu_alt")
+    else
+      @el[0].classList.remove("menu_alt")
+
   addColor: (color) ->
     _.delay =>
       @historyList.addColorSample(color)

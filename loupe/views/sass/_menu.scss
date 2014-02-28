@@ -13,6 +13,8 @@ $menuActiveColor: #366bda;
   position: absolute;
   top: 50%;
   left: 50%;
+  margin-top: -250px;
+  margin-left: -205px;
   font: 14px "Lucida Grande", Helvetica, sans-serif;
   // width: ($menuSampleSize + 10) * 8 + 10;
   width: 410px;
@@ -29,7 +31,7 @@ $menuActiveColor: #366bda;
     width .35s,
     -webkit-transform 250ms;
 
-  @include transform(translate(-50%, -50%));
+  // @include transform(translate(-50%, -50%));
 
   &.hidden {
     opacity: 0;
@@ -54,9 +56,9 @@ $menuActiveColor: #366bda;
     box-shadow: 0 0 1px rgba(0,0,0,.5) inset;
     height: $menuSampleSize;
     overflow: hidden;
+    overflow-y: hidden;
     overflow-x: auto;
   }
-    .menu__btn-new,
     .menu__sample {
       position: relative;
       display: inline-block;
@@ -67,6 +69,7 @@ $menuActiveColor: #366bda;
       border-radius: $menuSampleBorderRadius;
       box-shadow: 0 0 0 1px rgba(0, 0, 0, .25) inset;
       opacity: 1;
+      z-index: 1;
       @include transition(width .25s, opacity .25s);
 
       &:last-of-type {
@@ -106,19 +109,6 @@ $menuActiveColor: #366bda;
       opacity: 0;
     }
 
-    .menu__btn-new {
-      font-size: 21px;
-      line-height: 36px;
-      text-align: center;
-      color: #676767;
-      text-shadow: 0 1px 0 rgba(255, 255, 255, .8);
-      border-radius: 4px;
-      border: 1px dashed #ababab;
-      box-sizing: border-box;
-      box-shadow: none;
-      overflow: hidden;
-    }
-
     .menu__sample-overlay {
       position: absolute;
       top: 2px;
@@ -129,6 +119,7 @@ $menuActiveColor: #366bda;
       border-radius: $menuBorderRadius - 1px;
       border: 2px solid #4990E2;
       @include transition(transform .15s ease-out);
+      z-index: 0;
     }
 
     @for $i from 1 through 20 {
