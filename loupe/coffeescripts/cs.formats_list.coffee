@@ -7,6 +7,8 @@ class CS.FormatsList extends CS.ListView
   constructor: ->
     super
     jwerty.key '0/1/2/3/4/5/6/7/8/9', @switchAndSelectItem
+    @$filterEl = $("#formatFilter")
+    @$filterEl.on "keyup click", @onFilterChange
 
   onItemClicked: (evt) =>
     super
@@ -41,3 +43,18 @@ class CS.FormatsList extends CS.ListView
       $container.scrollTop(Math.abs(center - itemOffset - itemHeight)) # Try to scroll item in the center
     else
       $container.scrollTop(0)
+
+  show: ->
+    super
+    _.delay =>
+      @$filterEl.focus()
+    , 500
+
+  onFilterChange: (evt) =>
+    value = @$filterEl.val()
+    if value.length > 0
+      $('.toolbar_search').addClass('active')
+      $('.menu__formats').addClass('withSearch')
+    else
+      $('.toolbar_search').removeClass('active')
+      $('.menu__formats').removeClass('withSearch')

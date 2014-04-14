@@ -21,7 +21,6 @@
     </ul>
 
     <ul class="menu__toolbar toolbar">
-      <li class="toolbar__item toolbar__item_recent">Recently used formats</li>
       <li class="toolbar__item toolbar__item_all">Formats</li>
       <li class="toolbar__item toolbar__item_colortoolbar"></li>
       <li class="toolbar__item toolbar__item_new"></li>
@@ -29,35 +28,11 @@
       <li class="toolbar__item toolbar__item_color" onclick="window.loupe.menu.showColorPanel()" alt="Modify color">Color panel</li>
     </ul>
 
+    <div class="menu__toolbar toolbar toolbar_search">
+      <input type="search" placeholder="Type to filter formats..." id="formatFilter" class="toolbar__input">
+    </div>
+
     <div class="menu__formats">
-      <ul class="menu__items menu__items_recent">
-        <li class="menu__item menu__item_generic menu__item_pos1">
-          <span class="menu__title">Generic Hex</span>
-          <span class="menu__subtitle">0099FF</span>
-        </li>
-        <li class="menu__item menu__item_android menu__item_pos15">
-          <span class="menu__title">Android RGBA</span>
-          <span class="menu__subtitle">Color.argb(255, 0, 127, 255)</span>
-        </li>
-        <li class="menu__item menu__item_css menu__item_pos4">
-          <span class="menu__title">CSS RGBA</span>
-          <span class="menu__subtitle">rgba(0, 127, 255, 1)</span>
-        </li>
-        <li class="menu__item menu__item_osx menu__item_pos7">
-          <span class="menu__title">NSColor Calibrated RGB</span>
-          <span class="menu__subtitle">[NSColor colorWithCalibratedRed:0.0000f green:0.5000f blue:1.0000f alpha:1.0000f]</span>
-        </li>
-        <li class="menu__item menu__item_cg  menu__item_pos17">
-          <span class="menu__title">CGColor RGB</span>
-          <span class="menu__subtitle">CGColorCreateGenericRGB(0, 0.5, 1, 1)</span>
-        </li>
-
-        <div class="menu__item-separator"></div>
-
-        <li class="menu__item menu__item_all-formats" id="showAllFormats">
-          <span class="menu__title">Show all formats...</span>
-        </li>
-      </ul>
       <ul class="menu__items menu__items_all">
         <li class="menu__item menu__item_generic">
           <span class="menu__title">Generic Hex</span>

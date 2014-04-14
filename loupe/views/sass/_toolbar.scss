@@ -11,6 +11,31 @@
   z-index: 0;
   overflow: hidden;
 }
+
+.toolbar_search {
+  position: absolute;
+  padding: 3px 0;
+  border-bottom: 1px solid #999;
+  background: rgba(220,220,220, 0.75);
+  height: auto;
+  z-index: 100;
+  opacity: 0;
+  @include translate(0,-30px);
+  @include transition(
+    opacity 125ms 50ms,
+    transform 250ms
+  );
+
+  &.active {
+    opacity: 1;
+    @include translate(0,0);
+  }
+
+  .toolbar__input {
+    width: 96%;
+  }
+}
+
   .toolbar__item {
     position: absolute;
     top: 8px;
