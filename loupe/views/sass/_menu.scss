@@ -221,11 +221,6 @@ $menuActiveColor: #366bda;
       }
 
       // Shortcuts
-      @for $i from 1 through 9 {
-        &.menu__item:nth-of-type(#{ $i }):after { content: "⌘#{$i}"; }
-      }
-      &.menu__item:nth-of-type(10):after { content: "⌘0"; }
-
       &:after {
         position: absolute;
         top: 50%;
