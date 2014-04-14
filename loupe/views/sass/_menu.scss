@@ -134,13 +134,8 @@ $menuActiveColor: #366bda;
 
   .menu__formats {
     position: relative;
-    padding-top: 0px;
     overflow: hidden;
-    @include transition(height .5s, padding .25s);
-
-    &.withSearch {
-      padding-top: 30px;
-    }
+    @include transition(height .5s);
   }
   // View states
   .menu_recent {

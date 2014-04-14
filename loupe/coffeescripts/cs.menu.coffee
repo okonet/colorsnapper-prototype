@@ -51,6 +51,8 @@ class CS.Menu
     $(".menu__formats").scrollTop(0)
     @el.removeClass "menu_all menu_recent"
     @el.addClass "menu_color"
+    $('.toolbar_search').removeClass('active')
+    $('.menu__formats').removeClass('withSearch')
 
   confirmSelection: (evt) =>
     evt.preventDefault()

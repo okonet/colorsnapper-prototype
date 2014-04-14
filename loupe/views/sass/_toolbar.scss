@@ -18,7 +18,7 @@
   border-bottom: 1px solid #999;
   background: rgba(220,220,220, 0.75);
   height: auto;
-  z-index: 100;
+  z-index: -1;
   opacity: 0;
   @include translate(0,-30px);
   @include transition(
@@ -27,6 +27,7 @@
   );
 
   &.active {
+    z-index: 1;
     opacity: 1;
     @include translate(0,0);
   }
@@ -41,8 +42,6 @@
     top: 8px;
     left: 50%;
     padding-left: 20px;
-    background: image-url("/images/icon_formats@2x.png") 0 1px no-repeat;
-    background-size: 16px 16px;
     @include translateX(-50%);
     @include transition(
       opacity .5s,
@@ -64,6 +63,12 @@
     }
     &.drop-over {}
   }
+
+  .toolbar__input {
+    margin-top: -3px;
+    width: 200px;
+  }
+
   .menu_alt {
     .toolbar__item_new {
       background: image-url("/images/icon_duplicate@2x.png") 0 0 no-repeat;
@@ -71,6 +76,8 @@
     }
   }
   .toolbar__item_back {
+    background: image-url("/images/icon_formats@2x.png") 0 1px no-repeat;
+    background-size: 16px 16px;
     width: 16px;
     height: 16px;
     opacity: 0;
