@@ -58,12 +58,14 @@ class CS.Menu
     evt.preventDefault()
     @previousState = @state
 
-    if @recentFormatsList.isVisible and $("#showAllFormats").hasClass("active")
-      @showAllFormats()
+    if @state is "color"
+      @showFormats() # Return to formats if in color mode
     else
-      @hide() # Pretend we've selected a color format to copy into clipboard
-
-    $(".menu__item.active").removeClass("active")
+      if @recentFormatsList.isVisible and $("#showAllFormats").hasClass("active")
+        @showAllFormats()
+      else
+        @hide() # Pretend we've selected a color format to copy into clipboard
+      $(".menu__item.active").removeClass("active")
 
   onEscPressed: (evt) =>
     evt.preventDefault()
