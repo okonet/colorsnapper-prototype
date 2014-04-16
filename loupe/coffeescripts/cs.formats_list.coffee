@@ -10,6 +10,10 @@ class CS.FormatsList extends CS.ListView
     $(document).on "keydown", @focusFilterField
     @$filterEl.on "keyup click", @onFilterChange
 
+  show: ->
+    super
+    @selectItemWithIndex(0) unless @getSelectedItem().length
+
   onItemClicked: (evt) =>
     super
     _.delay =>
