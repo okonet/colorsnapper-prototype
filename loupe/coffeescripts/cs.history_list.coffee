@@ -1,5 +1,7 @@
 class CS.HistoryList extends CS.ListView
 
+  FIRST_ITEM_IDX: 1
+
   itemSelector: ".menu__sample"
   previousItemShortcut: "←"
   nextItemShortcut: "→"

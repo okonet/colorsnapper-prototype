@@ -1,5 +1,7 @@
 class CS.ListView
 
+  FIRST_ITEM_IDX: 0
+
   isVisible: no
   activeItemIdx: -1
 
@@ -23,8 +25,8 @@ class CS.ListView
       dir = if key is @previousItemShortcut then -1 else 1
       @activeItemIdx += dir
       if @activeItemIdx >= $items.length and dir > 0
-        @activeItemIdx = 0
-      else if @activeItemIdx < 0 and dir < 0
+        @activeItemIdx = @FIRST_ITEM_IDX
+      else if @activeItemIdx < @FIRST_ITEM_IDX and dir < 0
         @activeItemIdx = $items.length - 1
       @selectItemWithIndex(@activeItemIdx)
 
