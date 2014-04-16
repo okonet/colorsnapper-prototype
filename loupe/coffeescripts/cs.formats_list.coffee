@@ -26,11 +26,5 @@ class CS.FormatsList extends CS.ListView
     else
       $container.scrollTop(0)
 
-  show: ->
-    super
-    _.delay =>
-      @$filterEl.focus()
-    , 500
-
   onFilterChange: (evt) =>
     value = @$filterEl.val()
