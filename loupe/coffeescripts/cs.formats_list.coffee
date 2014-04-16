@@ -3,6 +3,7 @@ class CS.FormatsList extends CS.ListView
   itemSelector: ".menu__item"
   previousItemShortcut: "↑"
   nextItemShortcut: "↓"
+  isFilterFocused: no
 
   constructor: ->
     super
@@ -39,4 +40,5 @@ class CS.FormatsList extends CS.ListView
 
   onFilterChange: (evt) =>
     value = @$filterEl.val()
+    @isFilterFocused = !!value.length
     @$filterEl.blur() if value.length is 0

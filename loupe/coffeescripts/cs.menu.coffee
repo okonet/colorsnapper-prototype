@@ -71,7 +71,11 @@ class CS.Menu
       # If color panel is visible, return to previous state
       @showFormats()
     else
-      @hide() # otherwise hide the overlay
+      if @formatsList.isFilterFocused # Reset filters
+        @formatsList.$filterEl.val('').blur()
+        @formatsList.$filterEl.trigger('keyup') # to call the callback
+      else
+        @hide() # otherwise hide the overlay
 
   show: ->
     @showAllFormats()
