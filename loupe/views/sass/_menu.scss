@@ -59,6 +59,11 @@ $menuActiveColor: #366bda;
     &.dragging {
       overflow: hidden;
     }
+
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
   }
     .menu__sample {
       position: relative;
