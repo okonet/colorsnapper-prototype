@@ -20,9 +20,9 @@ class CS.HistoryList extends CS.ListView
   addColorSample: (color) ->
     $sample = $("<li class='menu__sample menu__sample_hidden' draggable='true'></li>").css('background-color', color)
     @newItemBtn.after $sample
-    _.defer =>
+    @selectItemWithIndex 1
+    _.defer ->
       $sample.removeClass "menu__sample_hidden"
-      @selectItemWithIndex 1
 
   onCreateColorClicked: (evt) =>
     evt.preventDefault()
