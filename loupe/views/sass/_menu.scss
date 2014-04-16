@@ -110,7 +110,13 @@ $menuActiveColor: #366bda;
 
     .menu__sample_hidden {
       opacity: 0;
-      @include translateX(-120%);
+      @include translateY(120%);
+    }
+
+    .menu__sample_pick {
+      background: image-url("/images/icon_add-color@2x.png") 50% 50% no-repeat;
+      background-size: 29px 29px;
+      box-shadow: none;
     }
 
     .menu__sample-overlay {

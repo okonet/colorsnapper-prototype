@@ -7,6 +7,7 @@ class CS.FormatsList extends CS.ListView
   constructor: ->
     super
     @$filterEl = $("#formatFilter")
+    $(document).on "keydown", @focusFilterField
     @$filterEl.on "keyup click", @onFilterChange
 
   onItemClicked: (evt) =>
@@ -26,5 +27,12 @@ class CS.FormatsList extends CS.ListView
     else
       $container.scrollTop(0)
 
+  focusFilterField: (evt) =>
+    evt.preventDefault
+    charCode = String.fromCharCode(evt.keyCode)
+    if charCode.match(/[A-Za-z]/)
+      @$filterEl.focus() if @isVisible
+
   onFilterChange: (evt) =>
     value = @$filterEl.val()
+    @$filterEl.blur() if value.length is 0

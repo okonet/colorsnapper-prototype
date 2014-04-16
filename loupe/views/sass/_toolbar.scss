@@ -41,7 +41,7 @@
     position: absolute;
     top: 8px;
     left: 50%;
-    padding-left: 20px;
+    padding-left: 7px;
     @include translateX(-50%);
     @include transition(
       opacity .5s,
@@ -49,39 +49,24 @@
       transform .5s
     );
   }
-  .toolbar__item_new {
-    left: 10px;
-    width: 16px;
-    height: 16px;
-    background: image-url("/images/icon_loupe@2x.png") 0 0 no-repeat;
-    background-size: 16px 16px;
+
+  .toolbar__item_filter {
+    left: 0;
+    padding-left: 7px;
     @include translateX(0);
-
-    &.drop-waiting {
-      background: image-url("/images/icon_duplicate@2x.png") 0 0 no-repeat;
+  }
+    .toolbar__input {
+      padding: 3px;
+      padding-left: 20px;
+      margin-top: -3px;
+      width: 200px;
+      font-size: 13px;
+      border: none;
+      background: image-url("/images/icon_search@2x.png") 4px 4px no-repeat;
       background-size: 16px 16px;
+      outline: none;
     }
-    &.drop-over {}
-  }
 
-  .toolbar__input {
-    padding: 3px;
-    padding-left: 15px;
-    margin-top: -3px;
-    width: 200px;
-    font-size: 13px;
-    border: none;
-    background: image-url("/images/icon_search@2x.png") 4px 4px no-repeat;
-    background-size: 16px 16px;
-    outline: none;
-  }
-
-  .menu_alt {
-    .toolbar__item_new {
-      background: image-url("/images/icon_duplicate@2x.png") 0 0 no-repeat;
-      background-size: 16px 16px;
-    }
-  }
   .toolbar__item_back {
     padding-left: 16px;
     color: #4A4A4A;
@@ -114,7 +99,7 @@
     .toolbar__item_recent {
       opacity: 1;
     }
-    .toolbar__item_all {
+    .toolbar__item_filter {
       opacity: 0;
     }
   }
@@ -124,7 +109,7 @@
     .toolbar__item_recent {
       opacity: 0;
     }
-    .toolbar__item_all {
+    .toolbar__item_filter {
       opacity: 1;
     }
   }
@@ -132,11 +117,14 @@
 .menu_color {
   .toolbar {
     .toolbar__item_recent,
-    .toolbar__item_all,
+    .toolbar__item_filter,
     .toolbar__item_new {
       opacity: 0;
       left: 0;
       @include translateX(0);
+    }
+    .toolbar__item_filter {
+      @include translateX(-100%);
     }
     .toolbar__item_back {
       left: 7px;
