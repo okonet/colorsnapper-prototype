@@ -119,15 +119,20 @@ $menuActiveColor: #366bda;
     }
 
     .menu__sample_pick {
-      background: image-url("/images/icon_add-color@2x.png") 50% 50% no-repeat;
+      background: image-url("/images/icon__new_pick@2x.png") 50% 50% no-repeat;
       background-size: 29px 29px;
       box-shadow: none;
+      border: 1px dashed transparent;
+    }
+    .menu_alt .menu__sample_pick {
+      background-image: image-url("/images/icon__new_create@2x.png");
+      border-color: #b8b8b8;
     }
 
     .menu__sample-overlay {
       position: absolute;
-      top: 2px;
-      left: 2px;
+      top: 4px;
+      left: 4px;
       margin: $menuBorderWidth;
       width: $menuSampleSize + 2px;
       height: $menuSampleSize + 2px;
