@@ -43,7 +43,7 @@ class CS.Loupe
         e.preventDefault()
         e.stopPropagation()
         @simulatePick(e)
-        if jwerty.is('⌥', e)
+        unless jwerty.is('⌥', e)
           @menu ?= new CS.Menu()
           @menu.show()
           @menu.addColor @getActualColor()
