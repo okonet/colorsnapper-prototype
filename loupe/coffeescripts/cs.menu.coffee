@@ -1,12 +1,12 @@
 class CS.Menu
 
-  previousState: "recent"
-  state: "recent"
+  state: "all"
+  previousState: "all"
+  isFavoritesVisible: no
 
   constructor: ->
     @el = $(".menu")
     @historyList = new CS.HistoryList(".menu__history", this)
-    @recentFormatsList = new CS.FormatsList(".menu__items_recent", this)
     @formatsList = new CS.FormatsList(".menu__items_all", this)
 
     jwerty.key 'enter', @confirmSelection
@@ -25,25 +25,15 @@ class CS.Menu
       @historyList.addColorSample(color)
     , 350
 
-  showRecentFormats: ->
-    @previousState = @state
-    @state = "recent"
-    $(".menu__formats").scrollTop(0)
-    @el.removeClass "menu_all menu_color"
-    @el.addClass "menu_recent"
-    @recentFormatsList.show()
-    @formatsList.hide()
-
   showAllFormats: ->
     @previousState = @state
     @state = "all"
     @el.removeClass "menu_recent menu_color"
     @el.addClass "menu_all"
-    @recentFormatsList.hide()
     @formatsList.show()
 
   showFormats: ->
-    if @previousState is "recent" then @showRecentFormats() else @showAllFormats()
+    @showAllFormats()
 
   showColorPanel: ->
     @previousState = @state
@@ -53,6 +43,13 @@ class CS.Menu
     @el.addClass "menu_color"
     $('.toolbar_search').removeClass('active')
     $('.menu__formats').removeClass('withSearch')
+
+  toggleFavoritesPanel: ->
+    @isFavoritesVisible = not @isFavoritesVisible
+    if @isFavoritesVisible
+      @el.addClass "menu_favorites"
+    else
+      @el.removeClass "menu_favorites"
 
   confirmSelection: (evt) =>
     evt.preventDefault()

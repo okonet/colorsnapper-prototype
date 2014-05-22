@@ -51,20 +51,20 @@
   }
 
   .toolbar__item_filter {
-    left: 0;
+    left: 20px;
+    right: 40px;
     padding-left: 7px;
     @include translateX(0);
   }
     .toolbar__input {
+      position: absolute;
+      left: 0;
       padding: 3px;
-      padding-left: 20px;
       margin-top: -3px;
-      width: 370px;
       font-size: 13px;
       border: none;
-      background: image-url("/images/icon_search@2x.png") 4px 4px no-repeat;
-      background-size: 16px 16px;
       outline: none;
+      width: 100%;
     }
 
   .toolbar__item_back {
@@ -84,6 +84,16 @@
     background: image-url("/images/icon_color@2x.png") 0 0 no-repeat;
     background-size: 16px 16px;
     @include translateX(-100%);
+  }
+  .toolbar__item_favorites {
+    left: auto;
+    right: 16px;
+    padding-left: 7px;
+    text-indent: -9999px;
+    width: 16px;
+    background: image-url("/images/icon_favorites@2x.png") 0 0 no-repeat;
+    background-size: 16px 16px;
+    // @include translateX(-100%);
   }
   .toolbar__item_colortoolbar {
     top: 0;

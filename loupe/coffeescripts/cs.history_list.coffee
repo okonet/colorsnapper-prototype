@@ -2,7 +2,7 @@ class CS.HistoryList extends CS.ListView
 
   FIRST_ITEM_IDX: 1
 
-  itemSelector: ".menu__sample"
+  itemSelector: ".sample"
   previousItemShortcut: "←"
   nextItemShortcut: "→"
   activeItemIdx: 1
@@ -10,7 +10,7 @@ class CS.HistoryList extends CS.ListView
   constructor: ->
     super
     @isVisible = yes # History is always visible
-    @newItemBtn = $(".menu__sample_pick")
+    @newItemBtn = $(".sample_pick")
     @newItemBtn.on "click", @onCreateColorClicked
     @el.on "dblclick", @itemSelector, @onDblClick
     @el.on "dragstart", @itemSelector, @onDragStart
@@ -18,11 +18,11 @@ class CS.HistoryList extends CS.ListView
     @selectItemWithIndex 1
 
   addColorSample: (color) ->
-    $sample = $("<li class='menu__sample menu__sample_hidden' draggable='true'></li>").css('background-color', color)
+    $sample = $("<li class='sample sample_hidden' draggable='true'></li>").css('background-color', color)
     @newItemBtn.after $sample
     @selectItemWithIndex 1
     _.defer ->
-      $sample.removeClass "menu__sample_hidden"
+      $sample.removeClass "sample_hidden"
 
   onCreateColorClicked: (evt) =>
     evt.preventDefault()
