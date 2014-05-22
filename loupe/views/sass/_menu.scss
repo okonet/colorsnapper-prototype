@@ -45,8 +45,9 @@ $menuActiveColor: #366bda;
 
   .menu__history {
     position: relative;
-    padding: 2 * $menuBorderWidth;
-    padding-bottom: 14px;
+    padding: 0;
+    // padding: 2 * $menuBorderWidth;
+    // padding-bottom: 14px;
     font-size: 1.35em;
     white-space: nowrap;
     background: #E8E8E8;
@@ -69,11 +70,10 @@ $menuActiveColor: #366bda;
       position: relative;
       display: inline-block;
       padding: 0;
-      margin-right: 10px;
+      margin-right: 0px;
       width: $menuSampleSize;
       height: $menuSampleSize;
-      border-radius: $menuSampleBorderRadius;
-      box-shadow: 0 0 0 1px rgba(0, 0, 0, .25) inset;
+      // box-shadow: 0 0 0 1px rgba(0, 0, 0, .25) inset;
       opacity: 1;
       z-index: 1;
       @include transition(
@@ -89,7 +89,7 @@ $menuActiveColor: #366bda;
       &:after {
         position: absolute;
         left: 50%;
-        bottom: -14px;
+        bottom: -1px;
         margin-left: -8px;
         width: 0;
         height: 0;
@@ -103,8 +103,8 @@ $menuActiveColor: #366bda;
       }
 
       &:before {
-        bottom: -13px;
-        border-bottom: $menuCalloutSize solid #cdcdcd;
+        bottom: 0px;
+        border-bottom: $menuCalloutSize solid #bababa;
       }
 
       &.active:before,
@@ -122,31 +122,31 @@ $menuActiveColor: #366bda;
       background: image-url("/images/icon__new_pick@2x.png") 50% 50% no-repeat;
       background-size: 29px 29px;
       box-shadow: none;
-      border: 1px dashed transparent;
+      // border: 1px dashed transparent;
     }
     .menu_alt .menu__sample_pick {
       background-image: image-url("/images/icon__new_create@2x.png");
-      border-color: #b8b8b8;
+      // border-color: #b8b8b8;
     }
 
-    .menu__sample-overlay {
-      position: absolute;
-      top: 4px;
-      left: 4px;
-      margin: $menuBorderWidth;
-      width: $menuSampleSize + 2px;
-      height: $menuSampleSize + 2px;
-      border-radius: $menuBorderRadius;
-      border: 2px solid #4990E2;
-      @include transition(transform .15s ease-out);
-      z-index: 0;
-    }
+    // .menu__sample-overlay {
+    //   position: absolute;
+    //   top: 4px;
+    //   left: 4px;
+    //   margin: $menuBorderWidth;
+    //   width: $menuSampleSize + 2px;
+    //   height: $menuSampleSize + 2px;
+    //   border-radius: $menuBorderRadius;
+    //   border: 2px solid #4990E2;
+    //   @include transition(transform .15s ease-out);
+    //   z-index: 0;
+    // }
 
-    @for $i from 1 through 20 {
-      .menu__sample:nth-child(#{$i}).active ~ .menu__sample-overlay {
-        @include translateX(($menuSampleSize + $menuBorderWidth * 2) * ($i - 1));
-      }
-    }
+    // @for $i from 1 through 20 {
+    //   .menu__sample:nth-child(#{$i}).active ~ .menu__sample-overlay {
+    //     @include translateX(($menuSampleSize + $menuBorderWidth * 2) * ($i - 1));
+    //   }
+    // }
 
   .menu__formats {
     position: relative;
