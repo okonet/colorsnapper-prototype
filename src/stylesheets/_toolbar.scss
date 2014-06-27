@@ -20,16 +20,15 @@
   height: auto;
   z-index: -1;
   opacity: 0;
-  @include translate(0,-30px);
-  @include transition(
+  transform: translate(0,-30px);
+  transition:
     opacity 125ms 50ms,
-    transform 250ms
-  );
+    transform 250ms;
 
   &.active {
     z-index: 1;
     opacity: 1;
-    @include translate(0,0);
+    transform: translate(0,0);
   }
 
   .toolbar__input {
@@ -42,18 +41,17 @@
     top: 8px;
     left: 50%;
     padding-left: 7px;
-    @include translateX(-50%);
-    @include transition(
+    transform: translateX(-50%);
+    transition:
       opacity .5s,
       left .5s,
-      transform .5s
-    );
+      transform .5s;
   }
 
   .toolbar__item_filter {
     left: 0;
     padding-left: 7px;
-    @include translateX(0);
+    transform: translateX(0);
   }
     .toolbar__input {
       padding: 3px;
@@ -74,7 +72,7 @@
     background-size: 16px 16px;
     height: 16px;
     opacity: 0;
-    @include translateX(0);
+    transform: translateX(0);
   }
   .toolbar__item_color {
     left: 100%;
@@ -83,7 +81,7 @@
     width: 16px;
     background: image-url("/images/icon_color@2x.png") 0 0 no-repeat;
     background-size: 16px 16px;
-    @include translateX(-100%);
+    transform: translateX(-100%);
   }
   .toolbar__item_colortoolbar {
     top: 0;
@@ -91,7 +89,7 @@
     width: 164px;
     height: 33px;
     opacity: 0;
-    @include translateX(150%);
+    transform: translateX(150%);
   }
 
 .menu_recent {
@@ -121,10 +119,10 @@
     .toolbar__item_new {
       opacity: 0;
       left: 0;
-      @include translateX(0);
+      transform: translateX(0);
     }
     .toolbar__item_filter {
-      @include translateX(-100%);
+      transform: translateX(-100%);
     }
     .toolbar__item_back {
       left: 7px;
@@ -136,7 +134,7 @@
     }
     .toolbar__item_colortoolbar {
       opacity: 1;
-      @include translateX(-50%);
+      transform: translateX(-50%);
     }
   }
 }

@@ -1,6 +1,8 @@
-@-webkit-keyframes flashy {
+$menuSampleSize: 42px;
+
+@keyframes flash {
   0% {
-    -webkit-filter: brightness(200%);
+    filter: brightness(200%);
   }
 }
 
@@ -11,15 +13,16 @@
   width: 42px;
   height: 42px;
   border-radius: 42px;
-  @include translate(-50%, -50%);
-  -webkit-transform-origin: 0 0;
-  -webkit-transition: -webkit-transform .125s .125s,
-                      opacity .25s .125s;
+  transform: translate(-50%, -50%);
+  transform-origin: 0 0;
+  transition:
+    transform .125s .125s,
+    opacity .25s .125s;
 
   &.picked {
     opacity: 0;
-    -webkit-animation: flashy .25s;
-    -webkit-transform: scale(.01);
+    animation: flash .25s;
+    transform: scale(.01);
   }
 }
 

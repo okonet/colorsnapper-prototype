@@ -1,4 +1,4 @@
-class CS.ListView
+module.exports = class CSListView
 
   FIRST_ITEM_IDX: 0
 

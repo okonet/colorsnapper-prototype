@@ -34,12 +34,11 @@ $menuActiveColor: #366bda;
   &.hidden {
     opacity: 0;
     visibility: hidden;
-    @include transform(scale(.5));
-    @include transition(
+    transform: scale(.5);
+    transition:
       visibility 1ms 250ms,
       opacity 125ms 50ms,
-      transform 250ms
-    );
+      transform 250ms;
   }
 }
 
@@ -51,7 +50,8 @@ $menuActiveColor: #366bda;
     font-size: 1.35em;
     white-space: nowrap;
     background: #E8E8E8;
-    @include border-top-radius($menuBorderRadius);
+    border-top-left-radius: $menuBorderRadius;
+    border-top-right-radius: $menuBorderRadius;
     box-shadow: 0 0 1px rgba(0,0,0,.5) inset;
     height: $menuSampleSize;
     overflow: hidden;
@@ -76,10 +76,9 @@ $menuActiveColor: #366bda;
       // box-shadow: 0 0 0 1px rgba(0, 0, 0, .25) inset;
       opacity: 1;
       z-index: 1;
-      @include transition(
+      transition:
         transform .5s,
-        opacity .5s
-      );
+        opacity .5s;
 
       &:last-of-type {
         margin-right: 0;
@@ -98,8 +97,8 @@ $menuActiveColor: #366bda;
         border-right: $menuCalloutSize solid transparent;
         border-bottom: $menuCalloutSize solid #fff;
         content: "";
-        @include translateY(8px);
-        @include transition(transform .25s .125s ease-in-out);
+        transform: translateY(8px);
+        transition: transform .25s .125s ease-in-out;
       }
 
       &:before {
@@ -109,13 +108,13 @@ $menuActiveColor: #366bda;
 
       &.active:before,
       &.active:after {
-        @include translateY(0);
+        transform: translateY(0);
       }
     }
 
     .menu__sample_hidden {
       opacity: 0;
-      @include translateX(-120%);
+      transform: translateX(-120%);
     }
 
     .menu__sample_pick {
@@ -144,14 +143,14 @@ $menuActiveColor: #366bda;
 
     // @for $i from 1 through 20 {
     //   .menu__sample:nth-child(#{$i}).active ~ .menu__sample-overlay {
-    //     @include translateX(($menuSampleSize + $menuBorderWidth * 2) * ($i - 1));
+    //     transform: translateX(($menuSampleSize + $menuBorderWidth * 2) * ($i - 1));
     //   }
     // }
 
   .menu__formats {
     position: relative;
     overflow: hidden;
-    @include transition(height .5s);
+    transition: height .5s;
   }
   // View states
   .menu_recent {
@@ -168,7 +167,7 @@ $menuActiveColor: #366bda;
       opacity: 0;
     }
     .menu__color-panel {
-      @include translateX(100%);
+      transform: translateX(100%);
     }
   }
   .menu_all {
@@ -182,7 +181,7 @@ $menuActiveColor: #366bda;
 
       @for $i from 1 through 20 {
         .menu__item_pos#{$i} {
-          @include translateY(36px * ($i - 1));
+          transform: translateY(36px * ($i - 1));
         }
       }
     }
@@ -192,7 +191,7 @@ $menuActiveColor: #366bda;
       opacity: 1;
     }
     .menu__color-panel {
-      @include translateX(100%);
+      transform: translateX(100%);
     }
   }
 
@@ -203,10 +202,10 @@ $menuActiveColor: #366bda;
     }
     .menu__items_recent,
     .menu__items_all {
-      @include translateX(-100%);
+      transform: translateX(-100%);
     }
     .menu__color-panel {
-      @include translateX(0);
+      transform: translateX(0);
     }
   }
 
@@ -214,9 +213,12 @@ $menuActiveColor: #366bda;
   .menu__items {
     position: absolute;
     width: 100%;
-    @include transition(transform .5s, opacity .25s, visibility 0 .25s);
+    transition: transform .5s, opacity .25s, visibility 0 .25s;
   }
   .menu__color-panel {
+    background: image-url("/images/color-panel.png") 0 0 no-repeat;
+    width: 100%;
+    height: 100%;
     z-index: 1;
   }
 
@@ -227,7 +229,7 @@ $menuActiveColor: #366bda;
       list-style: none;
       border-top: 1px solid transparent;
       border-bottom: 1px solid transparent;
-      @include transition(transform .25s);
+      transition: transform .25s;
 
       @each $format in generic, css, osx, ios, android, cg, opengl, photoshop, illustrator {
         &.menu__item_#{$format} {
@@ -286,7 +288,6 @@ $menuActiveColor: #366bda;
       color: rgba(#000, .45);
       font-size: 12px;
       white-space: nowrap;
-      @include ellipsis;
       width: 96%;
     }
 

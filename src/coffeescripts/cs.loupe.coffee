@@ -1,4 +1,10 @@
-class CS.Loupe
+require "stylesheets/_loupe"
+CS = require "./cs"
+CSCanvas = require "./cs.canvas"
+CSOverlay = require "./cs.overlay"
+CSMenu = require "./cs.menu"
+
+module.exports = class CSLoupe
 
   MIN_ZOOM    : 2
   MAX_ZOOM    : 10
@@ -15,18 +21,19 @@ class CS.Loupe
   borderMin   : 2
   borderMax   : 10
 
+  backgroundImg: require("file!../images/bgs/bg1.png")
 
   constructor: ->
     @el = $(".loupe")
-    @magnifier = new CS.Canvas("<canvas class='loupe__canvas'>")
+    @magnifier = new CSCanvas("<canvas class='loupe__canvas'>")
     @el.append @magnifier.el
     $('body').addClass('cs-loupe')
 
-    @screen = new CS.Canvas("#canvas")
-    @screen.drawImage "images/bg1.png", (imageData) =>
+    @screen = new CSCanvas("#canvas")
+    @screen.drawImage @backgroundImg, (imageData) =>
       @screenImageData = imageData
 
-    @overlay = new CS.Overlay @
+    @overlay = new CSOverlay @
 
     jwerty.key 'ctrl+⌘+C', @show
     jwerty.key 'esc', @hide
@@ -44,7 +51,7 @@ class CS.Loupe
         e.stopPropagation()
         @simulatePick(e)
         unless jwerty.is('⌥', e)
-          @menu ?= new CS.Menu()
+          @menu ?= new CSMenu()
           @menu.show()
           @menu.addColor @getActualColor()
 

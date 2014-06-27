@@ -1,4 +1,6 @@
-class CS.HistoryList extends CS.ListView
+CSListView = require "./cs.list_view"
+
+module.exports = class CSHistoryList extends CSListView
 
   FIRST_ITEM_IDX: 1
 

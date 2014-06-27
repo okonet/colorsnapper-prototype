@@ -1,13 +1,18 @@
-class CS.Menu
+require "stylesheets/_menu"
+require "stylesheets/_toolbar"
+CSHistoryList = require "./cs.history_list"
+CSFormatsList = require "./cs.formats_list"
+
+module.exports = class CSMenu
 
   previousState: "recent"
   state: "recent"
 
   constructor: ->
     @el = $(".menu")
-    @historyList = new CS.HistoryList(".menu__history", this)
-    @recentFormatsList = new CS.FormatsList(".menu__items_recent", this)
-    @formatsList = new CS.FormatsList(".menu__items_all", this)
+    @historyList = new CSHistoryList(".menu__history", this)
+    @recentFormatsList = new CSFormatsList(".menu__items_recent", this)
+    @formatsList = new CSFormatsList(".menu__items_all", this)
 
     jwerty.key 'enter', @confirmSelection
     jwerty.key 'esc', @onEscPressed

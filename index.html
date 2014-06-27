@@ -2,7 +2,6 @@
 <html>
 <head>
   <title>Loupe prototype</title>
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
@@ -150,36 +149,10 @@
         </li>
       </ul>
 
-      <section class="menu__color-panel">
-        <img src="/images/color-panel.png" alt="">
-      </section>
+      <section class="menu__color-panel"></section>
     </div>
   </menu>
 
-  <script src="/components/underscore/underscore.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/components/jquery/dist/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/components/jquery-mousewheel/jquery.mousewheel.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/components/jwerty/jwerty.js" type="text/javascript" charset="utf-8"></script>
-
-  <script src="/javascripts/generated/cs.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/javascripts/generated/cs.canvas.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/javascripts/generated/cs.loupe.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/javascripts/generated/cs.overlay.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/javascripts/generated/cs.list_view.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/javascripts/generated/cs.history_list.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/javascripts/generated/cs.formats_list.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/javascripts/generated/cs.menu.js" type="text/javascript" charset="utf-8"></script>
-  <script type="text/javascript" charset="utf-8">
-    $(document).ready(function() {
-      window.loupe = new CS.Loupe();
-      loupe.menu = new CS.Menu();
-      _.delay(function(){ loupe.menu.show(); }, 500);
-    })
-  </script>
-  <!-- livereload snippet -->
-  <script>document.write('<script src="http://'
-   + (location.host || 'localhost').split(':')[0]
-   + ':35729/livereload.js?snipver=1"><\/script>')
-  </script>
+  <script src="index.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

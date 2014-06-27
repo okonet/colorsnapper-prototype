@@ -1,4 +1,6 @@
-class CS.Overlay
+CS = require "./cs"
+
+module.exports = class CSOverlay
 
   types: ["none", "simple", "full"]
   pixel: [0,0,0]

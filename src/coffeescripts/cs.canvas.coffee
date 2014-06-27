@@ -1,4 +1,6 @@
-class CS.Canvas
+CS = require "./cs"
+
+module.exports = class CSCanvas
 
   constructor: (selector) ->
     @el = $(selector)

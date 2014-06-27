@@ -1,4 +1,6 @@
-class CS.FormatsList extends CS.ListView
+CSListView = require "./cs.list_view"
+
+module.exports = class CSFormatsList extends CSListView
 
   itemSelector: ".menu__item"
   previousItemShortcut: "↑"

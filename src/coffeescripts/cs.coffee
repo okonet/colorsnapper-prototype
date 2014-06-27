@@ -1,4 +1,4 @@
-class window.CS
+module.exports = class CS
 
   @getBrightness: (r, g, b) ->
     Math.sqrt(
