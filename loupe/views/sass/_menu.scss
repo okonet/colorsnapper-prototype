@@ -75,24 +75,8 @@ $menuActiveColor: #366bda;
     overflow: hidden;
     @include transition(height .5s);
   }
+
   // View states
-  .menu_recent {
-    .menu__formats {
-      height: 246px;
-      overflow: hidden;
-    }
-    .menu__items_recent {
-      visibility: auto;
-      opacity: 1;
-    }
-    .menu__items_all {
-      visibility: hidden;
-      opacity: 0;
-    }
-    .menu__color-panel {
-      @include translateX(100%);
-    }
-  }
   .menu_all {
     .menu__formats {
       height: 442px;
@@ -115,6 +99,12 @@ $menuActiveColor: #366bda;
     }
     .menu__color-panel {
       @include translateX(100%);
+    }
+  }
+
+  .menu_favorites {
+    .menu__formats {
+      height: 413px;
     }
   }
 

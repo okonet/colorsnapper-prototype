@@ -15,6 +15,30 @@ $sampleSizeFavorites: 24px;
 
 .samples_favorites {
   padding: 4px;
+
+  &.samples_collapsed {
+    float: left;
+    padding: 2px;
+    margin: 10px 4px 4px 10px;
+    width: ($sampleSizeFavorites / 1.5 + 1) * 3;
+    height: ($sampleSizeFavorites / 1.5 + 1) * 3 - 1px;
+    background: rgba(#000, .75);
+    border-radius: 3px;
+    overflow: hidden;
+
+    .sample {
+      display: none;
+      float: left;
+      margin: 0 1px 1px 0;
+      width: $sampleSizeFavorites / 1.5;
+      height: $sampleSizeFavorites / 1.5;
+
+      &:nth-child(-n+9) {
+        display: block;
+      }
+    }
+  }
+
   .sample {
     box-shadow: 0 0 0 1px rgba(0, 0, 0, .25) inset;
     width: $sampleSizeFavorites;
