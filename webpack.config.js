@@ -3,9 +3,7 @@ var webpack = require("webpack");
 
 module.exports = {
   name: "ColorSnapper",
-  entry: {
-    index: "./src/index.coffee"
-  },
+  entry: "./src/index.coffee",
   output: {
     path: path.join(__dirname, "build"),
     publicPath: "build/",
@@ -17,7 +15,8 @@ module.exports = {
       jQuery: "jquery",
       $: "jquery",
       _: "lodash"
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ],
   module: {
     loaders: [
