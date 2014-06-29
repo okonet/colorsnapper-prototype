@@ -1,4 +1,5 @@
 require "stylesheets/_loupe"
+require "jquery-mousewheel"
 CS = require "./cs"
 CSCanvas = require "./cs.canvas"
 CSOverlay = require "./cs.overlay"
@@ -6,12 +7,12 @@ CSMenu = require "./cs.menu"
 
 module.exports = class CSLoupe
 
-  MIN_ZOOM    : 2
-  MAX_ZOOM    : 10
-  WHEEL_SPEED : .5
+  @MIN_ZOOM    : 2
+  @MAX_ZOOM    : 10
+  @WHEEL_SPEED : .5
 
-  zoom        : parseInt localStorage.getItem('CS:zoom') or 2 # Get values from localStorage
-  aperture    : parseInt localStorage.getItem('CS:aperture') or 48
+  zoom        : parseInt(localStorage.getItem('CS:zoom'), 10) or 2 # Get values from localStorage
+  aperture    : parseInt(localStorage.getItem('CS:aperture'), 10) or 48
   apertureMin : 24 * 2
   apertureMax : 24 * 15
 
@@ -59,13 +60,13 @@ module.exports = class CSLoupe
 
     jwerty.key ']', =>
       if @isVisible
-        ++@zoom if @MIN_ZOOM <= @zoom < @MAX_ZOOM
+        ++@zoom if CSLoupe.MIN_ZOOM <= @zoom < CSLoupe.MAX_ZOOM
         @render()
         localStorage.setItem('CS:zoom', @zoom)
 
     jwerty.key '[', =>
       if @isVisible
-        @zoom-- if @MIN_ZOOM < @zoom <= @MAX_ZOOM
+        @zoom-- if CSLoupe.MIN_ZOOM < @zoom <= CSLoupe.MAX_ZOOM
         @render()
         localStorage.setItem('CS:zoom', @zoom)
 
@@ -111,7 +112,7 @@ module.exports = class CSLoupe
 
   onMouseWheel: (e, delta, deltaX, deltaY) =>
     if @isVisible
-      @aperture -= (deltaY * @WHEEL_SPEED)
+      @aperture -= (deltaY * CSLoupe.WHEEL_SPEED)
       @aperture = Math.max @aperture, @apertureMin
       @aperture = Math.min @aperture, @apertureMax
       localStorage.setItem('CS:aperture', @aperture)

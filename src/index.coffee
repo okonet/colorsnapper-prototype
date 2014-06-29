@@ -1,5 +1,5 @@
-require 'stylesheets/screen'
-require 'script!jwerty'
+require "stylesheets/screen"
+require "script!jwerty"
 CSLoupe = require "./coffeescripts/cs.loupe"
 CSMenu = require "./coffeescripts/cs.menu"
 
