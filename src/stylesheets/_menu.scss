@@ -2,11 +2,8 @@ $menuBackgroundColor: rgba(#fcfcfc, .95);
 $menuBorderWidth: 5px;
 $menuBorderRadius: 5px;
 $menuSampleBorderRadius: 3px;
-$menuCalloutSize: 8px;
 $menuSampleSize: 42px;
 $menuSeparatorColor: #e5e5e4;
-$menuActiveColor1: #658cf5;
-$menuActiveColor2: #2765f2;
 $menuActiveColor: #366bda;
 
 .menu {
@@ -248,17 +245,15 @@ $menuActiveColor: #366bda;
       }
 
       &.active {
-        border-top-color: darken($menuActiveColor1, 7%);
-        border-bottom-color: darken($menuActiveColor2, 7%)!important;
         color: #fff;
-        background: linear-gradient($menuActiveColor1, $menuActiveColor2);
+        background-color: $menuActiveColor;
 
         @each $format in generic, css, osx, ios, android, cg, opengl, photoshop, illustrator {
           &.menu__item_#{$format} {
-            background: image-url("/images/formats/format-icon_#{$format}-active@2x.png") 10px 4px no-repeat,
-                        linear-gradient($menuActiveColor1, $menuActiveColor2) 0 0;
-            background-size: 16px 16px,
-                              auto auto;
+            background-image: image-url("/images/formats/format-icon_#{$format}-active@2x.png");
+            background-position: 10px 4px;
+            background-repeat: no-repeat;
+            background-size: 16px 16px;
           }
         }
 
