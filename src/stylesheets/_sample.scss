@@ -1,0 +1,86 @@
+$borderWidth: 5px;
+$borderRadius: 5px;
+$sampleSize: 42px;
+$calloutSize: 8px;
+
+.sample {
+  position: relative;
+  flex: 0 0 $sampleSize;
+  padding: 0;
+  margin-right: 0px;
+  width: $sampleSize;
+  height: $sampleSize;
+  box-shadow: 1px 1px 0 0px rgba(0, 0, 0, .25) inset,
+              0px -1px 0 0px rgba(0, 0, 0, .25) inset;
+  opacity: 1;
+  z-index: 1;
+  transition:
+    transform .5s,
+    opacity .5s;
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+
+  &:before,
+  &:after {
+    position: absolute;
+    left: 50%;
+    bottom: -1px;
+    margin-left: -8px;
+    width: 0;
+    height: 0;
+    border-top: 0;
+    border-left: $calloutSize solid transparent;
+    border-right: $calloutSize solid transparent;
+    border-bottom: $calloutSize solid #fff;
+    content: "";
+    transform: translateY(8px);
+    transition: transform .25s .125s ease-in-out;
+  }
+
+  &:before {
+    bottom: 0px;
+    border-bottom: $calloutSize solid #bababa;
+  }
+
+  &.active:before,
+  &.active:after {
+    transform: translateY(0);
+  }
+}
+
+.sample_hidden {
+  opacity: 0;
+  transform: translateX(-120%);
+}
+
+.sample_pick {
+  background: image-url("/images/icon__new_pick@2x.png") 50% 50% no-repeat;
+  background-size: 29px 29px;
+  box-shadow: none;
+  // border: 1px dashed transparent;
+}
+.menu_alt .sample_pick {
+  background-image: image-url("/images/icon__new_create@2x.png");
+  // border-color: #b8b8b8;
+}
+
+.sample-overlay {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  margin: $borderWidth;
+  width: $sampleSize + 2px;
+  height: $sampleSize + 2px;
+  border-radius: $borderRadius;
+  border: 2px solid #4990E2;
+  transition: transform .15s ease-out;
+  z-index: 1;
+}
+
+@for $i from 1 through 20 {
+  .sample:nth-child(#{$i}).active ~ .sample-overlay {
+    transform: translateX(($sampleSize + $borderWidth * 2) * ($i - 1));
+  }
+}
