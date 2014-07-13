@@ -48,14 +48,23 @@
       transform .5s;
   }
 
+  .toolbar__item_new {
+    left: 7px;
+    text-indent: -9999px;
+    width: 16px;
+    background: image-url("/images/icon_loupe@2x.png") 2px 1px no-repeat;
+    background-size: 16px 16px;
+    transform: translateX(0);
+  }
+
   .toolbar__item_filter {
-    left: 0;
+    left: 22px;
     padding-left: 7px;
     transform: translateX(0);
   }
     .toolbar__input {
       padding: 3px;
-      padding-left: 20px;
+      padding-left: 16px;
       margin-top: -3px;
       width: 370px;
       font-size: 13px;

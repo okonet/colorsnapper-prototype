@@ -3,7 +3,22 @@ CSListView = require "./cs.list_view"
 
 module.exports = class CSHistoryList extends CSListView
 
-  FIRST_ITEM_IDX: 1
+  @INITIAL_COLORS: [
+    "#f55e00"
+    "#279189"
+    "#ffb700"
+    "#00b7c7"
+    "#00b400"
+    "#ff2600"
+    "#279189"
+    "#3377ba"
+    "#f55e00"
+    "#00b400"
+    "#ff2600"
+    "#f55e00"
+  ]
+
+  FIRST_ITEM_IDX: 0
 
   itemClassName: "sample"
   previousItemShortcut: "←"
@@ -13,31 +28,20 @@ module.exports = class CSHistoryList extends CSListView
   constructor: ->
     @itemSelector = '.' + @itemClassName
     super
+    @addColorSample(color, yes) for color in CSHistoryList.INITIAL_COLORS
     @isVisible = yes # History is always visible
-    @newItemBtn = $(".#{ @itemClassName }_pick")
-    @newItemBtn.on "click", @onCreateColorClicked
     @el.on "dblclick", @itemSelector, @onDblClick
-    @el.on "dragstart", @itemSelector, @onDragStart
-    @el.on "dragend", @itemSelector, @onDragEnd
-    @selectItemWithIndex 1
+    @el.on "click", ".#{ @itemClassName }__fav-btn", @toggleFavorite
+    @selectItemWithIndex @FIRST_ITEM_IDX
 
-  addColorSample: (color) ->
-    $sample = $("<li class='#{ @itemClassName } #{ @itemClassName }_hidden' draggable='true'></li>").css('background-color', color)
-    @newItemBtn.after $sample
-    @selectItemWithIndex 1
-    _.defer =>
-      $sample.removeClass "#{ @itemClassName }_hidden"
-
-  onCreateColorClicked: (evt) =>
-    evt.preventDefault()
-    evt.stopPropagation()
-    if evt.altKey
-      colorToDuplicate = @getSelectedItem().css("background-color")
-      @addColorSample(colorToDuplicate or "rgb(0,0,255)")
-      @menu.showColorPanel()
-    else
-      @menu.hide()
-      window.loupe.show()
+  addColorSample: (color, silent = no) ->
+    $sample = $("<li class='#{ @itemClassName }' draggable='true'><i class='sample__fav-btn'></i></li>").css('background-color', color)
+    @el.prepend($sample)
+    unless silent
+      $sample.addClass("#{ @itemClassName }_hidden")
+      @selectItemWithIndex @FIRST_ITEM_IDX
+      _.defer =>
+        $sample.removeClass "#{ @itemClassName }_hidden"
 
   selectItemWithIndex: (idx) ->
     super
@@ -47,38 +51,8 @@ module.exports = class CSHistoryList extends CSListView
     evt.preventDefault()
     @menu.showColorPanel()
 
-  onDragStart: (evt) =>
-    @draggedItem = evt.target
-    @el.addClass "dragging"
-    @newItemBtn.addClass "drop-waiting"
-    @newItemBtn.on "dragenter", @onDragEnter
-    @newItemBtn.on "dragleave", @onDragLeave
-    @newItemBtn.on "dragover", @onDragOver
-    @newItemBtn.on "drop", @onDrop
-
-  onDragEnd: (evt) =>
-    @draggedItem = null
-    @el.removeClass "dragging"
-    @newItemBtn.removeClass('drop-over')
-    @newItemBtn.removeClass('drop-waiting')
-    @newItemBtn.off "dragenter"
-    @newItemBtn.off "dragleave"
-    @newItemBtn.off "dragover"
-    @newItemBtn.off "drop"
-
-  onDragEnter: (evt) =>
-    evt.target.classList.add('drop-over')
-
-  onDragLeave: (evt) =>
-    evt.target.classList.remove('drop-over')
-
-  onDragOver: (evt) =>
-    evt.preventDefault?()
-    false
-
-  onDrop: (evt) =>
-    evt.preventDefault?()
-    colorToDuplicate = $(@draggedItem).css("background-color")
-    @addColorSample(colorToDuplicate)
-    @menu.showColorPanel()
+  toggleFavorite: (evt) ->
+    evt.preventDefault()
+    evt.stopPropagation()
+    $(this).parent().toggleClass("sample_fav")
 

@@ -13,6 +13,7 @@ module.exports = class CSMenu
     @historyList = new CSHistoryList(".menu__history", this)
     @recentFormatsList = new CSFormatsList(".menu__items_recent", this)
     @formatsList = new CSFormatsList(".menu__items_all", this)
+    @el.on "click", ".toolbar__item_new", @onCreateColorClicked
 
     jwerty.key 'enter', @confirmSelection
     jwerty.key 'esc', @onEscPressed
@@ -83,6 +84,17 @@ module.exports = class CSMenu
         @formatsList.$filterEl.trigger('keyup') # to call the callback
       else
         @hide() # otherwise hide the overlay
+
+  onCreateColorClicked: (evt) =>
+    evt.preventDefault()
+    evt.stopPropagation()
+    # if evt.altKey
+    #   colorToDuplicate = @getSelectedItem().css("background-color")
+    #   @addColorSample(colorToDuplicate or "rgb(0,0,255)")
+    #   @menu.showColorPanel()
+    # else
+    @hide()
+    window.loupe.show()
 
   show: ->
     @showAllFormats()

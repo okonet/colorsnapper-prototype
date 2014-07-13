@@ -48,22 +48,46 @@ $calloutSize: 8px;
   &.active:after {
     transform: translateY(0);
   }
+
+  &_hidden {
+    opacity: 0;
+    transform: translateX(-120%);
+  }
+
+  &_pick {
+    background: image-url("/images/icon__new_pick@2x.png") 50% 50% no-repeat;
+    background-size: 29px 29px;
+    box-shadow: none;
+  }
+
+  &__fav-btn {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 12px;
+    height: 12px;
+    background-image: image-url("/images/sample-fav_hover@2x.png");
+    background-size: 12px 12px;
+    opacity: 0;
+    transition: opacity .25s;
+
+    &:hover {
+      // background-image: image-url("/images/sample-fav_hover@2x.png");
+      opacity: 1 !important;
+    }
+  }
+  .active &__fav-btn,
+  &:hover &__fav-btn {
+    opacity: .5;
+  }
+  &_fav &__fav-btn {
+    background-image: image-url("/images/sample-fav_active@2x.png");
+    opacity: 1 !important;
+  }
 }
 
-.sample_hidden {
-  opacity: 0;
-  transform: translateX(-120%);
-}
-
-.sample_pick {
-  background: image-url("/images/icon__new_pick@2x.png") 50% 50% no-repeat;
-  background-size: 29px 29px;
-  box-shadow: none;
-  // border: 1px dashed transparent;
-}
 .menu_alt .sample_pick {
   background-image: image-url("/images/icon__new_create@2x.png");
-  // border-color: #b8b8b8;
 }
 
 .sample-overlay {
@@ -79,6 +103,7 @@ $calloutSize: 8px;
               0 0 4px 0px rgba(#000, .25);
   transition: transform .15s ease-out;
   z-index: 1;
+  pointer-events: none;
 }
 
 @for $i from 1 through 20 {
