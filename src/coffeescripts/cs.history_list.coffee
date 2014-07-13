@@ -1,18 +1,20 @@
+require "stylesheets/_sample"
 CSListView = require "./cs.list_view"
 
 module.exports = class CSHistoryList extends CSListView
 
   FIRST_ITEM_IDX: 1
 
-  itemSelector: ".menu__sample"
+  itemClassName: "sample"
   previousItemShortcut: "←"
   nextItemShortcut: "→"
   activeItemIdx: 1
 
   constructor: ->
+    @itemSelector = '.' + @itemClassName
     super
     @isVisible = yes # History is always visible
-    @newItemBtn = $(".menu__sample_pick")
+    @newItemBtn = $(".#{ @itemClassName }_pick")
     @newItemBtn.on "click", @onCreateColorClicked
     @el.on "dblclick", @itemSelector, @onDblClick
     @el.on "dragstart", @itemSelector, @onDragStart
@@ -20,11 +22,11 @@ module.exports = class CSHistoryList extends CSListView
     @selectItemWithIndex 1
 
   addColorSample: (color) ->
-    $sample = $("<li class='menu__sample menu__sample_hidden' draggable='true'></li>").css('background-color', color)
+    $sample = $("<li class='#{ @itemClassName } #{ @itemClassName }_hidden' draggable='true'></li>").css('background-color', color)
     @newItemBtn.after $sample
     @selectItemWithIndex 1
-    _.defer ->
-      $sample.removeClass "menu__sample_hidden"
+    _.defer =>
+      $sample.removeClass "#{ @itemClassName }_hidden"
 
   onCreateColorClicked: (evt) =>
     evt.preventDefault()
