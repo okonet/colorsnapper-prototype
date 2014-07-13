@@ -1,5 +1,5 @@
-$borderWidth: 5px;
-$borderRadius: 5px;
+$borderWidth: 0px;
+$borderRadius: 0px;
 $sampleSize: 42px;
 $calloutSize: 8px;
 
@@ -10,8 +10,8 @@ $calloutSize: 8px;
   margin-right: 0px;
   width: $sampleSize;
   height: $sampleSize;
-  box-shadow: 1px 1px 0 0px rgba(0, 0, 0, .25) inset,
-              0px -1px 0 0px rgba(0, 0, 0, .25) inset;
+  box-shadow: 1px  0px 0px 0px rgba(0, 0, 0, .25) inset,
+              0px -1px 0px 0px rgba(0, 0, 0, .25) inset;
   opacity: 1;
   z-index: 1;
   transition:
@@ -68,13 +68,15 @@ $calloutSize: 8px;
 
 .sample-overlay {
   position: absolute;
-  top: 4px;
-  left: 4px;
+  top: 0;
+  left: 0;
   margin: $borderWidth;
-  width: $sampleSize + 2px;
+  width: $sampleSize;
   height: $sampleSize + 2px;
   border-radius: $borderRadius;
-  border: 2px solid #4990E2;
+  box-shadow: 0 0 0 1px rgba(#000, .5) inset,
+              0 0 0 2px rgba(#fff, 1) inset,
+              0 0 4px 0px rgba(#000, .25);
   transition: transform .15s ease-out;
   z-index: 1;
 }
