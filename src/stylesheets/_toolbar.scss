@@ -49,7 +49,7 @@
   }
 
   .toolbar__item_new {
-    left: 7px;
+    left: 8px;
     text-indent: -9999px;
     width: 16px;
     background: image-url("/images/icon_loupe@2x.png") 2px 1px no-repeat;
@@ -58,19 +58,15 @@
   }
 
   .toolbar__item_filter {
-    left: 22px;
-    padding-left: 7px;
+    left: 20px;
     transform: translateX(0);
   }
     .toolbar__input {
-      padding: 3px;
-      padding-left: 16px;
+      padding: 3px 0;
       margin-top: -3px;
-      width: 370px;
+      width: 350px;
       font-size: 13px;
       border: none;
-      background: image-url("/images/icon_search@2x.png") 4px 4px no-repeat;
-      background-size: 16px 16px;
       outline: none;
     }
 
@@ -128,7 +124,7 @@
     .toolbar__item_new {
       opacity: 0;
       left: 0;
-      transform: translateX(0);
+      transform: translateX(-400px);
     }
     .toolbar__item_filter {
       transform: translateX(-100%);
