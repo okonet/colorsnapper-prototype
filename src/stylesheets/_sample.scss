@@ -54,12 +54,6 @@ $calloutSize: 8px;
     transform: translateX(-120%);
   }
 
-  &_pick {
-    background: image-url("/images/icon__new_pick@2x.png") 50% 50% no-repeat;
-    background-size: 29px 29px;
-    box-shadow: none;
-  }
-
   &__fav-btn {
     position: absolute;
     top: 4px;
@@ -83,10 +77,6 @@ $calloutSize: 8px;
     background-image: image-url("/images/sample-fav_active.svg");
     opacity: 1 !important;
   }
-}
-
-.menu_alt .sample_pick {
-  background-image: image-url("/images/icon__new_create@2x.png");
 }
 
 .sample-overlay {
