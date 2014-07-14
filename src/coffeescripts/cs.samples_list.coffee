@@ -26,7 +26,6 @@ module.exports = class CSSamplesList extends CSListView
     @selectItemWithIndex @FIRST_ITEM_IDX
 
   addColorSample: (color, silent = no) ->
-    console.log @template
     $sample = $(@template).css('background-color', color)
     @el.prepend($sample)
     unless silent
