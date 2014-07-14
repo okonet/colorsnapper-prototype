@@ -10,7 +10,6 @@ module.exports = class CSSamplesList extends CSListView
   nextItemShortcut: "→"
   activeItemIdx: @FIRST_ITEM_IDX
   isVisible: no
-  template: "<li class='sample' draggable='true'><i class='sample__fav-btn'></i></li>"
 
   constructor: (selector, @menu, colors) ->
     @itemSelector = '.' + @itemClassName
@@ -26,7 +25,9 @@ module.exports = class CSSamplesList extends CSListView
     @selectItemWithIndex @FIRST_ITEM_IDX
 
   addColorSample: (color, silent = no) ->
-    $sample = $(@template).css('background-color', color)
+    $sample = $("<li class='#{ @itemClassName }'><i class='sample__fav-btn'></i></li>")
+    $sample.css('background-color', color)
+    $sample.addClass("#{ @itemClassName }_fav") if @menu.favorites.indexOf(color) isnt -1
     @el.prepend($sample)
     unless silent
       $sample.addClass("#{ @itemClassName }_hidden")
@@ -51,7 +52,8 @@ module.exports = class CSSamplesList extends CSListView
   toggleFavorite: (evt) ->
     evt.preventDefault()
     evt.stopPropagation()
-    $(this).parent().toggleClass("sample_fav")
+    $sample = $(this).parent()
+    $sample.toggleClass("sample_fav")
 
   toggleVisible: (evt) =>
     evt.preventDefault()
