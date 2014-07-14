@@ -1,6 +1,7 @@
 require "stylesheets/_menu"
 require "stylesheets/_toolbar"
-CSHistoryList = require "./cs.history_list"
+CSSamplesList = require "./cs.samples_list"
+CSFavoritesList = require "./cs.favorites_list"
 CSFormatsList = require "./cs.formats_list"
 
 module.exports = class CSMenu
@@ -10,7 +11,31 @@ module.exports = class CSMenu
 
   constructor: ->
     @el = $(".menu")
-    @historyList = new CSHistoryList(".menu__history", this)
+
+    recentlyPicked = [
+      "#f55e00"
+      "#279189"
+      "#ffb700"
+      "#00b7c7"
+      "#00b400"
+      "#ff2600"
+      "#279189"
+      "#3377ba"
+      "#f55e00"
+      "#00b400"
+      "#ff2600"
+      "#f55e00"
+    ]
+
+    favorites = [
+      "#00b400"
+      "#ff2600"
+      "#279189"
+      "#3377ba"
+    ]
+
+    @historyList = new CSSamplesList(".menu__history", this, recentlyPicked)
+    @favoritesList = new CSFavoritesList(".menu__favorites", this, favorites)
     @recentFormatsList = new CSFormatsList(".menu__items_recent", this)
     @formatsList = new CSFormatsList(".menu__items_all", this)
     @el.on "click", ".toolbar__item_new", @onCreateColorClicked
