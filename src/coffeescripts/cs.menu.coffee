@@ -13,25 +13,22 @@ module.exports = class CSMenu
     @el = $(".menu")
 
     @recentlyPicked = [
-      "#f55e00"
-      "#279189"
-      "#ffb700"
-      "#00b7c7"
-      "#00b400"
-      "#ff2600"
-      "#279189"
-      "#3377ba"
-      "#f55e00"
-      "#00b400"
-      "#ff2600"
-      "#f55e00"
+      '#54616C'
+      '#727B83'
+      '#0E53E7'
+      '#4375F3'
+      '#2765F2'
+      '#648CF5'
+      '#0E53E7'
+      '#54616C'
+      '#68717C'
+      '#7E868E'
     ]
 
     @favorites = [
-      "#00b400"
-      "#ff2600"
-      "#279189"
-      "#3377ba"
+      '#4375F3'
+      '#68717C'
+      '#54616C'
     ]
 
     @historyList = new CSSamplesList(".menu__history", this, @recentlyPicked)
