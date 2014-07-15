@@ -3,6 +3,21 @@ $borderRadius: 0px;
 $sampleSize: 42px;
 $calloutSize: 8px;
 
+@keyframes shrink {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  50% {
+    flex-basis: $sampleSize;
+    opacity: 0;
+    transform: translateY(-$sampleSize);
+  }
+  100% {
+    flex-basis: 0;
+  }
+}
+
 .samples {
   display: flex;
 
@@ -61,6 +76,27 @@ $calloutSize: 8px;
   &.active:before,
   &.active:after {
     transform: translateY(0);
+  }
+
+  &.transition_to-favorites {
+    position: absolute;
+    opacity: .5;
+    z-index: 1000;
+    transition: transform 1s ease-in-out;
+
+    &:before,
+    &:after {
+      display: none;
+    }
+  }
+
+  &.transition_from-favorites {
+    animation: shrink .5s;
+
+    &:before,
+    &:after {
+      display: none;
+    }
   }
 
   &_hidden {

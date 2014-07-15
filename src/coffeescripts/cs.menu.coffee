@@ -1,6 +1,6 @@
 require "stylesheets/_menu"
 require "stylesheets/_toolbar"
-CSSamplesList = require "./cs.samples_list"
+CSHistoryList = require "./cs.history_list"
 CSFavoritesList = require "./cs.favorites_list"
 CSFormatsList = require "./cs.formats_list"
 
@@ -31,7 +31,7 @@ module.exports = class CSMenu
       '#54616C'
     ]
 
-    @historyList = new CSSamplesList(".menu__history", this, @recentlyPicked)
+    @historyList = new CSHistoryList(".menu__history", this, @recentlyPicked)
     @favoritesList = new CSFavoritesList(".menu__favorites", this, @favorites)
     @recentFormatsList = new CSFormatsList(".menu__items_recent", this)
     @formatsList = new CSFormatsList(".menu__items_all", this)
