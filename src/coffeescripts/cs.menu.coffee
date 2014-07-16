@@ -23,6 +23,9 @@ module.exports = class CSMenu
       '#54616C'
       '#68717C'
       '#7E868E'
+      '#FFFFFF'
+      '#000000'
+      '#123455'
     ]
 
     @favorites = [
