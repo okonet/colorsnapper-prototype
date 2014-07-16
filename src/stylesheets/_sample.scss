@@ -131,15 +131,16 @@ $calloutSize: 8px;
 
 .sample-overlay {
   position: absolute;
-  top: 0;
+  top: 1px;
   left: 0;
   margin: $borderWidth;
   width: $sampleSize;
-  height: $sampleSize + 3px;
+  height: $sampleSize + 1px;
   border-radius: $borderRadius;
-  box-shadow: 0 0 0 1px rgba(#000, .5),
-              0 0 0 2px rgba(#fff, 1) inset,
-              0 0 0 3px rgba(#000, .5) inset;
+  box-shadow: 0 0 0 1px #fff,
+              0 0 0 2px rgba(#000, .5),
+              0 0 0 1px #fff inset,
+              0 0 0 2px rgba(#000, .5) inset;
   transition: transform .15s ease-out;
   z-index: 1;
   pointer-events: none;
