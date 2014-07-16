@@ -139,8 +139,7 @@ $calloutSize: 8px;
   border-radius: $borderRadius;
   box-shadow: 0 0 0 1px rgba(#000, .5),
               0 0 0 2px rgba(#fff, 1) inset,
-              0 0 0 3px rgba(#000, .5) inset,
-              0 0 4px 0px rgba(#000, .25);
+              0 0 0 3px rgba(#000, .5) inset;
   transition: transform .15s ease-out;
   z-index: 1;
   pointer-events: none;
