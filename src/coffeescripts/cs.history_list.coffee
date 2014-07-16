@@ -20,7 +20,7 @@ module.exports = class CSHistoryList extends CSSamplesList
       $clone.addClass("transition_to-favorites")
       $clone.css
         "transition-duration": Math.log(distance) * 100 + 'ms'
-        "transform": "translateX(#{ distance }px) scale(.5)"
+        "transform": "translateX(#{ distance - 24 }px)"
       _.delay ->
         $clone.remove()
       , 1000
