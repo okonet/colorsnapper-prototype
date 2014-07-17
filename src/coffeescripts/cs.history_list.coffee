@@ -9,12 +9,13 @@ module.exports = class CSHistoryList extends CSSamplesList
     @addToFavorites($sample) if $sample.hasClass("#{ @itemClassName }_fav")
 
   addToFavorites: ($el) ->
+    scrollLeftOffset = @el.scrollLeft() # Scroll left offset
     origPosition = $el.position()
     origLeft = origPosition.left
     $clone = $el.clone()
     $clone.appendTo(@el)
     $clone.removeClass("active #{ @itemClassName}_fav")
-    $clone.css("left", origLeft)
+    $clone.css("left", origLeft + scrollLeftOffset)
     distance = 410 - origLeft
     _.defer ->
       $clone.addClass("transition_to-favorites")
