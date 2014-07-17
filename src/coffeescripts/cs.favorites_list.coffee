@@ -6,6 +6,9 @@ module.exports = class CSFavoritesList extends CSSamplesList
     super
     @isVisible = no
 
+  addColorSample: (color, silent = no) ->
+    super(color, silent, yes)
+
   toggleFavorite: (evt) =>
     super
     $sample = $(evt.target).parent()

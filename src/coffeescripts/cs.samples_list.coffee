@@ -25,10 +25,11 @@ module.exports = class CSSamplesList extends CSListView
     @addColorSample(color, yes) for color in colors
     @selectItemWithIndex @FIRST_ITEM_IDX
 
-  addColorSample: (color, silent = no) ->
+  addColorSample: (color, silent = no, isFavorite) ->
     $sample = $("<li class='#{ @itemClassName }'><i class='sample__fav-btn'></i></li>")
     $sample.css('background-color', color)
-    $sample.addClass("#{ @itemClassName }_fav") if @menu.favorites.indexOf(color) isnt -1
+    isFavorite ?= @menu.favorites.indexOf(color) isnt -1
+    $sample.addClass("#{ @itemClassName }_fav") if isFavorite
     @el.prepend($sample)
     unless silent
       $sample.addClass("#{ @itemClassName }_hidden")
