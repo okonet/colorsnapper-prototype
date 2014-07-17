@@ -17,11 +17,12 @@ module.exports = class CSHistoryList extends CSSamplesList
     $clone.removeClass("active #{ @itemClassName}_fav")
     $clone.css("left", origLeft + scrollLeftOffset)
     distance = 410 - origLeft
-    _.defer ->
+    _.defer =>
       $clone.addClass("transition_to-favorites")
       $clone.css
         "transition-duration": Math.log(distance) * 100 + 'ms'
         "transform": "translateX(#{ distance - 24 }px)"
-      _.delay ->
+      _.delay =>
         $clone.remove()
+        @menu.favoritesList.addColorSample($el.css('background-color'))
       , 1000
