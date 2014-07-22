@@ -9,10 +9,9 @@ module.exports = class CSFavoritesList extends CSSamplesList
   addColorSample: (color, silent = no) ->
     super(color, silent, yes)
 
-  toggleFavorite: (evt) =>
+  toggleFavorite: ($sample) ->
     super
-    $sample = $(evt.target).parent()
-    @removeFromFavorites($sample) unless $sample.hasClass("#{ @itemClassName }_fav")
+    @removeFromFavorites $sample unless $sample.hasClass("#{ @itemClassName }_fav")
 
   removeFromFavorites: ($el) ->
     $el.addClass("transition_from-favorites")

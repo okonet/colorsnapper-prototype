@@ -3,10 +3,9 @@ CSSamplesList = require "./cs.samples_list"
 
 module.exports = class CSHistoryList extends CSSamplesList
 
-  toggleFavorite: (evt) =>
+  toggleFavorite: ($sample) ->
     super
-    $sample = $(evt.target).parent()
-    @addToFavorites($sample) if $sample.hasClass("#{ @itemClassName }_fav")
+    @addToFavorites $sample if $sample.hasClass("#{ @itemClassName }_fav")
 
   addToFavorites: ($el) ->
     scrollLeftOffset = @el.scrollLeft() # Scroll left offset

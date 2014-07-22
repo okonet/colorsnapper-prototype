@@ -16,8 +16,9 @@ module.exports = class CSSamplesList extends CSListView
     @isVisible = yes # History is always visible
     @container = $(selector)
     @container.on "dblclick", @itemSelector, @onDblClick
-    @container.on "click", ".#{ @itemClassName }__fav-btn", @toggleFavorite
+    @container.on "click", ".#{ @itemClassName }__fav-btn", @onFavBtnClick
     @container.on "click", ".menu__samples-icon", @toggleVisible
+    jwerty.key "ctrl+f", @onFavShortcutPressed
 
     super
 
@@ -51,10 +52,15 @@ module.exports = class CSSamplesList extends CSListView
     evt.preventDefault()
     @menu.showColorPanel()
 
-  toggleFavorite: (evt) =>
+  onFavBtnClick: (evt) =>
     evt.preventDefault()
-    evt.stopPropagation()
-    $sample = $(evt.target).parent()
+    @toggleFavorite $(evt.target).parent()
+
+  onFavShortcutPressed: (evt) =>
+    evt.preventDefault()
+    @toggleFavorite(@getSelectedItem()) if @isVisible
+
+  toggleFavorite: ($sample) ->
     $sample.toggleClass("#{ @itemClassName }_fav")
 
   toggleVisible: (evt) =>
