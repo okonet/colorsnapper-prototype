@@ -42,7 +42,7 @@ module.exports = class CSSamplesList extends CSListView
 
   selectItemWithIndex: (idx) ->
     super
-    @el.scrollLeft((52 * idx)/2) # Try to scroll item in the center
+    @el.scrollLeft((CSSamplesList.ITEM_SIZE * idx) - @container.width() / 2 + CSSamplesList.ITEM_SIZE / 2) # Try to scroll item in the center
 
   updateVisible: ->
     if @isVisible
