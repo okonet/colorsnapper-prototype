@@ -1,3 +1,4 @@
+CSSamplesList = require "./cs.samples_list"
 CSListView = require "./cs.list_view"
 
 module.exports = class CSFormatsList extends CSListView
@@ -37,7 +38,7 @@ module.exports = class CSFormatsList extends CSListView
   focusFilterField: (evt) =>
     evt.preventDefault
     charCode = String.fromCharCode(evt.keyCode)
-    if charCode.match(/[A-Za-z]/)
+    if charCode.match(/[A-Za-z]/) and not jwerty.is(CSSamplesList.TOGGLE_FAV_SHORTCUT, evt)
       @$filterEl.focus() if @isVisible
 
   onFilterChange: (evt) =>

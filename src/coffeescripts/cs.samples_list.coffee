@@ -3,6 +3,8 @@ CSListView = require "./cs.list_view"
 
 module.exports = class CSSamplesList extends CSListView
 
+  @TOGGLE_FAV_SHORTCUT: "⌃+f"
+  @ITEM_SIZE: 42
   FIRST_ITEM_IDX: 0
 
   itemClassName: "sample"
@@ -18,7 +20,7 @@ module.exports = class CSSamplesList extends CSListView
     @container.on "dblclick", @itemSelector, @onDblClick
     @container.on "click", ".#{ @itemClassName }__fav-btn", @onFavBtnClick
     @container.on "click", ".menu__samples-icon", @toggleVisible
-    jwerty.key "ctrl+f", @onFavShortcutPressed
+    jwerty.key CSSamplesList.TOGGLE_FAV_SHORTCUT, @onFavShortcutPressed
 
     super
 
