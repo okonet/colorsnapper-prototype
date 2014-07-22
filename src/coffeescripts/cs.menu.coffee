@@ -36,7 +36,6 @@ module.exports = class CSMenu
 
     @historyList = new CSHistoryList(".menu__history", this, @recentlyPicked)
     @favoritesList = new CSFavoritesList(".menu__favorites", this, @favorites)
-    @recentFormatsList = new CSFormatsList(".menu__items_recent", this)
     @formatsList = new CSFormatsList(".menu__items_all", this)
     @el.on "click", ".toolbar__item_new", @onCreateColorClicked
 
@@ -56,25 +55,12 @@ module.exports = class CSMenu
       @historyList.addColorSample(color)
     , 350
 
-  showRecentFormats: ->
-    @previousState = @state
-    @state = "recent"
-    $(".menu__formats").scrollTop(0)
-    @el.removeClass "menu_all menu_color"
-    @el.addClass "menu_recent"
-    @recentFormatsList.show()
-    @formatsList.hide()
-
-  showAllFormats: ->
+  showFormats: ->
     @previousState = @state
     @state = "all"
     @el.removeClass "menu_recent menu_color"
     @el.addClass "menu_all"
-    @recentFormatsList.hide()
     @formatsList.show()
-
-  showFormats: ->
-    if @previousState is "recent" then @showRecentFormats() else @showAllFormats()
 
   showColorPanel: ->
     @previousState = @state
@@ -92,10 +78,7 @@ module.exports = class CSMenu
     if @state is "color"
       @showFormats() # Return to formats if in color mode
     else
-      if @recentFormatsList.isVisible and $("#showAllFormats").hasClass("active")
-        @showAllFormats()
-      else
-        @hide() # Pretend we've selected a color format to copy into clipboard
+      @hide() # Pretend we've selected a color format to copy into clipboard
       $(".menu__item.active").removeClass("active")
 
   onEscPressed: (evt) =>
@@ -122,7 +105,7 @@ module.exports = class CSMenu
     window.loupe.show()
 
   show: ->
-    @showAllFormats()
+    @showFormats()
     @isVisible = yes
     @el.removeClass 'hidden'
     $(document).trigger 'menu:shown'
