@@ -55,9 +55,8 @@ $menuWidth: 410px;
       position: absolute;
       top: 0;
       left: 0;
-      /* position: relative; */
       background-color: $menuBackgroundColor;
-      width: $menuWidth;
+      width: $menuWidth - 24px;
       overflow: hidden;
       overflow-x: auto;
       transition: transform .5s cubic-bezier(0.770, 0.000, 0.175, 1.000);
