@@ -25,7 +25,7 @@ module.exports = class CSFormatsList extends CSListView
     , 150
 
   selectItemWithIndex: (idx) ->
-    super
+    super if @isVisible
     $container = $(".menu__formats")
     center = $container.height() / 2
     itemHeight = $(@itemSelector, @el).height()

@@ -38,6 +38,7 @@ module.exports = class CSMenu
     @favoritesList = new CSFavoritesList(".menu__favorites", this, @favorites)
     @formatsList = new CSFormatsList(".menu__items_all", this)
     @el.on "click", ".toolbar__item_new", @onCreateColorClicked
+    @el.on "click", ".menu__samples-icon", @onFavoritesBtnClicked
 
     jwerty.key 'enter', @confirmSelection
     jwerty.key 'esc', @onEscPressed
@@ -103,6 +104,11 @@ module.exports = class CSMenu
     # else
     @hide()
     window.loupe.show()
+
+  onFavoritesBtnClicked: (evt) =>
+    evt.preventDefault()
+    @historyList.toggleVisible()
+    @favoritesList.toggleVisible()
 
   show: ->
     @showFormats()

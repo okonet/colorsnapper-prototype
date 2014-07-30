@@ -3,6 +3,11 @@ CSSamplesList = require "./cs.samples_list"
 
 module.exports = class CSHistoryList extends CSSamplesList
 
+  constructor: ->
+    super
+    @isVisible = yes # History is always visible
+    @container.addClass("active") # Add an active class name
+
   toggleFavorite: ($sample) ->
     super
     @addToFavorites $sample if $sample.hasClass("#{ @itemClassName }_fav")

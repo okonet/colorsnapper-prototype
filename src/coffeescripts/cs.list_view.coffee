@@ -31,11 +31,10 @@ module.exports = class CSListView
       @selectItemWithIndex(@activeItemIdx)
 
   selectItemWithIndex: (idx) ->
-    if @isVisible
-      $activeItem = $("#{ @itemSelector }.active", @el)
-      $activeItem.removeClass "active"
-      $(@getItems().get(idx)).addClass("active")
-      @activeItemIdx = idx
+    $activeItem = $("#{ @itemSelector }.active", @el)
+    $activeItem.removeClass "active"
+    $(@getItems().get(idx)).addClass("active")
+    @activeItemIdx = idx
 
   onItemClicked: (evt) =>
     evt.preventDefault()
