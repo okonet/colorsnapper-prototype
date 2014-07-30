@@ -9,6 +9,10 @@ module.exports = class CSFavoritesList extends CSSamplesList
   addColorSample: (color, silent = no) ->
     super(color, silent, yes)
 
+  removeColorSample: (color) ->
+    $(@itemSelector, @el).each (idx, el) =>
+      @removeFromFavorites $(el) if $(el).css('background-color') is color
+
   toggleFavorite: ($sample) ->
     super
     @removeFromFavorites $sample unless $sample.hasClass("#{ @itemClassName }_fav")
@@ -19,5 +23,3 @@ module.exports = class CSFavoritesList extends CSSamplesList
       $el.css('display', 'none')
       $el.remove()
     , 500
-
-

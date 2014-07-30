@@ -10,7 +10,10 @@ module.exports = class CSHistoryList extends CSSamplesList
 
   toggleFavorite: ($sample) ->
     super
-    @addToFavorites $sample if $sample.hasClass("#{ @itemClassName }_fav")
+    if $sample.hasClass("#{ @itemClassName }_fav")
+      @addToFavorites $sample
+    else
+      @removeFromFavorites $sample
 
   addToFavorites: ($el) ->
     _.delay =>
@@ -32,3 +35,6 @@ module.exports = class CSHistoryList extends CSSamplesList
           @menu.favoritesList.addColorSample($el.css('background-color'))
         , 1000
     , 100
+
+  removeFromFavorites: ($el) ->
+    @menu.favoritesList.removeColorSample($el.css('background-color'))
