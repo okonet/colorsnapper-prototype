@@ -80,18 +80,6 @@ $calloutSize: 8px;
     transform: translateY(0);
   }
 
-  &.transition_to-favorites {
-    position: absolute;
-    opacity: .5;
-    z-index: 1000;
-    transition: transform 1s cubic-bezier(0.770, 0.000, 0.175, 1.000);
-
-    &:before,
-    &:after {
-      display: none;
-    }
-  }
-
   &.transition_from-favorites {
     animation: shrink .5s;
 
