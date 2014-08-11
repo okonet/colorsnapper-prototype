@@ -29,6 +29,7 @@ module.exports = class CSMenu
     ]
 
     @favorites = [
+      '#ff4567'
       '#4375F3'
       '#68717C'
       '#54616C'

@@ -4,7 +4,7 @@ module.exports = class CSFavoritesList extends CSSamplesList
 
   constructor: ->
     super
-    @isVisible = no
+    @isVisible = no # Favorites should be hidden initially
 
   addColorSample: (color, silent = no) ->
     super(color, silent, yes)
@@ -18,8 +18,12 @@ module.exports = class CSFavoritesList extends CSSamplesList
     @removeFromFavorites $sample unless $sample.hasClass("#{ @itemClassName }_fav")
 
   removeFromFavorites: ($el) ->
+    removedItemIdx = @getItems().index($el)
     $el.addClass("transition_from-favorites")
-    _.delay ->
+    _.delay =>
       $el.css('display', 'none')
       $el.remove()
+      # If we remove selected item, another item with same index should be selected after removal
+      if removedItemIdx is @activeItemIdx and @getItems().length
+        @selectItemWithIndex(@activeItemIdx)
     , 500

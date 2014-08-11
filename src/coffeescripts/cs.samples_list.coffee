@@ -54,6 +54,7 @@ module.exports = class CSSamplesList extends CSListView
 
   onFavBtnClick: (evt) =>
     evt.preventDefault()
+    evt.stopPropagation() # Do not select the item when toggling favorite
     @toggleFavorite $(evt.target).parent()
 
   onFavShortcutPressed: (evt) =>

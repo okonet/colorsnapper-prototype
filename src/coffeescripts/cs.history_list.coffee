@@ -5,7 +5,7 @@ module.exports = class CSHistoryList extends CSSamplesList
 
   constructor: ->
     super
-    @isVisible = yes # History is always visible
+    @isVisible = yes # History should be visible initially
     @container.addClass("active") # Add an active class name
 
   toggleFavorite: ($sample) ->

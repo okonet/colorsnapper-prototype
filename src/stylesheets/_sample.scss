@@ -20,7 +20,7 @@ $calloutSize: 8px;
 
 .samples {
   display: flex;
-
+  height: $sampleSize;
 
   // &.dragging {
   //   overflow: hidden;
@@ -141,6 +141,7 @@ $calloutSize: 8px;
               0 0 0 1px #fff inset,
               0 0 0 2px rgba(#000, .5) inset;
   transition: transform .15s ease-out;
+  transform: translateX(-($sampleSize + $borderWidth * 2 + 2));
   z-index: 1;
   pointer-events: none;
 }

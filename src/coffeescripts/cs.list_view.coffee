@@ -31,6 +31,8 @@ module.exports = class CSListView
       @selectItemWithIndex(@activeItemIdx)
 
   selectItemWithIndex: (idx) ->
+    itemsCount = @getItems().length - 1
+    idx = itemsCount if idx >= itemsCount # Select the last item if the idx is greater than available items
     $activeItem = $("#{ @itemSelector }.active", @el)
     $activeItem.removeClass "active"
     $(@getItems().get(idx)).addClass("active")
