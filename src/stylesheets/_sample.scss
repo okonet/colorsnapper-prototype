@@ -24,10 +24,6 @@ $calloutSize: 8px;
   display: flex;
   height: $sampleSize;
 
-  // &.dragging {
-  //   overflow: hidden;
-  // }
-
   &::-webkit-scrollbar {
     width: 0;
     height: 0;
