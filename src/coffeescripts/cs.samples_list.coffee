@@ -63,7 +63,3 @@ module.exports = class CSSamplesList extends CSListView
 
   toggleFavorite: ($sample) ->
     $sample.toggleClass("#{ @itemClassName }_fav")
-
-  toggleVisible: ->
-    @isVisible = not @isVisible
-    @updateVisible()

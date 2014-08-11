@@ -46,9 +46,21 @@ module.exports = class CSListView
 
   show: ->
     @isVisible = yes
+    @updateVisible()
 
   hide: =>
     $activeItem = $("#{ @itemSelector }.active", @el)
     $activeItem.removeClass "active"
     @activeItemIdx = -1
     @isVisible = no
+    @updateVisible()
+
+  toggleVisible: ->
+    @isVisible = not @isVisible
+    @updateVisible()
+
+  updateVisible: ->
+    if @isVisible
+      @el.addClass("active")
+    else
+      @el.removeClass("active")

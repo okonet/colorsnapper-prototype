@@ -23,7 +23,11 @@ module.exports = class CSFavoritesList extends CSSamplesList
     _.delay =>
       $el.css('display', 'none')
       $el.remove()
-      # If we remove selected item, another item with same index should be selected after removal
-      if removedItemIdx is @activeItemIdx and @getItems().length
-        @selectItemWithIndex(@activeItemIdx)
+      if @getItems().length
+        # If we remove selected item, another item with same index should be selected after removal
+        @selectItemWithIndex(@activeItemIdx) if removedItemIdx is @activeItemIdx
+      else
+        # Switch to history when nothing left in Favorites
+        @hide()
+        @menu.historyList.show()
     , 500
