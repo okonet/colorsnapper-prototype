@@ -8,15 +8,9 @@ module.exports = class CSHistoryList extends CSSamplesList
     @isVisible = yes # History should be visible initially
     @container.addClass("active") # Add an active class name
 
-  toggleFavorite: ($sample) ->
-    super
-    if $sample.hasClass("#{ @itemClassName }_fav")
-      @addToFavorites $sample
-    else
-      @removeFromFavorites $sample
+    $(document).on "favorite:removed", (evt, color) =>
+      @removeColorSample(color)
 
-  addToFavorites: ($el) ->
-    @menu.favoritesList.addColorSample($el.css('background-color'))
-
-  removeFromFavorites: ($el) ->
-    @menu.favoritesList.removeColorSample($el.css('background-color'))
+  removeColorSample: (color) ->
+    $(@itemSelector, @el).each (idx, el) =>
+      $(el).removeClass("#{ @itemClassName }_fav") if $(el).css('background-color') is color

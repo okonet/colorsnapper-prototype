@@ -63,3 +63,5 @@ module.exports = class CSSamplesList extends CSListView
 
   toggleFavorite: ($sample) ->
     $sample.toggleClass("#{ @itemClassName }_fav")
+    eventType = if $sample.hasClass("#{ @itemClassName }_fav") then "added" else "removed"
+    $(document).trigger("favorite:#{eventType}", $sample.css('background-color'))

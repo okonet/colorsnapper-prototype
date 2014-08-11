@@ -6,16 +6,18 @@ module.exports = class CSFavoritesList extends CSSamplesList
     super
     @isVisible = no # Favorites should be hidden initially
 
+    $(document).on "favorite:added", (evt, color) =>
+      @addColorSample(color)
+
+    $(document).on "favorite:removed", (evt, color) =>
+      @removeColorSample(color)
+
   addColorSample: (color, silent = no) ->
     super(color, silent, yes)
 
   removeColorSample: (color) ->
     $(@itemSelector, @el).each (idx, el) =>
       @removeFromFavorites $(el) if $(el).css('background-color') is color
-
-  toggleFavorite: ($sample) ->
-    super
-    @removeFromFavorites $sample unless $sample.hasClass("#{ @itemClassName }_fav")
 
   removeFromFavorites: ($el) ->
     removedItemIdx = @getItems().index($el)
