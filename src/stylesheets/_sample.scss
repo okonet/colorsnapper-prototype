@@ -15,6 +15,8 @@ $calloutSize: 8px;
   }
   100% {
     flex-basis: 0;
+    opacity: 0;
+    transform: translateY(-$sampleSize);
   }
 }
 
