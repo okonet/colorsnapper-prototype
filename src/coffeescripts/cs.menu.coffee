@@ -40,10 +40,11 @@ module.exports = class CSMenu
     @favoritesList = new CSFavoritesList(".menu__favorites", this, @favorites)
     @formatsList = new CSFormatsList(".menu__items_all", this)
     @el.on "click", ".toolbar__item_new", @onCreateColorClicked
-    @el.on "click", ".menu__samples-icon", @onFavoritesBtnClicked
+    @el.on "click", ".menu__samples-icon", @toggleFavorites
 
     jwerty.key 'enter', @confirmSelection
     jwerty.key 'esc', @onEscPressed
+    jwerty.key 'alt+f', @toggleFavorites
 
     $(document).on "keydown keyup", @toggleAltPressed
 
@@ -75,8 +76,8 @@ module.exports = class CSMenu
     $('.menu__formats').removeClass('withSearch')
 
   showHistory: ->
-    @historyList.show()
     @favoritesList.hide()
+    @historyList.show()
 
   showFavorites: ->
     @historyList.hide()
@@ -119,7 +120,7 @@ module.exports = class CSMenu
       @hide()
       window.loupe.show()
 
-  onFavoritesBtnClicked: (evt) =>
+  toggleFavorites: (evt) =>
     evt.preventDefault()
     @historyList.toggleVisible()
     @favoritesList.toggleVisible()
