@@ -1,4 +1,5 @@
 require "stylesheets/_sample"
+CS = require "./cs"
 CSSamplesList = require "./cs.samples_list"
 
 module.exports = class CSHistoryList extends CSSamplesList
@@ -13,4 +14,4 @@ module.exports = class CSHistoryList extends CSSamplesList
 
   removeColorSample: (color) ->
     $(@itemSelector, @el).each (idx, el) =>
-      $(el).removeClass("#{ @itemClassName }_fav") if $(el).css('background-color') is color
+      $(el).removeClass("#{ @itemClassName }_fav") if CS.getColorFromEl(el) is color

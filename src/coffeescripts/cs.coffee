@@ -6,3 +6,6 @@ module.exports = class CS
       g * g * .691 +
       b * b * .068
     )
+
+  @getColorFromEl: (el) ->
+    $(el).css("background-color")

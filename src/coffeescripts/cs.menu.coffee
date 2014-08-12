@@ -1,5 +1,6 @@
 require "stylesheets/_menu"
 require "stylesheets/_toolbar"
+CS = require "./cs.coffee"
 CSHistoryList = require "./cs.history_list"
 CSFavoritesList = require "./cs.favorites_list"
 CSFormatsList = require "./cs.formats_list"
@@ -73,6 +74,14 @@ module.exports = class CSMenu
     $('.toolbar_search').removeClass('active')
     $('.menu__formats').removeClass('withSearch')
 
+  showHistory: ->
+    @historyList.show()
+    @favoritesList.hide()
+
+  showFavorites: ->
+    @historyList.hide()
+    @favoritesList.show()
+
   confirmSelection: (evt) =>
     evt.preventDefault()
     @previousState = @state
@@ -98,13 +107,17 @@ module.exports = class CSMenu
   onCreateColorClicked: (evt) =>
     evt.preventDefault()
     evt.stopPropagation()
-    # if evt.altKey
-    #   colorToDuplicate = @getSelectedItem().css("background-color")
-    #   @addColorSample(colorToDuplicate or "rgb(0,0,255)")
-    #   @menu.showColorPanel()
-    # else
-    @hide()
-    window.loupe.show()
+    if evt.altKey
+      activeList = if @historyList.isVisible then @historyList else @favoritesList
+      selectedItem = activeList.getSelectedItem()
+      colorToDuplicate = CS.getColorFromEl(selectedItem)
+      isFavorite = activeList.isFavorite(selectedItem)
+      @historyList.addColorSample(colorToDuplicate or "rgb(0,0,255)", no, isFavorite)
+      @showColorPanel()
+      @showHistory()
+    else
+      @hide()
+      window.loupe.show()
 
   onFavoritesBtnClicked: (evt) =>
     evt.preventDefault()

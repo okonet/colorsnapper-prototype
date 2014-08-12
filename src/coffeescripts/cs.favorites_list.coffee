@@ -1,3 +1,4 @@
+CS = require "./cs"
 CSSamplesList = require "./cs.samples_list"
 
 module.exports = class CSFavoritesList extends CSSamplesList
@@ -17,7 +18,7 @@ module.exports = class CSFavoritesList extends CSSamplesList
 
   removeColorSample: (color) ->
     $(@itemSelector, @el).each (idx, el) =>
-      @removeFromFavorites $(el) if $(el).css('background-color') is color
+      @removeFromFavorites $(el) if CS.getColorFromEl(el) is color
 
   removeFromFavorites: ($el) ->
     removedItemIdx = @getItems().index($el)

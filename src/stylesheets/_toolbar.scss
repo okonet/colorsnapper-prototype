@@ -56,6 +56,11 @@
     background-size: 16px 16px;
     transform: translateX(0);
   }
+  .menu_alt {
+    .toolbar__item_new {
+      background-image: image-url("/images/icon_duplicate@2x.png");
+    }
+  }
 
   .toolbar__item_filter {
     left: 20px;
