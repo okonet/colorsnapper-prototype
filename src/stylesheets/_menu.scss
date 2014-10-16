@@ -1,0 +1,250 @@
+$menuBackgroundColor: rgba(#fcfcfc, .95);
+$menuBorderWidth: 5px;
+$menuBorderRadius: 5px;
+$menuSampleBorderRadius: 3px;
+$menuSampleSize: 42px;
+$menuSeparatorColor: #e5e5e4;
+$menuActiveColor: #366bda;
+$menuWidth: 410px;
+
+.menu {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -250px;
+  margin-left: -205px;
+  font: 14px "Lucida Grande", Helvetica, sans-serif;
+  // width: ($menuSampleSize + 10) * 8 + 10;
+  width: $menuWidth;
+  background-color: $menuBackgroundColor;
+  border-radius: $menuBorderRadius + 2;
+  box-shadow:
+    0 0 0 1px rgba(#f9f9fc, 1) inset,
+    0 0 0 1px rgba(#122a3c, .1),
+    0 4px 32px 2px rgba(#01192b, .35);
+
+  transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
+  transition:
+    opacity 125ms,
+    width .35s,
+    -webkit-transform 250ms;
+
+  &.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(.5);
+    transition:
+      visibility 1ms 250ms,
+      opacity 125ms 50ms,
+      transform 250ms;
+  }
+}
+
+  .menu__samples {
+    position: relative;
+    border-top-left-radius: $menuBorderRadius;
+    border-top-right-radius: $menuBorderRadius;
+    box-shadow: 0 0 1px rgba(0,0,0,.5) inset;
+    height: $menuSampleSize;
+    overflow: hidden;
+  }
+  .menu__history,
+  .menu__favorites {
+
+    .samples {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: $menuBackgroundColor;
+      width: $menuWidth - 24px;
+      overflow: hidden;
+      overflow-x: auto;
+      transition: transform .5s cubic-bezier(0.770, 0.000, 0.175, 1.000);
+    }
+
+    .sample-overlay {
+      visibility: hidden;
+    }
+
+    &.active {
+      .sample-overlay {
+        visibility: visible;
+      }
+    }
+  }
+  .menu__favorites {
+    z-index: 2;
+
+    .samples {
+      z-index: 1;
+      transform: translateX($menuWidth - 24px);
+    }
+
+    .menu__samples-icon {
+      position: absolute;
+      right: 0;
+      text-indent: -9999px;
+      box-shadow: -3px 0 4px rgba(#000, .25);
+      background: rgba(#fff, .75) image-url("/images/icon_favorites@2x.png") 4px 12px no-repeat;
+      background-size: 16px 16px;
+      width: 24px;
+      height: 100%;
+      z-index: 2;
+    }
+
+    &.active {
+
+      .samples {
+        transform: translateX(0);
+      }
+
+      .menu__samples-icon {
+        background-image: image-url("/images/icon_history@2x.png");
+      }
+    }
+  }
+
+  .menu__formats {
+    position: relative;
+    overflow: hidden;
+    transition: height .5s;
+  }
+  // View states
+  .menu_recent {
+    .menu__formats {
+      height: 246px;
+      overflow: hidden;
+    }
+    .menu__items_recent {
+      visibility: auto;
+      opacity: 1;
+    }
+    .menu__items_all {
+      visibility: hidden;
+      opacity: 0;
+    }
+    .menu__color-panel {
+      transform: translateX(100%);
+    }
+  }
+  .menu_all {
+    .menu__formats {
+      height: 442px;
+      overflow-y: auto;
+    }
+    .menu__items_recent {
+      visibility: hidden;
+      opacity: 0;
+
+      @for $i from 1 through 20 {
+        .menu__item_pos#{$i} {
+          transform: translateY(36px * ($i - 1));
+        }
+      }
+    }
+    .menu__items_all {
+      margin-bottom: 5px;
+      visibility: auto;
+      opacity: 1;
+    }
+    .menu__color-panel {
+      transform: translateX(100%);
+    }
+  }
+
+  .menu_color {
+    .menu__formats {
+      height: 478px;
+      overflow: hidden;
+    }
+    .menu__items_recent,
+    .menu__items_all {
+      transform: translateX(-100%);
+    }
+    .menu__color-panel {
+      transform: translateX(0);
+    }
+  }
+
+  .menu__color-panel,
+  .menu__items {
+    position: absolute;
+    width: 100%;
+    transition: transform .5s, opacity .25s, visibility 0 .25s;
+  }
+  .menu__color-panel {
+    background: image-url("/images/color-panel.png") 0 0 no-repeat;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+    .menu__item {
+      position: relative;
+      padding: $menuBorderWidth - 2px $menuBorderWidth * 2;
+      padding-left: 32px;
+      list-style: none;
+      border-top: 1px solid transparent;
+      border-bottom: 1px solid transparent;
+      transition: transform .25s;
+
+      @each $format in generic, css, osx, ios, android, cg, opengl, photoshop, illustrator {
+        &.menu__item_#{$format} {
+          background: image-url("/images/formats/format-icon_#{$format}@2x.png") 10px 4px no-repeat;
+          background-size: 16px 16px;
+        }
+      }
+
+      // Shortcuts
+      &:after {
+        position: absolute;
+        top: 50%;
+        right: .5em;
+        font-size: 13px;
+        line-height: 0;
+      }
+
+      &.active {
+        color: #fff;
+        background-color: $menuActiveColor;
+
+        @each $format in generic, css, osx, ios, android, cg, opengl, photoshop, illustrator {
+          &.menu__item_#{$format} {
+            background-image: image-url("/images/formats/format-icon_#{$format}-active@2x.png");
+            background-position: 10px 4px;
+            background-repeat: no-repeat;
+            background-size: 16px 16px;
+          }
+        }
+
+        .menu__subtitle {
+          color: #fff;
+        }
+
+        &:after {
+          color: #fff;
+          content: "↩"!important;
+        }
+      }
+    }
+
+    .menu__title {
+      display: block;
+      font-size: 14px;
+    }
+    .menu__subtitle {
+      display: block;
+      margin-top: 2px;
+      color: rgba(#000, .45);
+      font-size: 12px;
+      white-space: nowrap;
+      width: 96%;
+    }
+
+  .menu__color-panel {
+    .menu__btn_back {
+      position: absolute;
+      top: 5px;
+      left: 7px;
+    }
+  }

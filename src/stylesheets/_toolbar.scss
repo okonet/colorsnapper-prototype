@@ -1,0 +1,150 @@
+.toolbar {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+  width: 100%;
+  height: 33px;
+  border-bottom: 1px solid #ccc;
+  background: linear-gradient(#fff, #fdfdfd);
+  z-index: 0;
+  overflow: hidden;
+}
+
+.toolbar_search {
+  position: absolute;
+  padding: 3px 0;
+  border-bottom: 1px solid #999;
+  background: rgba(220,220,220, 0.75);
+  height: auto;
+  z-index: -1;
+  opacity: 0;
+  transform: translate(0,-30px);
+  transition:
+    opacity 125ms 50ms,
+    transform 250ms;
+
+  &.active {
+    z-index: 1;
+    opacity: 1;
+    transform: translate(0,0);
+  }
+
+  .toolbar__input {
+    width: 96%;
+  }
+}
+
+  .toolbar__item {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    padding-left: 7px;
+    transform: translateX(-50%);
+    transition:
+      opacity .5s,
+      left .5s,
+      transform .5s;
+  }
+
+  .toolbar__item_new {
+    left: 8px;
+    text-indent: -9999px;
+    width: 16px;
+    background: image-url("/images/icon_loupe@2x.png") 2px 1px no-repeat;
+    background-size: 16px 16px;
+    transform: translateX(0);
+  }
+  .menu_alt {
+    .toolbar__item_new {
+      background-image: image-url("/images/icon_duplicate@2x.png");
+    }
+  }
+
+  .toolbar__item_filter {
+    left: 20px;
+    transform: translateX(0);
+  }
+    .toolbar__input {
+      padding: 3px 0;
+      margin-top: -3px;
+      width: 350px;
+      font-size: 13px;
+      border: none;
+      outline: none;
+    }
+
+  .toolbar__item_back {
+    padding-left: 16px;
+    color: #4A4A4A;
+    background: image-url("/images/icon_back@2x.png") 0 1px no-repeat;
+    background-size: 16px 16px;
+    height: 16px;
+    opacity: 0;
+    transform: translateX(0);
+  }
+  .toolbar__item_color {
+    left: 100%;
+    padding-left: 7px;
+    text-indent: -9999px;
+    width: 16px;
+    background: image-url("/images/icon_color@2x.png") 0 0 no-repeat;
+    background-size: 16px 16px;
+    transform: translateX(-100%);
+  }
+  .toolbar__item_colortoolbar {
+    top: 0;
+    background: image-url("/images/color-panel_toolbar.png") 0 0 no-repeat;
+    width: 164px;
+    height: 33px;
+    opacity: 0;
+    transform: translateX(150%);
+  }
+
+.menu_recent {
+  .toolbar {
+    .toolbar__item_recent {
+      opacity: 1;
+    }
+    .toolbar__item_filter {
+      opacity: 0;
+    }
+  }
+}
+.menu_all {
+  .toolbar {
+    .toolbar__item_recent {
+      opacity: 0;
+    }
+    .toolbar__item_filter {
+      opacity: 1;
+    }
+  }
+}
+.menu_color {
+  .toolbar {
+    .toolbar__item_recent,
+    .toolbar__item_filter,
+    .toolbar__item_new {
+      opacity: 0;
+      left: 0;
+      transform: translateX(-400px);
+    }
+    .toolbar__item_filter {
+      transform: translateX(-100%);
+    }
+    .toolbar__item_back {
+      left: 7px;
+      opacity: 1;
+    }
+    .toolbar__item_color {
+      opacity: 0;
+      left: 50%;
+    }
+    .toolbar__item_colortoolbar {
+      opacity: 1;
+      transform: translateX(-50%);
+    }
+  }
+}
