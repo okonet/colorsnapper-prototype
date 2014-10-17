@@ -1,0 +1,19 @@
+.icon {
+  display: inline-block;
+  margin-right: .25em;
+  vertical-align: -3px;
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  width: 16px;
+  height: 16px;
+
+  &_pick {
+    background-image: image-url("/images/icon_loupe@2x.png");
+  }
+  &_color {
+    background-image: image-url("/images/icon_color@2x.png");
+  }
+  &_star {
+    background-image: image-url("/images/sample-fav_active.svg");
+  }
+}

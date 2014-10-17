@@ -7,6 +7,7 @@ module.exports = class CSSamplesList extends CSListView
   @ITEM_SIZE: 42
   FIRST_ITEM_IDX: 0
 
+  className: "samples"
   itemClassName: "sample"
   previousItemShortcut: "←"
   nextItemShortcut: "→"
@@ -14,6 +15,7 @@ module.exports = class CSSamplesList extends CSListView
   isVisible: no
 
   constructor: (selector, @menu, colors) ->
+    @items = []
     @itemSelector = '.' + @itemClassName
     @container = $(selector)
     @container.on "dblclick", @itemSelector, @onDblClick
@@ -25,8 +27,11 @@ module.exports = class CSSamplesList extends CSListView
     @el = $(".samples", @el)
     @addColorSample(color, yes) for color in colors
     @selectItemWithIndex @FIRST_ITEM_IDX
+    @checkIsEmpty()
 
-  addColorSample: (color, silent = no, isFavorite) ->
+  addColorSample: (color, silent = no, isFavorite = no) ->
+    @items.push(color)
+    @checkIsEmpty() unless silent
     $sample = $("<li class='#{ @itemClassName }'><i class='sample__fav-btn'></i></li>")
     $sample.css('background-color', color)
     isFavorite ?= @menu.favorites.indexOf(color) isnt -1
@@ -37,6 +42,10 @@ module.exports = class CSSamplesList extends CSListView
       @selectItemWithIndex @FIRST_ITEM_IDX
       _.defer =>
         $sample.removeClass "#{ @itemClassName }_hidden"
+
+  removeColorSample: (color) ->
+    @items = (item for item in @items when item isnt color)
+    @checkIsEmpty()
 
   selectItemWithIndex: (idx) ->
     super
@@ -68,3 +77,14 @@ module.exports = class CSSamplesList extends CSListView
 
   isFavorite: (el) ->
     $(el).hasClass("#{ @itemClassName }_fav")
+
+  checkIsEmpty: =>
+    if @items.length
+      @el.removeClass("#{@className}_empty")
+      $(".#{@className}__empty_msg", @el).remove()
+    else
+      @el.addClass("#{@className}_empty")
+      @el.append(@getEmptyStateHTML())
+
+  getEmptyStateHTML: ->
+    "<span class='#{@className}__empty_msg'>List is empty...<span>"

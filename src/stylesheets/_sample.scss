@@ -23,10 +23,29 @@ $calloutSize: 8px;
 .samples {
   display: flex;
   height: $sampleSize;
+  background: linear-gradient(90deg, rgba(0,0,0,0), rgba(0,0,0,0) 97%, rgba(0,0,0,.125)) left top repeat,
+               linear-gradient(rgba(#fff,1), rgba(#fff,.95) 97%, rgba(#ccc,1)) left top no-repeat;
+  background-size: $sampleSize $sampleSize,
+                     100% 100%;
 
   &::-webkit-scrollbar {
     width: 0;
     height: 0;
+  }
+
+  &_empty {
+    background: linear-gradient(rgba(#ddd,1), rgba(#ddd,.95) 97%, rgba(0,0,0,.125)) left top no-repeat;
+    background-size: 100% 100%;
+  }
+
+  &__empty_msg {
+    display: block;
+    text-align: center;
+    line-height: 2.75;
+    font-weight: 200;
+    font-family: "Helvetica Neue";
+    font-size: 15px;
+    width: 100%;
   }
 }
 

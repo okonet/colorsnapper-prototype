@@ -9,33 +9,11 @@ module.exports = class CSMenu
 
   previousState: "recent"
   state: "recent"
+  recentlyPicked: []
+  favorites: []
 
   constructor: ->
     @el = $(".menu")
-
-    @recentlyPicked = [
-      '#54616C'
-      '#727B83'
-      '#0E53E7'
-      '#4375F3'
-      '#2765F2'
-      '#648CF5'
-      '#0E53E7'
-      '#54616C'
-      '#68717C'
-      '#7E868E'
-      '#FFFFFF'
-      '#000000'
-      '#123455'
-    ]
-
-    @favorites = [
-      '#ff4567'
-      '#4375F3'
-      '#68717C'
-      '#54616C'
-    ]
-
     @historyList = new CSHistoryList(".menu__history", this, @recentlyPicked)
     @favoritesList = new CSFavoritesList(".menu__favorites", this, @favorites)
     @formatsList = new CSFormatsList(".menu__items_all", this)

@@ -49,11 +49,8 @@
   }
 
   .toolbar__item_new {
-    left: 8px;
-    text-indent: -9999px;
+    left: 2px;
     width: 16px;
-    background: image-url("/images/icon_loupe@2x.png") 2px 1px no-repeat;
-    background-size: 16px 16px;
     transform: translateX(0);
   }
   .menu_alt {
@@ -85,12 +82,8 @@
     transform: translateX(0);
   }
   .toolbar__item_color {
-    left: 100%;
-    padding-left: 7px;
-    text-indent: -9999px;
+    left: calc(100% - 7px);
     width: 16px;
-    background: image-url("/images/icon_color@2x.png") 0 0 no-repeat;
-    background-size: 16px 16px;
     transform: translateX(-100%);
   }
   .toolbar__item_colortoolbar {

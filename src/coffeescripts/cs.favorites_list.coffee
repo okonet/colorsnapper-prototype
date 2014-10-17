@@ -17,6 +17,7 @@ module.exports = class CSFavoritesList extends CSSamplesList
     super(color, silent, yes)
 
   removeColorSample: (color) ->
+    super
     $(@itemSelector, @el).each (idx, el) =>
       @removeFromFavorites $(el) if CS.getColorFromEl(el) is color
 
@@ -34,3 +35,6 @@ module.exports = class CSFavoritesList extends CSSamplesList
         @hide()
         @menu.historyList.show()
     , 500
+
+  getEmptyStateHTML: ->
+    "<span class='#{@className}__empty_msg'>Add to favorites by using <i class='icon icon_star'></i> or <span class='shortcut'>⌃F</span><span>"
