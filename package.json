@@ -5,7 +5,7 @@
   "description": "HTML5 Prototype of the ColorSnapper Mac App",
   "main": "",
   "scripts": {
-    "start": "./node_modules/.bin/webpack-dev-server webpack/hot/dev-server ./src/index.coffee -h -c -d",
+    "dev": "./node_modules/.bin/webpack-dev-server webpack/hot/dev-server ./src/index.coffee -h -c -d",
     "postinstall": "./node_modules/.bin/webpack -p",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
