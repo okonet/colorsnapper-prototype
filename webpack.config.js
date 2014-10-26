@@ -30,6 +30,7 @@ module.exports = {
         ]
       },
       { test: /\.(png|svg)$/, exclude: /bgs\//, loader: "url?limit=15000" },
+      { test: /\.(png|jpg)$/, include: /bgs\//, loader: "file" },
     ]
   },
   resolve: {
