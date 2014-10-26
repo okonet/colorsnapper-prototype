@@ -22,7 +22,7 @@ module.exports = class CSLoupe
   borderMin   : 2
   borderMax   : 10
 
-  backgroundImg: require("file!../images/bgs/bg3.png")
+  backgroundImg: require("../images/bgs/bg3.png")
 
   constructor: ->
     @el = $(".loupe")
@@ -125,10 +125,12 @@ module.exports = class CSLoupe
   show: =>
     @isVisible = yes
     $('body').addClass('cs-loupe')
+    $(document).trigger 'loupe:shown'
     @el.show()
 
   hide: =>
     @isVisible = no
     $('body').removeClass('cs-loupe')
     @el.removeClass('picked')
+    $(document).trigger 'loupe:hidden'
     @el.hide()

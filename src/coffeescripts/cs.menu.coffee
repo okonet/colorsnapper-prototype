@@ -26,6 +26,7 @@ module.exports = class CSMenu
     jwerty.key 'alt+f', @toggleFavorites
 
     $(document).on "keydown keyup", @toggleAltPressed
+    $(document).on 'loupe:shown', @hide
 
   toggleAltPressed: (evt) =>
     if evt.altKey
@@ -110,7 +111,7 @@ module.exports = class CSMenu
     @el.removeClass 'hidden'
     $(document).trigger 'menu:shown'
 
-  hide: ->
+  hide: =>
     @isVisible = no
     @el.addClass 'hidden'
     $(document).trigger 'menu:hidden'
