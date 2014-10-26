@@ -1,157 +1,174 @@
 <!doctype html>
-<html>
-<head>
-  <title>Loupe prototype</title>
-</head>
-<body>
+<html lang='en'>
+  <head>
+    <meta content='follow' name='robots'>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta content='en' name='language'>
+    <meta content='Andrey Okonetchnikov' name='copyright'>
+    <meta content='' name='description'>
+    <meta content='HTML CSS JavaScript prototype Mac App ColorSnapper' name='keywords'>
+    <meta content='width = device-width; initial-scale = 1, maximum-scale = 1; minimum-scale = 1; user-scalable = no' name='viewport'>
+    <title>ColorSnapper 2.0 HTML/JavaScript Prototype</title>
+  </head>
+  <body>
 
-  <canvas width="1024" height="768" id="canvas"></canvas>
+    <canvas width="1024" height="768" id="canvas"></canvas>
 
-  <div class="loupe">
-    <div class="loupe__overlay">
-      <div class="loupe__sample"></div>
-      <p class="loupe__format"></p>
-      <p class="loupe__color"></p>
-    </div>
-  </div>
-
-  <menu class="menu menu_all hidden">
-    <div class="menu__samples">
-      <div class="menu__history">
-        <ul class="samples">
-          <i class="sample-overlay"></i>
-        </ul>
-      </div>
-
-      <div class="menu__favorites">
-        <h2 class="menu__samples-icon">Favorites</h2>
-        <ul class="samples">
-          <i class="sample-overlay"></i>
-        </ul>
+    <div class="loupe">
+      <div class="loupe__overlay">
+        <div class="loupe__sample"></div>
+        <p class="loupe__format"></p>
+        <p class="loupe__color"></p>
       </div>
     </div>
 
-    <ul class="menu__toolbar toolbar">
-      <li class="toolbar__item toolbar__item_new" alt="Pick a color"><i class="icon icon_pick"></i></li>
-      <li class="toolbar__item toolbar__item_filter">
-        <input type="search" placeholder="Start typing to filter formats..." id="formatFilter" class="toolbar__input">
-      </li>
-      <li class="toolbar__item toolbar__item_colortoolbar"></li>
-      <li class="toolbar__item toolbar__item_back" onclick="window.loupe.menu.showFormats()">Back</li>
-      <li class="toolbar__item toolbar__item_color" onclick="window.loupe.menu.showColorPanel()" alt="Modify color"><i class="icon icon_color"></i></li>
-    </ul>
+    <menu class="menu menu_all hidden">
+      <div class="menu__samples">
+        <div class="menu__history">
+          <ul class="samples">
+            <i class="sample-overlay"></i>
+          </ul>
+        </div>
 
-    <div class="menu__formats">
-      <ul class="menu__items menu__items_all">
-        <li class="menu__item menu__item_generic">
-          <span class="menu__title">Generic Hex</span>
-          <span class="menu__subtitle">0099FF</span>
-        </li>
-        <li class="menu__item menu__item_generic">
-          <span class="menu__title">Generic 8-bit</span>
-          <span class="menu__subtitle">0, 127, 255</span>
-        </li>
-        <li class="menu__item menu__item_generic">
-          <span class="menu__title">Generic Decimal</span>
-          <span class="menu__subtitle">0.0, 0.5, 1</span>
-        </li>
+        <div class="menu__favorites">
+          <h2 class="menu__samples-icon">Favorites</h2>
+          <ul class="samples">
+            <i class="sample-overlay"></i>
+          </ul>
+        </div>
+      </div>
 
-        <li class="menu__item menu__item_css">
-          <span class="menu__title">CSS Hex</span>
-          <span class="menu__subtitle">#09f</span>
+      <ul class="menu__toolbar toolbar">
+        <li class="toolbar__item toolbar__item_new" alt="Pick a color"><i class="icon icon_pick"></i></li>
+        <li class="toolbar__item toolbar__item_filter">
+          <input type="search" placeholder="Start typing to filter formats..." id="formatFilter" class="toolbar__input">
         </li>
-        <li class="menu__item menu__item_css">
-          <span class="menu__title">CSS RGB</span>
-          <span class="menu__subtitle">rgba(0, 127, 255)</span>
-        </li>
-        <li class="menu__item menu__item_css">
-          <span class="menu__title">CSS RGBA</span>
-          <span class="menu__subtitle">rgba(0, 127, 255, 1)</span>
-        </li>
-        <li class="menu__item menu__item_css">
-          <span class="menu__title">CSS HSL</span>
-          <span class="menu__subtitle">hsl(0, 50%, 100%)</span>
-        </li>
-        <li class="menu__item menu__item_css">
-          <span class="menu__title">CSS HSLA</span>
-          <span class="menu__subtitle">hsla(0, 50%, 100%, 1)</span>
-        </li>
-
-        <li class="menu__item menu__item_osx">
-          <span class="menu__title">NSColor sRGB</span>
-          <span class="menu__subtitle">[NSColor colorWithSRGBRed:0 green:0.5 blue:1 alpha:1]</span>
-        </li>
-        <li class="menu__item menu__item_osx">
-          <span class="menu__title">NSColor Calibrated RGB</span>
-          <span class="menu__subtitle">[NSColor colorWithCalibratedRed:0 green:0.5 blue:1 alpha:1]</span>
-        </li>
-        <li class="menu__item menu__item_osx">
-          <span class="menu__title">NSColor Calibrated HSB</span>
-          <span class="menu__subtitle">[NSColor colorWithCalibratedHue:0.58 saturation:1 brightness:1 alpha:1]</span>
-        </li>
-        <li class="menu__item menu__item_osx">
-          <span class="menu__title">NSColor Device RGB</span>
-          <span class="menu__subtitle">[NSColor colorWithDeviceRed:0 green:0.5 blue:1 alpha:1]</span>
-        </li>
-        <li class="menu__item menu__item_osx">
-          <span class="menu__title">NSColor Device HSB</span>
-          <span class="menu__subtitle">[NSColor colorWithDeviceHue:0.58 saturation:1 brightness:1 alpha:1]</span>
-        </li>
-
-        <li class="menu__item menu__item_ios">
-          <span class="menu__title">UIColor RGBA</span>
-          <span class="menu__subtitle">[UIColor colorWithRed:0 green:0.5 blue:1 alpha:1]</span>
-        </li>
-        <li class="menu__item menu__item_ios">
-          <span class="menu__title">UIColor HSBA</span>
-          <span class="menu__subtitle">[UIColor colorWithHue:0.58 saturation:1 brightness:1 alpha:1]</span>
-        </li>
-
-        <li class="menu__item menu__item_android">
-          <span class="menu__title">Android RGB</span>
-          <span class="menu__subtitle">Color.rgb(0, 127, 255)</span>
-        </li>
-        <li class="menu__item menu__item_android">
-          <span class="menu__title">Android RGBA</span>
-          <span class="menu__subtitle">Color.argb(255, 0, 127, 255)</span>
-        </li>
-
-        <li class="menu__item menu__item_cg">
-          <span class="menu__title">CGColor RGB</span>
-          <span class="menu__subtitle">CGColorCreateGenericRGB(0, 0.5, 1, 1)</span>
-        </li>
-
-        <li class="menu__item menu__item_opengl">
-          <span class="menu__title">OpenGL RGB</span>
-          <span class="menu__subtitle">glColor3f(0, 0.5, 1)</span>
-        </li>
-        <li class="menu__item menu__item_opengl">
-          <span class="menu__title">OpenGL RGBA</span>
-          <span class="menu__subtitle">glColor4f(0, 0.5, 1, 1)</span>
-        </li>
-
-        <li class="menu__item menu__item_photoshop">
-          <span class="menu__title">Foreground Color</span>
-          <span class="menu__subtitle">Send to Adobe&trade; Photoshop</span>
-        </li>
-        <li class="menu__item menu__item_photoshop">
-          <span class="menu__title">Background Color</span>
-          <span class="menu__subtitle">Send to Adobe&trade; Photoshop</span>
-        </li>
-        <li class="menu__item menu__item_illustrator">
-          <span class="menu__title">Foreground Color</span>
-          <span class="menu__subtitle">Send to Adobe&trade; Illustrator</span>
-        </li>
-        <li class="menu__item menu__item_illustrator">
-          <span class="menu__title">Background Color</span>
-          <span class="menu__subtitle">Send to Adobe&trade; Illustrator</span>
-        </li>
+        <li class="toolbar__item toolbar__item_colortoolbar"></li>
+        <li class="toolbar__item toolbar__item_back" onclick="window.loupe.menu.showFormats()">Back</li>
+        <li class="toolbar__item toolbar__item_color" onclick="window.loupe.menu.showColorPanel()" alt="Modify color"><i class="icon icon_color"></i></li>
       </ul>
 
-      <section class="menu__color-panel"></section>
-    </div>
-  </menu>
+      <div class="menu__formats">
+        <ul class="menu__items menu__items_all">
+          <li class="menu__item menu__item_generic">
+            <span class="menu__title">Generic Hex</span>
+            <span class="menu__subtitle">0099FF</span>
+          </li>
+          <li class="menu__item menu__item_generic">
+            <span class="menu__title">Generic 8-bit</span>
+            <span class="menu__subtitle">0, 127, 255</span>
+          </li>
+          <li class="menu__item menu__item_generic">
+            <span class="menu__title">Generic Decimal</span>
+            <span class="menu__subtitle">0.0, 0.5, 1</span>
+          </li>
 
-  <script src="build/main.js" type="text/javascript" charset="utf-8"></script>
-</body>
+          <li class="menu__item menu__item_css">
+            <span class="menu__title">CSS Hex</span>
+            <span class="menu__subtitle">#09f</span>
+          </li>
+          <li class="menu__item menu__item_css">
+            <span class="menu__title">CSS RGB</span>
+            <span class="menu__subtitle">rgba(0, 127, 255)</span>
+          </li>
+          <li class="menu__item menu__item_css">
+            <span class="menu__title">CSS RGBA</span>
+            <span class="menu__subtitle">rgba(0, 127, 255, 1)</span>
+          </li>
+          <li class="menu__item menu__item_css">
+            <span class="menu__title">CSS HSL</span>
+            <span class="menu__subtitle">hsl(0, 50%, 100%)</span>
+          </li>
+          <li class="menu__item menu__item_css">
+            <span class="menu__title">CSS HSLA</span>
+            <span class="menu__subtitle">hsla(0, 50%, 100%, 1)</span>
+          </li>
+
+          <li class="menu__item menu__item_osx">
+            <span class="menu__title">NSColor sRGB</span>
+            <span class="menu__subtitle">[NSColor colorWithSRGBRed:0 green:0.5 blue:1 alpha:1]</span>
+          </li>
+          <li class="menu__item menu__item_osx">
+            <span class="menu__title">NSColor Calibrated RGB</span>
+            <span class="menu__subtitle">[NSColor colorWithCalibratedRed:0 green:0.5 blue:1 alpha:1]</span>
+          </li>
+          <li class="menu__item menu__item_osx">
+            <span class="menu__title">NSColor Calibrated HSB</span>
+            <span class="menu__subtitle">[NSColor colorWithCalibratedHue:0.58 saturation:1 brightness:1 alpha:1]</span>
+          </li>
+          <li class="menu__item menu__item_osx">
+            <span class="menu__title">NSColor Device RGB</span>
+            <span class="menu__subtitle">[NSColor colorWithDeviceRed:0 green:0.5 blue:1 alpha:1]</span>
+          </li>
+          <li class="menu__item menu__item_osx">
+            <span class="menu__title">NSColor Device HSB</span>
+            <span class="menu__subtitle">[NSColor colorWithDeviceHue:0.58 saturation:1 brightness:1 alpha:1]</span>
+          </li>
+
+          <li class="menu__item menu__item_ios">
+            <span class="menu__title">UIColor RGBA</span>
+            <span class="menu__subtitle">[UIColor colorWithRed:0 green:0.5 blue:1 alpha:1]</span>
+          </li>
+          <li class="menu__item menu__item_ios">
+            <span class="menu__title">UIColor HSBA</span>
+            <span class="menu__subtitle">[UIColor colorWithHue:0.58 saturation:1 brightness:1 alpha:1]</span>
+          </li>
+
+          <li class="menu__item menu__item_android">
+            <span class="menu__title">Android RGB</span>
+            <span class="menu__subtitle">Color.rgb(0, 127, 255)</span>
+          </li>
+          <li class="menu__item menu__item_android">
+            <span class="menu__title">Android RGBA</span>
+            <span class="menu__subtitle">Color.argb(255, 0, 127, 255)</span>
+          </li>
+
+          <li class="menu__item menu__item_cg">
+            <span class="menu__title">CGColor RGB</span>
+            <span class="menu__subtitle">CGColorCreateGenericRGB(0, 0.5, 1, 1)</span>
+          </li>
+
+          <li class="menu__item menu__item_opengl">
+            <span class="menu__title">OpenGL RGB</span>
+            <span class="menu__subtitle">glColor3f(0, 0.5, 1)</span>
+          </li>
+          <li class="menu__item menu__item_opengl">
+            <span class="menu__title">OpenGL RGBA</span>
+            <span class="menu__subtitle">glColor4f(0, 0.5, 1, 1)</span>
+          </li>
+
+          <li class="menu__item menu__item_photoshop">
+            <span class="menu__title">Foreground Color</span>
+            <span class="menu__subtitle">Send to Adobe&trade; Photoshop</span>
+          </li>
+          <li class="menu__item menu__item_photoshop">
+            <span class="menu__title">Background Color</span>
+            <span class="menu__subtitle">Send to Adobe&trade; Photoshop</span>
+          </li>
+          <li class="menu__item menu__item_illustrator">
+            <span class="menu__title">Foreground Color</span>
+            <span class="menu__subtitle">Send to Adobe&trade; Illustrator</span>
+          </li>
+          <li class="menu__item menu__item_illustrator">
+            <span class="menu__title">Background Color</span>
+            <span class="menu__subtitle">Send to Adobe&trade; Illustrator</span>
+          </li>
+        </ul>
+
+        <section class="menu__color-panel"></section>
+      </div>
+    </menu>
+
+    <script src="build/main.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-21508272-2', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+  </body>
 </html>
