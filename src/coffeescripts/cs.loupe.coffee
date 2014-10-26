@@ -22,7 +22,7 @@ module.exports = class CSLoupe
   borderMin   : 2
   borderMax   : 10
 
-  backgroundImg: require("../images/bgs/bg3.png")
+  backgroundImg: require("../images/bgs/bg3.jpg")
 
   constructor: ->
     @el = $(".loupe")
