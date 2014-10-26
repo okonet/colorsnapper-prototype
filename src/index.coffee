@@ -7,6 +7,6 @@ $(document).ready ->
   console.log "Initializing ColorSnapper..."
   window.loupe = new CSLoupe
   loupe.menu = new CSMenu
-  _.delay ->
-    loupe.menu.show()
-  , 500
+  # _.delay ->
+  #   loupe.menu.show()
+  # , 500

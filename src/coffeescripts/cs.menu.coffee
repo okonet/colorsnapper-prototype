@@ -20,6 +20,7 @@ module.exports = class CSMenu
     @el.on "click", ".toolbar__item_new", @onCreateColorClicked
     @el.on "click", ".menu__samples-icon", @toggleFavorites
 
+    jwerty.key 'alt+ctrl+⌘+C', @show
     jwerty.key 'enter', @confirmSelection
     jwerty.key 'esc', @onEscPressed
     jwerty.key 'alt+f', @toggleFavorites
@@ -103,7 +104,7 @@ module.exports = class CSMenu
     @historyList.toggleVisible()
     @favoritesList.toggleVisible()
 
-  show: ->
+  show: =>
     @showFormats()
     @isVisible = yes
     @el.removeClass 'hidden'
