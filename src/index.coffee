@@ -7,9 +7,12 @@ require.ensure [], () ->
   CSLoupe = require "./coffeescripts/cs.loupe"
   CSMenu = require "./coffeescripts/cs.menu"
 
-  $(document).ready ->
-    $('.howto__btn').on "click", ->
-      $(".howto").addClass('howto_hidden')
-      window.loupe = new CSLoupe
-      loupe.menu = new CSMenu
-      loupe.menu.show()
+  start = ->
+    $(".howto").addClass('howto_hidden')
+    window.loupe = new CSLoupe
+    loupe.menu = new CSMenu
+    loupe.menu.show()
+
+  # $(document).ready ->
+  #   $('.howto__btn').on "click", start
+  start()
