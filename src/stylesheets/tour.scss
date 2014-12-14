@@ -5,18 +5,55 @@
   z-index: 99999;
   width: 100%;
   height: 100%;
+  transition: opacity .5s ease-in-out,
+               visibility 1ms .5s;
 
-  &__list {
+  &.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  &__controls {
     position: absolute;
     top: 100px;
-    left: 150px;
+    left: 50%;
+    margin-left: -100px;
+    width: 100%;
+
+    li {
+      line-height: 2;
+      list-style-type: decimal;
+
+      &.active {
+        font-weight: bold;
+      }
+    }
+  }
+  &__btn {
+    margin: 1em 0 0 -1em;
+    padding: .5em 1em;
+    color: #fff;
+    font-size: 10pt;
+    background: none;
+    border: 1px solid rgba(#fff, .65);
+    border-radius: 20px;
+    cursor: pointer;
   }
 }
 
 #svg circle {
-  transform: translate(17px,57px);
+  transform: translate(-20px, -20px);
   transition: transform .5s ease-in-out;
 }
-#svg:hover circle {
-  transform: translate(100px,100px);
+.tour_1 #svg circle {
+  transform: translate(17px,58px);
+}
+.tour_2 #svg circle {
+  transform: translate(395px,58px);
+}
+.tour_3 #svg circle {
+  transform: translate(200px,9px);
+}
+.tour_4 #svg circle {
+  transform: translate(398px,21px);
 }
