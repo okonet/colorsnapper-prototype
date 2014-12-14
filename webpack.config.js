@@ -2,8 +2,10 @@ var path = require("path");
 var webpack = require("webpack");
 
 module.exports = {
-  name: "ColorSnapper",
-  entry: "./src/index.coffee",
+  entry: {
+    main: "./src/index.coffee",
+    tour: ["./src/tour.coffee"]
+  },
   output: {
     path: path.join(__dirname, "build"),
     publicPath: "build/",
@@ -31,6 +33,7 @@ module.exports = {
       },
       { test: /\.(png|svg)$/, exclude: /bgs\//, loader: "url?limit=15000" },
       { test: /\.(png|jpg)$/, include: /bgs\//, loader: "file" },
+      { test: /\.html$/, loader: "html" }
     ]
   },
   resolve: {

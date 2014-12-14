@@ -1,0 +1,22 @@
+.tour {
+  position: absolute;
+  color: #fff;
+  overflow: visible;
+  z-index: 99999;
+  width: 100%;
+  height: 100%;
+
+  &__list {
+    position: absolute;
+    top: 100px;
+    left: 150px;
+  }
+}
+
+#svg circle {
+  transform: translate(17px,57px);
+  transition: transform .5s ease-in-out;
+}
+#svg:hover circle {
+  transform: translate(100px,100px);
+}
