@@ -3,8 +3,8 @@ var webpack = require("webpack");
 
 module.exports = {
   entry: {
-    main: "./src/index.coffee",
-    tour: ["./src/tour.coffee"]
+    main: "./src/index.coffee"
+    tour: "./src/tour.coffee"
   },
   output: {
     path: path.join(__dirname, "build"),

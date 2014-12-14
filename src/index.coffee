@@ -2,6 +2,8 @@ require "stylesheets/screen"
 require "stylesheets/howto.scss"
 
 require.ensure [], () ->
+  require "./tour.coffee"
+
   $("body").removeClass("loading")
   require "script!jwerty"
   CSLoupe = require "./coffeescripts/cs.loupe"
