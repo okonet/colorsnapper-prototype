@@ -9,17 +9,18 @@ require.ensure [], () ->
     $('body menu').prepend(html)
     $tour = $('.tour')
 
-    $('.tour li').on "click", (evt) ->
-      $('.tour__list-item').removeClass('active')
+    $('.tour li').on "mouseenter", (evt) ->
+      $(".tour__list-item[href=##{ activeSelection }]").removeClass('active')
       $tour.removeClass(activeSelection)
       href = $(this).attr('href').replace("#", "")
       $(this).addClass('active')
       $tour.addClass(href)
       activeSelection = href
 
-    # $('.tour li').on "mouseleave", (evt) ->
-    #   href = $(this).attr('href').replace("#", "")
-    #   $tour.removeClass(href)
+    $('.tour li').on "mouseleave", (evt) ->
+      $(".tour__list-item[href=##{ activeSelection }]").removeClass('active')
+      $tour.removeClass(activeSelection)
+      activeSelection = null
 
     $('.tour__btn').on "click", (evt) ->
       $('.tour').addClass('hidden')
