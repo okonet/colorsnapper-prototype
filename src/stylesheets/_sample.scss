@@ -33,8 +33,7 @@ $calloutSize: 8px;
   }
 
   &_empty {
-    background: rgba(#fff, .65) left top no-repeat;
-    background-size: 100% 100%;
+    background: none;
     height: $sampleSize + 1;
     border-top-left-radius: $menuBorderRadius;
   }

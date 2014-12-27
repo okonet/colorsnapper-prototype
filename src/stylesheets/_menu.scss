@@ -53,7 +53,7 @@ $menuWidth: 410px;
       position: absolute;
       top: 0;
       left: 0;
-      width: $menuWidth - 24px;
+      width: $menuWidth;
       overflow: hidden;
       overflow-x: auto;
       transition: transform .5s cubic-bezier(0.770, 0.000, 0.175, 1.000);
@@ -64,6 +64,9 @@ $menuWidth: 410px;
     }
 
     &.active {
+      .samples {
+        width: $menuWidth - 28px;
+      }
       .sample-overlay {
         visibility: visible;
       }
@@ -74,17 +77,17 @@ $menuWidth: 410px;
 
     .samples {
       z-index: 1;
-      transform: translateX($menuWidth - 24px);
+      transform: translateX($menuWidth - 28px);
     }
 
     .menu__samples-icon {
       position: absolute;
       right: 0;
       text-indent: -9999px;
-      background: rgba(#fff, .75) image-url("/images/icon_favorites@2x.png") 4px 12px no-repeat;
+      background: image-url("/images/icon_favorites@2x.png") 7px 12px no-repeat;
       background-size: 16px 16px;
       border-top-right-radius: $menuBorderRadius;
-      width: 24px;
+      width: 30px;
       height: 100%;
       z-index: 2;
     }
