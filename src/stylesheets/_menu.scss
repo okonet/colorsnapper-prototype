@@ -78,6 +78,7 @@ $menuWidth: 410px;
     z-index: 2;
 
     .samples {
+      width: $menuWidth !important;
       z-index: 1;
       transform: translateX($menuWidth - 28px);
     }
