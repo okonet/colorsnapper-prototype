@@ -1,3 +1,4 @@
+$menuBorderRadius: 5px;
 $borderWidth: 0px;
 $borderRadius: 0px;
 $sampleSize: 42px;
@@ -24,9 +25,7 @@ $calloutSize: 8px;
   display: flex;
   height: $sampleSize;
   background: linear-gradient(90deg, rgba(0,0,0,0), rgba(0,0,0,0) 97%, rgba(0,0,0,.125)) left top repeat;
-               // linear-gradient(rgba(#fff,1), rgba(#fff,.95) 97%, rgba(#ccc,1)) left top no-repeat;
-  background-size: $sampleSize $sampleSize,
-                     100% 100%;
+  background-size: $sampleSize $sampleSize;
 
   &::-webkit-scrollbar {
     width: 0;
@@ -34,9 +33,10 @@ $calloutSize: 8px;
   }
 
   &_empty {
-    background: rgba(#fff, .85) left top no-repeat;
+    background: rgba(#fff, .65) left top no-repeat;
     background-size: 100% 100%;
     height: $sampleSize + 1;
+    border-top-left-radius: $menuBorderRadius;
   }
 
   &__empty_msg {

@@ -9,7 +9,7 @@ module.exports = class CSMenu
 
   previousState: "recent"
   state: "recent"
-  recentlyPicked: []
+  recentlyPicked: []#["#e0ae00", "#ef4549", "#f79945", "#54ba5e", "#5897d0", "#a860a9", "#e0ae00", "#ef4549", "#f79945", "#54ba5e", "#5897d0", "#a860a9"]
   favorites: []
 
   constructor: ->
