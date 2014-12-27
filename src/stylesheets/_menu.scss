@@ -44,7 +44,6 @@ $menuWidth: 410px;
     position: relative;
     border-top-left-radius: $menuBorderRadius;
     border-top-right-radius: $menuBorderRadius;
-    box-shadow: 0 0 1px rgba(0,0,0,.5) inset;
     height: $menuSampleSize;
     overflow: hidden;
   }
@@ -83,7 +82,6 @@ $menuWidth: 410px;
       position: absolute;
       right: 0;
       text-indent: -9999px;
-      box-shadow: -3px 0 4px rgba(#000, .25);
       background: rgba(#fff, .75) image-url("/images/icon_favorites@2x.png") 4px 12px no-repeat;
       background-size: 16px 16px;
       width: 24px;

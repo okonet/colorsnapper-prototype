@@ -23,8 +23,8 @@ $calloutSize: 8px;
 .samples {
   display: flex;
   height: $sampleSize;
-  background: linear-gradient(90deg, rgba(0,0,0,0), rgba(0,0,0,0) 97%, rgba(0,0,0,.125)) left top repeat,
-               linear-gradient(rgba(#fff,1), rgba(#fff,.95) 97%, rgba(#ccc,1)) left top no-repeat;
+  background: linear-gradient(90deg, rgba(0,0,0,0), rgba(0,0,0,0) 97%, rgba(0,0,0,.125)) left top repeat;
+               // linear-gradient(rgba(#fff,1), rgba(#fff,.95) 97%, rgba(#ccc,1)) left top no-repeat;
   background-size: $sampleSize $sampleSize,
                      100% 100%;
 
@@ -34,8 +34,9 @@ $calloutSize: 8px;
   }
 
   &_empty {
-    background: linear-gradient(rgba(#ddd,1), rgba(#ddd,.95) 97%, rgba(0,0,0,.125)) left top no-repeat;
+    background: rgba(#fff, .85) left top no-repeat;
     background-size: 100% 100%;
+    height: $sampleSize + 1;
   }
 
   &__empty_msg {
@@ -49,6 +50,11 @@ $calloutSize: 8px;
   }
 }
 
+// OSX 10.10 vibrancy imitation
+*:not(.active) > .samples {
+  filter: blur(32px);
+}
+
 .sample {
   position: relative;
   flex: 0 0 $sampleSize;
@@ -56,8 +62,7 @@ $calloutSize: 8px;
   margin-right: 0px;
   width: $sampleSize;
   height: $sampleSize;
-  box-shadow: 1px  0px 0px 0px rgba(0, 0, 0, .25) inset,
-              0px -1px 0px 0px rgba(0, 0, 0, .25) inset;
+  box-shadow: 1px  0px 0px 0px rgba(0, 0, 0, .25) inset;
   opacity: 1;
   z-index: 1;
   transition:
@@ -147,16 +152,16 @@ $calloutSize: 8px;
 
 .sample-overlay {
   position: absolute;
-  top: 1px;
+  top: 0;
   left: 0;
   margin: $borderWidth;
   width: $sampleSize;
-  height: $sampleSize + 1px;
+  height: $sampleSize + 3px;
   border-radius: $borderRadius;
-  box-shadow: 0 0 0 1px #fff,
-              0 0 0 2px rgba(#000, .5),
-              0 0 0 1px #fff inset,
-              0 0 0 2px rgba(#000, .5) inset;
+  box-shadow:
+              0 0 0 0px #fff,
+              0 0 0 2px #fff inset,
+              0 0 0 3px rgba(#000, .5) inset;
   transition: transform .15s ease-out;
   transform: translateX(-($sampleSize + $borderWidth * 2 + 2));
   z-index: 1;
