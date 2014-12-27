@@ -50,7 +50,10 @@ $calloutSize: 8px;
 }
 
 // OSX 10.10 vibrancy imitation
-*:not(.active) > .samples {
+*:not(.active) > .samples:not(.samples_empty) {
+  filter: blur(32px);
+}
+.menu__history:not(.active) > .samples_empty {
   filter: blur(32px);
 }
 
