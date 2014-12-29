@@ -1,4 +1,3 @@
-$menuBackgroundColor: rgba(#fcfcfc, .85);
 $menuBorderWidth: 5px;
 $menuBorderRadius: 5px;
 $menuSampleBorderRadius: 3px;
@@ -14,13 +13,11 @@ $menuWidth: 410px;
   margin-top: -250px;
   margin-left: -205px;
   font: 14px "Lucida Grande", Helvetica, sans-serif;
-  // width: ($menuSampleSize + 10) * 8 + 10;
   width: $menuWidth;
-  background-color: $menuBackgroundColor;
+  background-color: $bgColorLight;
   border-radius: $menuBorderRadius + 2;
   box-shadow:
-    0 0 0 1px rgba(#122a3c, .1),
-    0 4px 32px 2px rgba(#01192b, .35);
+    0 4px 32px 2px rgba(#000, .65);
 
   transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
   transition:
@@ -87,13 +84,23 @@ $menuWidth: 410px;
     .menu__samples-icon {
       position: absolute;
       right: 0;
-      text-indent: -9999px;
-      background: image-url("/images/icon_favorites@2x.png") 7px 12px no-repeat;
-      background-size: 16px 16px;
       border-top-right-radius: $menuBorderRadius;
       width: 30px;
       height: 100%;
       z-index: 2;
+
+      .icon {
+        position: absolute;
+        top: 12px;
+        left: 7px;
+      }
+    }
+
+    .menu__samples-icon_favorites {
+      display: block;
+    }
+    .menu__samples-icon_history {
+      display: none;
     }
 
     &.active {
@@ -102,9 +109,11 @@ $menuWidth: 410px;
         opacity: 1;
         transform: translateX(0);
       }
-
-      .menu__samples-icon {
-        background-image: image-url("/images/icon_history@2x.png");
+      .menu__samples-icon_favorites {
+        display: none;
+      }
+      .menu__samples-icon_history {
+        display: block;
       }
     }
   }
@@ -210,7 +219,7 @@ $menuWidth: 410px;
       }
 
       &.active {
-        color: #fff;
+        color: $textColorActive;
         background-color: $menuActiveColor;
 
         @each $format in generic, css, osx, ios, android, cg, opengl, photoshop, illustrator {
@@ -223,11 +232,11 @@ $menuWidth: 410px;
         }
 
         .menu__subtitle {
-          color: #fff;
+          color: $textColorActive;
         }
 
         &:after {
-          color: #fff;
+          color: $textColorActive;
           content: "↩"!important;
         }
       }
@@ -235,12 +244,13 @@ $menuWidth: 410px;
 
     .menu__title {
       display: block;
+      color: $textColorLight;
       font-size: 14px;
     }
     .menu__subtitle {
       display: block;
       margin-top: 2px;
-      color: rgba(#000, .45);
+      color: rgba($textColorLight, .45);
       font-size: 12px;
       white-space: nowrap;
       width: 96%;
@@ -253,3 +263,16 @@ $menuWidth: 410px;
       left: 7px;
     }
   }
+
+.theme_dark {
+  .menu {
+    background-color: $bgColorDark;
+  }
+  .menu__title {
+    color: $textColorDark;
+    font-size: 14px;
+  }
+  .menu__subtitle {
+    color: rgba($textColorDark, .45);
+  }
+}

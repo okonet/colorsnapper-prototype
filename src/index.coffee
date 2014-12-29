@@ -7,6 +7,8 @@ require.ensure [], () ->
   CSLoupe = require "./coffeescripts/cs.loupe"
   CSMenu = require "./coffeescripts/cs.menu"
 
+  $("body").addClass("theme_dark")
+
   # $(document).ready ->
   #   $('.howto__btn').on "click", ->
   $(".howto").addClass('howto_hidden')

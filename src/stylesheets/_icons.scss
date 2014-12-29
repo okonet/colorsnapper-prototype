@@ -7,13 +7,18 @@
   width: 16px;
   height: 16px;
 
-  &_pick {
-    background-image: image-url("/images/icon_loupe@2x.png");
+  &__content {
+    width: 16px;
+    height: 16px;
   }
-  &_color {
-    background-image: image-url("/images/icon_color@2x.png");
-  }
+
   &_star {
     background-image: image-url("/images/sample-fav_active.svg");
+  }
+}
+
+.theme_dark {
+  svg.icon__content > * {
+    fill: #fff;
   }
 }

@@ -1,4 +1,3 @@
-require "stylesheets/_sample"
 CSListView = require "./cs.list_view"
 
 module.exports = class CSSamplesList extends CSListView

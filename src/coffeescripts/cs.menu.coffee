@@ -1,5 +1,3 @@
-require "stylesheets/_menu"
-require "stylesheets/_toolbar"
 CS = require "./cs.coffee"
 CSHistoryList = require "./cs.history_list"
 CSFavoritesList = require "./cs.favorites_list"

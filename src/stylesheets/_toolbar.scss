@@ -8,7 +8,7 @@
   height: 33px;
   border-top: 1px solid rgba(#000, .125);
   border-bottom: 1px solid rgba(#000, .125);
-  background: linear-gradient(#fff, rgba(#fff, .5));
+  background: linear-gradient($bgColorLight, rgba($bgColorLight, .5));
   z-index: 0;
   overflow: hidden;
 }
@@ -29,11 +29,6 @@
     left: 2px;
     width: 16px;
     transform: translateX(0);
-  }
-  .menu_alt {
-    .toolbar__item_new {
-      background-image: image-url("/images/icon_duplicate@2x.png");
-    }
   }
 
   .toolbar__item_filter {
@@ -109,4 +104,7 @@
       transform: translateX(-50%);
     }
   }
+}
+.theme_dark .toolbar {
+  background: linear-gradient($bgColorDark, rgba($bgColorDark, .5));
 }
