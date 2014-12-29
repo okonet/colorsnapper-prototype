@@ -219,8 +219,11 @@ $menuWidth: 410px;
       }
 
       &.active {
-        color: $textColorActive;
         background-color: $menuActiveColor;
+
+        .menu__title {
+          color: $textColorActive;
+        }
 
         @each $format in generic, css, osx, ios, android, cg, opengl, photoshop, illustrator {
           &.menu__item_#{$format} {
