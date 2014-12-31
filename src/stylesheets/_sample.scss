@@ -152,6 +152,7 @@ $calloutSize: 8px;
   }
 }
 
+
 .sample-overlay {
   position: absolute;
   top: 0;
@@ -173,5 +174,24 @@ $calloutSize: 8px;
 @for $i from 1 through 20 {
   .sample:nth-child(#{$i}).active ~ .sample-overlay {
     transform: translateX(($sampleSize + $borderWidth * 2) * ($i - 1));
+  }
+}
+
+.theme_dark {
+  .sample {
+    &:before,
+    &:after {
+      border-bottom-color: #333;
+    }
+
+    &:before {
+      border-bottom-color: #000;
+    }
+  }
+  .sample-overlay {
+    box-shadow:
+                0 0 0 0px #333,
+                0 0 0 2px #333 inset,
+                0 0 0 3px rgba(#fff, .75) inset;
   }
 }
