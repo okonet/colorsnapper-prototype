@@ -9,7 +9,7 @@ $menuSampleSize: 42px;
 .loupe {
   position: absolute;
   border: 2px solid rgba(#fff, .5);
-  box-shadow: 0 0 0 1px rgba(#333, .125);
+  box-shadow: 0 0 0 1px rgba(#333, .25);
   width: 42px;
   height: 42px;
   border-radius: 42px;
@@ -24,9 +24,8 @@ $menuSampleSize: 42px;
     animation: flash .25s;
     transform: scale(.01);
   }
-}
 
-  .loupe__overlay {
+  &__overlay {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -39,14 +38,22 @@ $menuSampleSize: 42px;
     border-radius: 2px;
     text-shadow: 0 1px 0 rgba(#000,.25);
     box-shadow:
-      0 1px 8px rgba(#333, .45),
-      0 0 0 1px rgba(#fff, 0.5) inset,
-      0 0 0 1px rgba(#333, 0.25);
+      0 1px 12px rgba(#000, .45);
 
     transition:
       color 100ms,
       background-color 25ms
   }
+}
+
+.theme_dark {
+  .loupe {
+    border: 2px solid rgba(#000, .5);
+    box-shadow: 0 0 0 1px rgba(#fff, .25);
+  }
+}
+
+
   .loupe_invert .loupe__overlay {
     color: #000;
     text-shadow: 0 1px 0 rgba(#fff,.25);
