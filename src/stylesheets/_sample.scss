@@ -71,6 +71,10 @@ $calloutSize: 8px;
     transform .5s,
     opacity .5s;
 
+  &:first-of-type {
+    border-top-left-radius: $menuBorderRadius;
+  }
+
   &:last-of-type {
     margin-right: 0;
   }
@@ -175,6 +179,9 @@ $calloutSize: 8px;
   .sample:nth-child(#{$i}).active ~ .sample-overlay {
     transform: translateX(($sampleSize + $borderWidth * 2) * ($i - 1));
   }
+}
+.sample:nth-child(1).active ~ .sample-overlay {
+  border-top-left-radius: $menuBorderRadius;
 }
 
 .theme_dark {
