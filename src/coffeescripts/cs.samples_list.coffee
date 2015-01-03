@@ -80,10 +80,10 @@ module.exports = class CSSamplesList extends CSListView
   checkIsEmpty: =>
     if @items.length
       @el.removeClass("#{@className}_empty")
-      $(".#{@className}__empty_msg", @el).remove()
+      $(".#{@className}__empty-msg", @el).remove()
     else
       @el.addClass("#{@className}_empty")
       @el.append(@getEmptyStateHTML())
 
   getEmptyStateHTML: ->
-    "<span class='#{@className}__empty_msg'>List is empty...<span>"
+    "<span class='#{@className}__empty-msg'>List is empty...<span>"

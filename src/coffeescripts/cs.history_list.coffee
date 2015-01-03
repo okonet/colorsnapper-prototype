@@ -17,4 +17,4 @@ module.exports = class CSHistoryList extends CSSamplesList
       $(el).removeClass("#{ @itemClassName }_fav") if CS.getColorFromEl(el) is color
 
   getEmptyStateHTML: ->
-    "<span class='#{@className}__empty_msg'>Start by <i class='icon'><svg class='icon__content'><use xlink:href='#icon-history'></use></svg></i>picking or <i class='icon'><svg class='icon__content'><use xlink:href='#icon-colorpanel'></use></svg></i>choosing a color...<span>"
+    "<span class='#{@className}__empty-msg'>Start by <i class='icon'><svg class='icon__content'><use xlink:href='#icon-history'></use></svg></i>picking or <i class='icon'><svg class='icon__content'><use xlink:href='#icon-colorpanel'></use></svg></i>choosing a color...<span>"

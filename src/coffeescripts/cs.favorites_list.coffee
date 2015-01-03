@@ -37,4 +37,4 @@ module.exports = class CSFavoritesList extends CSSamplesList
     , 500
 
   getEmptyStateHTML: ->
-    "<span class='#{@className}__empty_msg'>Add to favorites by using <i class='icon icon_star'></i> or <span class='shortcut'>⌃F</span><span>"
+    "<span class='#{@className}__empty-msg'>Add to favorites by using <i class='icon icon_star'></i> or <span class='shortcut'>⌃F</span><span>"
