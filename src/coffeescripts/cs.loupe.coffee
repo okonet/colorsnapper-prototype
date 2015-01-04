@@ -23,7 +23,7 @@ module.exports = class CSLoupe
 
   preHPMZoom: null
 
-  backgroundImg: require("../images/bgs/bg3.jpg")
+  backgroundImg: require("../images/bgs/bg4.png")
 
   constructor: ->
     @el = $(".loupe")
