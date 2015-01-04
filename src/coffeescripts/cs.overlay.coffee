@@ -7,7 +7,7 @@ module.exports = class CSOverlay
 
   pixel: [0,0,0]
   altFormat: no
-  selectedFormat: CSOverlay.formats[0]
+  selectedFormat: localStorage.getItem('CS:selectedFormat') or CSOverlay.formats[0]
   overlayType: parseInt localStorage.getItem('CS:overlayType') or 2
 
   constructor: (@loupe) ->
@@ -39,6 +39,7 @@ module.exports = class CSOverlay
     newFormatIdx = 0 if newFormatIdx > CSOverlay.formats.length - 1
     newFormatIdx = CSOverlay.formats.length - 1 if newFormatIdx < 0
     @selectedFormat = CSOverlay.formats[newFormatIdx]
+    localStorage.setItem('CS:selectedFormat', @selectedFormat)
     @renderLabel()
     @render @pixel
 
@@ -48,7 +49,7 @@ module.exports = class CSOverlay
       when 'rgb'
         label = "Generic RGB"
       when 'nscolor'
-        label = "NSColor Calibrated RGB"
+        label = "NSColor sRGB"
       when 'hex'
         label = "CSS HEX"
 
@@ -64,7 +65,8 @@ module.exports = class CSOverlay
 
         when 'nscolor' # Decimal with precision
           decimal = part / 255
-          format[idx] = "#{(part / 255).toPrecision(4).replace('0.', '.')}f"
+          # format[idx] = "#{(part / 255).toPrecision(4).replace('0.', '.')}f" No leading zeroes/suffix f
+          format[idx] = "#{(part / 255).toPrecision(4).replace(/(0+)$/, '')}f"
 
         when 'hex' # HEX
           hex = part.toString(16)
