@@ -1,4 +1,3 @@
-require "stylesheets/_loupe"
 require "jquery-mousewheel"
 CS = require "./cs"
 CSCanvas = require "./cs.canvas"
@@ -58,13 +57,15 @@ module.exports = class CSLoupe
 
     $(document).on 'menu:shown', @hide
 
-    jwerty.key ']', =>
+    jwerty.key '⌘+=', (e) =>
+      e.preventDefault()
       if @isVisible
         ++@zoom if CSLoupe.MIN_ZOOM <= @zoom < CSLoupe.MAX_ZOOM
         @render()
         localStorage.setItem('CS:zoom', @zoom)
 
-    jwerty.key '[', =>
+    jwerty.key '⌘+-', (e) =>
+      e.preventDefault()
       if @isVisible
         @zoom-- if CSLoupe.MIN_ZOOM < @zoom <= CSLoupe.MAX_ZOOM
         @render()
