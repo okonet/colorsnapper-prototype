@@ -21,6 +21,8 @@ module.exports = class CSLoupe
   borderMin   : 2
   borderMax   : 10
 
+  preHPMZoom: null
+
   backgroundImg: require("../images/bgs/bg3.jpg")
 
   constructor: ->
@@ -54,6 +56,12 @@ module.exports = class CSLoupe
           @menu ?= new CSMenu()
           @menu.show()
           @menu.addColor @getActualColor()
+
+    $(document).on "keydown", (e) =>
+      @toggleHighPrecisionMode(e.shiftKey)
+
+    $(document).on "keyup", (e) =>
+      @toggleHighPrecisionMode(e.shiftKey)
 
     $(document).on 'menu:shown', @hide
 
@@ -130,8 +138,20 @@ module.exports = class CSLoupe
     @el.show()
 
   hide: =>
+    @toggleHighPrecisionMode(no)
     @isVisible = no
     $('body').removeClass('cs-loupe')
     @el.removeClass('picked')
     $(document).trigger 'loupe:hidden'
     @el.hide()
+
+  toggleHighPrecisionMode: (isEnabled) ->
+    if @isVisible
+      if isEnabled
+        @preHPMZoom ?= @zoom
+        @zoom = CSLoupe.MAX_ZOOM
+
+      else if @preHPMZoom?
+        @zoom = @preHPMZoom
+        @preHPMZoom = null
+      @render()
