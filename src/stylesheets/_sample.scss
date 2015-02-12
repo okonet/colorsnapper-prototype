@@ -128,7 +128,7 @@ $calloutSize: 8px;
     right: 4px;
     width: 12px;
     height: 12px;
-    background-image: image-url("/images/sample-fav.svg");
+    background-image: image-url("/images/sample-fav@2x.png");
     background-size: 12px 12px;
     opacity: 0;
     transition: opacity .25s;
@@ -142,7 +142,7 @@ $calloutSize: 8px;
     opacity: .5;
   }
   &_fav &__fav-btn {
-    background-image: image-url("/images/sample-fav_active.svg");
+    background-image: image-url("/images/sample-fav_active@2x.png");
     opacity: 1 !important;
   }
 }
