@@ -39,6 +39,7 @@ module.exports = class CSOverlay
   switchFormat: (direction) =>
     formats = if @altFormat then CSOverlay.formats else CSOverlay.altFormats
     selectedFormat = if @altFormat then @selectedFormat else @selectedAltFormat
+    selectedFormat = parseInt(selectedFormat, 10)
     newFormatIdx = selectedFormat + direction
     newFormatIdx = 0 if newFormatIdx > formats.length - 1
     newFormatIdx = formats.length - 1 if newFormatIdx < 0
@@ -63,15 +64,16 @@ module.exports = class CSOverlay
         when 'hex'
           label = "CSS HEX"
     else
+      label = "Display "
       switch formatID
         when 'rgb'
-          label = "RGB"
+          label += "RGB"
         when 'hsl'
-          label = "HSL"
+          label += "HSL"
         when 'hex'
-          label = "HEX"
+          label += "HEX"
 
-      label += " <span class='loupe__colorProfile'>(sRGB IEC611966-2.1)</span>"
+#      label += " <span class='loupe__colorProfile'>(Color LCD)</span>" # Color Profile info
 
     label
 
@@ -96,9 +98,10 @@ module.exports = class CSOverlay
         when 'hsl' # For displaying raw values
           format[idx] = part
 
-    "#{format.join(' ')}"
+    "≈ #{format.join(' ')}"
 
   getFormatIdForIdx: (idx, isAlternative) ->
+    idx = parseInt(idx, 10)
     formats = if isAlternative then CSOverlay.formats else CSOverlay.altFormats
     formats[idx]
 
