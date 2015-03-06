@@ -99,9 +99,11 @@ $menuWidth: 480px;
 
     .menu__samples-icon_favorites {
       display: block;
+      background-image: image-url("/images/favorites@2x.png");
     }
     .menu__samples-icon_history {
       display: none;
+      background-image: image-url("/images/history@2x.png");
     }
 
     &.active {
@@ -278,5 +280,11 @@ $menuWidth: 480px;
   }
   .menu__subtitle {
     color: rgba($textColorDark, .45);
+  }
+  .menu__samples-icon_favorites {
+    background-image: image-url("/images/favorites-inv@2x.png");
+  }
+  .menu__samples-icon_history {
+    background-image: image-url("/images/history-inv@2x.png");
   }
 }

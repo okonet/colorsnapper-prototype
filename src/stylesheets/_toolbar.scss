@@ -29,6 +29,9 @@
     left: 2px;
     width: 16px;
     transform: translateX(0);
+    .icon {
+      background-image: image-url("/images/loupe@2x.png");
+    }
   }
 
   .toolbar__item_filter {
@@ -56,6 +59,9 @@
     left: calc(100% - 7px);
     width: 16px;
     transform: translateX(-100%);
+    .icon {
+      background-image: image-url("/images/ColorPanel@2x.png");
+    }
   }
   .toolbar__item_colortoolbar {
     top: 0;
@@ -105,3 +111,16 @@
 .theme_dark .toolbar {
   background: linear-gradient($bgColorDark, rgba($bgColorDark, .5));
 }
+.theme_dark {
+  .toolbar__item_new {
+    .icon {
+      background-image: image-url("/images/loupe-inv@2x.png");
+    }
+  }
+  .toolbar__item_color {
+    .icon {
+      background-image: image-url("/images/ColorPanel-inv@2x.png");
+    }
+  }
+}
+

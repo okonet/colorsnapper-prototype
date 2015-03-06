@@ -17,25 +17,6 @@
   </head>
   <body class="loading">
 
-    <svg style="display:none">
-      <symbol id="icon-history">
-        <path d="M7.8855,0 C5.0495,0 2.708,1.59068966 1.5565,3.91613793 L0,2.18641379 L0,6.64758621 L4.277,6.64758621 L2.5645,4.97482759 C3.339,2.85068966 5.433,1.39710345 7.886,1.39710345 C10.9965,1.39710345 13.527,3.86641379 13.527,6.86965517 C13.527,9.87289655 10.996,12.3301379 7.886,12.3301379 C5.7185,12.3301379 3.717,11.114069 2.7865,9.22358621 L1.432,9.8477931 C2.609,12.2408276 5.143,13.7895172 7.886,13.7895172 C11.8235,13.7895172 15.027,10.6964828 15.027,6.89475862 C15.027,3.09303448 11.823,0 7.8855,0 Z M7,3.26827586 L7,7.59475862 L10.1115,9.66917241 L10.7215,8.86586207 L8,7.0782069 L8,3.26827586 L7,3.26827586 Z"></path>
-      </symbol>
-
-      <symbol id="icon-favorites">
-        <polygon points="7.5 11.8499999 3.09161061 13.5676275 3.36290427 8.84422389 0.367076128 5.18237254 4.94313423 3.98077618 7.5 0 10.0568658 3.98077618 14.6329239 5.18237254 11.6370957 8.84422389 11.9083894 13.5676275"></polygon>
-      </symbol>
-
-      <symbol id="icon-colorpanel">
-        <path d="M3.03108808,5.94180929 L3.03108808,3.03108808 L5.94180929,3.03108808 L8,0.972897377 L10.0581907,3.03108808 L12.9689119,3.03108808 L12.9689119,5.94180929 L15.0271026,8 L12.9689119,10.0581907 L12.9689119,12.9689119 L10.0581907,12.9689119 L8,15.0271026 L5.94180929,12.9689119 L3.03108808,12.9689119 L3.03108808,10.0581907 L0.972897377,8 L3.03108808,5.94180929 L3.03108808,5.94180929 Z M11.6225744,8.03725716 C11.6225744,6.05433564 10.0016358,4.44686015 8.00210658,4.44686015 C7.97516935,4.44686015 7.98232326,11.6414603 8.00210658,11.6414603 C10.0016358,11.6414603 11.6225744,10.0201787 11.6225744,8.03725716 Z"></path>
-      </symbol>
-
-      <symbol id="icon-loupe">
-        <path d="M7.82844708,14.9929372 C7.71955052,14.9976297 7.61005207,15 7.5,15 C3.35786417,15 0,11.6421358 0,7.5 C0,3.35786417 3.35786417,0 7.5,0 C11.6421358,0 15,3.35786417 15,7.5 C15,7.61003469 14.9976304,7.71951592 14.9929395,7.82839547 C14.9976149,7.88410869 15,7.94047216 15,7.9973917 L15,13.0026083 C15,14.1041422 14.1057373,15 13.0026083,15 L7.9973917,15 C7.94049642,15 7.88414984,14.9976143 7.82844708,14.9929372 L7.82844708,14.9929372 Z M7.5,13.5 C10.8137087,13.5 13.5,10.8137087 13.5,7.5 C13.5,4.18629134 10.8137087,1.5 7.5,1.5 C4.18629134,1.5 1.5,4.18629134 1.5,7.5 C1.5,10.8137087 4.18629134,13.5 7.5,13.5 Z"></path>
-        <rect stroke="#999" x="7" y="7" width="1" height="1"></rect>
-      </symbol>
-    </svg>
-
     <section class="howto">
       <div class="howto__content">
         <p class="howto__disclaimer">This prototype is optimized for Chrome. It might work in other modern browsers, but it was never tested there.</p>
@@ -84,17 +65,8 @@
 
         <div class="menu__favorites">
           <h2 class="menu__samples-icon">
-            <i class="menu__samples-icon_favorites icon">
-              <svg class="icon__content">
-                <use xlink:href="#icon-favorites"></use>
-              </svg>
-            </i>
-
-            <i class="menu__samples-icon_history icon">
-              <svg class="icon__content">
-                <use xlink:href="#icon-history"></use>
-              </svg>
-            </i>
+            <i class="menu__samples-icon_favorites icon"></i>
+            <i class="menu__samples-icon_history icon"></i>
 
           </h2>
           <ul class="samples">
@@ -105,11 +77,7 @@
 
       <ul class="menu__toolbar toolbar">
         <li class="toolbar__item toolbar__item_new" alt="Pick a color">
-          <i class="icon">
-            <svg class="icon__content">
-              <use xlink:href="#icon-loupe"></use>
-            </svg>
-          </i>
+          <i class="icon"></i>
         </li>
         <li class="toolbar__item toolbar__item_filter">
           <input type="search" placeholder="Start typing to filter formats..." id="formatFilter" class="toolbar__input">
@@ -117,11 +85,7 @@
         <li class="toolbar__item toolbar__item_colortoolbar"></li>
         <li class="toolbar__item toolbar__item_back" onclick="window.loupe.menu.showFormats()">Back</li>
         <li class="toolbar__item toolbar__item_color" onclick="window.loupe.menu.showColorPanel()" alt="Modify color">
-          <i class="icon">
-            <svg class="icon__content">
-              <use xlink:href="#icon-colorpanel"></use>
-            </svg>
-          </i>
+          <i class="icon"></i>
         </li>
       </ul>
 
