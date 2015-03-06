@@ -98,7 +98,7 @@ module.exports = class CSOverlay
         when 'hsl' # For displaying raw values
           format[idx] = part
 
-    "≈ #{format.join(' ')}"
+    "#{format.join(' ')}"
 
   getFormatIdForIdx: (idx, isAlternative) ->
     idx = parseInt(idx, 10)
