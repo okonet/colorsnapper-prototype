@@ -63,12 +63,15 @@ module.exports = class CSSamplesList extends CSListView
 
   onDblClick: (evt) =>
     evt.preventDefault()
-    @menu.showColorPanel()
+    @menu.hide()
 
   onFavBtnClick: (evt) =>
     evt.preventDefault()
-    evt.stopPropagation() # Do not select the item when toggling favorite
-    @toggleFavorite $(evt.target).parent()
+    if evt.altKey
+      @menu.showColorPanel()
+    else
+      evt.stopPropagation() # Do not select the item when toggling favorite
+      @toggleFavorite $(evt.target).parent()
 
   onFavShortcutPressed: (evt) =>
     evt.preventDefault()
