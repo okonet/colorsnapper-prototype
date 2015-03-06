@@ -1,3 +1,4 @@
+_ = require('lodash')
 CS = require "./cs.coffee"
 CSHistoryList = require "./cs.history_list"
 CSFavoritesList = require "./cs.favorites_list"
@@ -7,13 +8,13 @@ module.exports = class CSMenu
 
   previousState: "recent"
   state: "recent"
-  recentlyPicked: []#["#e0ae00", "#ef4549", "#f79945", "#54ba5e", "#5897d0", "#a860a9", "#e0ae00", "#ef4549", "#f79945", "#54ba5e", "#5897d0", "#a860a9"]
+  recentlyPicked: ["#35302c", "#e0ae00", "#ef4549", "#f79945", "#54ba5e", "#5897d0", "#a860a9", "#e0ae00", "#ef4549", "#f79945", "#54ba5e", "#5897d0", "#a860a9"]
   favorites: []
 
   constructor: ->
     @el = $(".menu")
-    @historyList = new CSHistoryList(".menu__history", this, @recentlyPicked)
-    @favoritesList = new CSFavoritesList(".menu__favorites", this, @favorites)
+    @historyList = new CSHistoryList(".menu__history", this, _.shuffle(@recentlyPicked))
+    @favoritesList = new CSFavoritesList(".menu__favorites", this, _.shuffle(@favorites))
     @formatsList = new CSFormatsList(".menu__items_all", this)
     @el.on "click", ".toolbar__item_new", @onCreateColorClicked
     @el.on "click", ".menu__samples-icon", @toggleFavorites
