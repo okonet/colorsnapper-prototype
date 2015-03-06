@@ -130,20 +130,13 @@ $calloutSize: 8px;
     height: 16px;
     background-image: image-url("/images/sample-fav@2x.png");
     background-size: 16px 16px;
-    opacity: 0;
-    transition: opacity .25s;
-
-    &:hover {
-      opacity: 1 !important;
-    }
-  }
-  .active &__fav-btn,
-  &:hover &__fav-btn {
-    opacity: .5;
   }
   &_fav &__fav-btn {
-    background-image: image-url("/images/sample-fav-active@2x.png");
-    opacity: 1 !important;
+    background-image: image-url("/images/sample-fav-active@2x.png") !important;
+  }
+
+  &_dark &__fav-btn {
+    background-image: image-url("/images/sample-fav-inv@2x.png");
   }
 }
 
@@ -152,6 +145,25 @@ $calloutSize: 8px;
     &.active:before,
     &.active:after {
       visibility: visible;
+    }
+  }
+}
+
+.menu_alt {
+  .sample {
+    &__fav-btn {
+      background-image: image-url("/images/sample-edit@2x.png") !important;
+      opacity: 1;
+    }
+    &_fav &__fav-btn {
+      background-image: image-url("/images/sample-edit@2x.png") !important;
+    }
+
+    &_dark .sample__fav-btn {
+      background-image: image-url("/images/sample-edit-inv@2x.png") !important;
+    }
+    &_dark &_fav &__fav-btn {
+      background-image: image-url("/images/sample-edit-inv@2x.png") !important;
     }
   }
 }
