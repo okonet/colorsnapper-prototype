@@ -21,6 +21,7 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.coffee$/, loader: "coffee" },
+      { test: /\.json$/, loader: "json" },
       { test: /\.css$/, loader: "style!css" },
       { test: /\.scss$/, loaders: [
           "style-loader",

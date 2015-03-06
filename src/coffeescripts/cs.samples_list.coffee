@@ -1,5 +1,6 @@
 CS = require "./cs.coffee"
 CSListView = require "./cs.list_view"
+Color = require("color")
 
 module.exports = class CSSamplesList extends CSListView
 
@@ -36,8 +37,8 @@ module.exports = class CSSamplesList extends CSListView
     $sample.css('background-color', color)
     isFavorite ?= @menu.favorites.indexOf(color) isnt -1
     $sample.addClass("#{ @itemClassName }_fav") if isFavorite
-    colorParts= color.replace(/rgb\((.+)\)/, '$1').split(',')
-    isDark = CS.getBrightness(colorParts[0], colorParts[1], colorParts[2]) <= 155
+    c = Color(color).rgbArray()
+    isDark = CS.getBrightness(c[0],c[1],c[2]) <= 155
     $sample.addClass("#{ @itemClassName }_dark") if isDark
     @el.prepend($sample)
     unless silent
