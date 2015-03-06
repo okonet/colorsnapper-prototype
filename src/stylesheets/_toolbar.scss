@@ -36,14 +36,11 @@
     transform: translateX(0);
   }
     .toolbar__input {
-      padding: 3px 0;
-      margin-top: -3px;
-      width: 350px;
-      font-size: 13px;
-      background-color: transparent;
-      border: none !important;
-      outline: none;
-      appearance: none;
+      position: relative;
+      top: -2px;
+      left: 5px;
+      font-size: 1.3em;
+      width: 420px;
     }
 
   .toolbar__item_back {
