@@ -1,5 +1,10 @@
 $menuSampleSize: 42px;
 
+@font-face {
+  font-family: "Xcode Digits";
+  src: url('XcodeDigits-regular.ttf') format('ttf');
+}
+
 @keyframes flash {
   0% {
     filter: brightness(200%);

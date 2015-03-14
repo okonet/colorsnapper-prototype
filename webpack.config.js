@@ -32,6 +32,7 @@ module.exports = {
       },
       { test: /\.(png|svg)$/, exclude: /bgs\//, loader: "url?limit=15000" },
       { test: /\.(png|jpg)$/, include: /bgs\//, loader: "file" },
+      { test: /\.(ttf)$/, loader: "url?limit=15000" }
     ]
   },
   resolve: {
