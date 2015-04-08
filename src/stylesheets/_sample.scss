@@ -2,6 +2,11 @@ $borderWidth: 0px;
 $borderRadius: 0px;
 $sampleSize: 42px;
 $calloutSize: 8px;
+$selectionColor: #fff;
+$selectionInsetColor: rgba(#000, .5);
+$selectionColorDark: #000;
+$selectionInsetColorDark: rgba(#fff, .85);
+$selectionWidth: 3px;
 
 @keyframes shrink {
   0% {
@@ -100,7 +105,7 @@ $calloutSize: 8px;
 
   &:before {
     bottom: 0px;
-    border-bottom: $calloutSize solid #bababa;
+    border-bottom: $calloutSize solid rgba(#000, .125);
   }
 
   &.active:before,
@@ -175,12 +180,12 @@ $calloutSize: 8px;
   left: 0;
   margin: $borderWidth;
   width: $sampleSize;
-  height: $sampleSize + 3px;
+  height: $sampleSize + 4px;
   border-radius: $borderRadius;
   box-shadow:
-              0 0 0 0px #fff,
-              0 0 0 2px #fff inset,
-              0 0 0 3px rgba(#000, .5) inset;
+              //0 0 0 0px $selectionColor,
+              0 0 0 $selectionWidth $selectionColor inset,
+              0 0 0 $selectionWidth + 1px $selectionInsetColor inset;
   transition: transform .15s ease-out;
   transform: translateX(-($sampleSize + $borderWidth * 2 + 2));
   z-index: 1;
@@ -202,15 +207,11 @@ $calloutSize: 8px;
     &:after {
       border-bottom-color: #333;
     }
-
-    &:before {
-      border-bottom-color: #000;
-    }
   }
   .sample-overlay {
     box-shadow:
-                0 0 0 0px #333,
-                0 0 0 2px #333 inset,
-                0 0 0 3px rgba(#fff, .75) inset;
+                //0 0 0 0px $selectionColor,
+                0 0 0 $selectionWidth $selectionColorDark inset,
+                0 0 0 $selectionWidth + 1px $selectionInsetColorDark inset;
   }
 }
