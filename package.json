@@ -33,6 +33,7 @@
     "webpack-dev-server": "^1.4.3"
   },
   "devDependencies": {
-    "json-loader": "^0.5.1"
+    "json-loader": "^0.5.1",
+    "surge": "^0.18.0"
   }
 }
