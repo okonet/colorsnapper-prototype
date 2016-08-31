@@ -2,7 +2,6 @@ var path = require("path");
 var webpack = require("webpack");
 
 module.exports = {
-  name: "ColorSnapper",
   entry: "./src/index.coffee",
   output: {
     path: path.join(__dirname, "build"),
@@ -27,7 +26,7 @@ module.exports = {
           "style-loader",
           "css-loader",
           "autoprefixer-loader?browsers=last 2 version",
-          "sass-loader?imagePath=../"
+          "sass-loader"
         ]
       },
       { test: /\.(png|svg)$/, exclude: /bgs\//, loader: "url?limit=15000" },
@@ -37,8 +36,7 @@ module.exports = {
   },
   resolve: {
     root: path.join(__dirname, "src"),
-    modulesDirectories: ["node_modules", "web_modules"],
-    extensions: ["", ".webpack.js", ".js", ".coffee", ".scss"],
+    extensions: ["", ".js", ".coffee", ".scss"],
     alias: {}
   }
 };

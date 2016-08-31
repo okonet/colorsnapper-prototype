@@ -30,7 +30,7 @@
     width: 16px;
     transform: translateX(0);
     .icon {
-      background-image: image-url("/images/loupe@2x.png");
+      background-image: url("../images/loupe@2x.png");
     }
   }
 
@@ -49,7 +49,7 @@
   .toolbar__item_back {
     padding-left: 16px;
     color: #4A4A4A;
-    background: image-url("/images/icon_back@2x.png") 0 1px no-repeat;
+    background: url("../images/icon_back@2x.png") 0 1px no-repeat;
     background-size: 16px 16px;
     height: 16px;
     opacity: 0;
@@ -60,12 +60,12 @@
     width: 16px;
     transform: translateX(-100%);
     .icon {
-      background-image: image-url("/images/ColorPanel@2x.png");
+      background-image: url("../images/ColorPanel@2x.png");
     }
   }
   .toolbar__item_colortoolbar {
     top: 0;
-    background: image-url("/images/color-panel_toolbar.png") 0 0 no-repeat;
+    background: url("../images/color-panel_toolbar.png") 0 0 no-repeat;
     width: 164px;
     height: 33px;
     opacity: 0;
@@ -114,12 +114,12 @@
 .theme_dark {
   .toolbar__item_new {
     .icon {
-      background-image: image-url("/images/loupe-inv@2x.png");
+      background-image: url("../images/loupe-inv@2x.png");
     }
   }
   .toolbar__item_color {
     .icon {
-      background-image: image-url("/images/ColorPanel-inv@2x.png");
+      background-image: url("../images/ColorPanel-inv@2x.png");
     }
   }
 }

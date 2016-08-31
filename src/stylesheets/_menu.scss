@@ -99,11 +99,11 @@ $menuWidth: 480px;
 
     .menu__samples-icon_favorites {
       display: block;
-      background-image: image-url("/images/favorites@2x.png");
+      background-image: url("../images/favorites@2x.png");
     }
     .menu__samples-icon_history {
       display: none;
-      background-image: image-url("/images/history@2x.png");
+      background-image: url("../images/history@2x.png");
     }
 
     &.active {
@@ -190,7 +190,7 @@ $menuWidth: 480px;
     transition: transform .5s, opacity .25s, visibility 0 .25s;
   }
   .menu__color-panel {
-    background: image-url("/images/color-panel.png") 0 0 no-repeat;
+    background: url("../images/color-panel.png") 0 0 no-repeat;
     width: 100%;
     height: 100%;
     z-index: 1;
@@ -207,7 +207,7 @@ $menuWidth: 480px;
 
       @each $format in $formats {
         &.menu__item_#{$format} {
-          background: image-url("/images/formats/format-icon_#{$format}@2x.png") 10px 4px no-repeat;
+          background: url("../images/formats/format-icon_#{$format}@2x.png") 10px 4px no-repeat;
           background-size: 16px 16px;
         }
       }
@@ -230,7 +230,7 @@ $menuWidth: 480px;
 
         @each $format in $formats {
           &.menu__item_#{$format} {
-            background-image: image-url("/images/formats/format-icon_#{$format}-active@2x.png");
+            background-image: url("../images/formats/format-icon_#{$format}-active@2x.png");
             background-position: 10px 4px;
             background-repeat: no-repeat;
             background-size: 16px 16px;
@@ -282,9 +282,9 @@ $menuWidth: 480px;
     color: rgba($textColorDark, .45);
   }
   .menu__samples-icon_favorites {
-    background-image: image-url("/images/favorites-inv@2x.png");
+    background-image: url("../images/favorites-inv@2x.png");
   }
   .menu__samples-icon_history {
-    background-image: image-url("/images/history-inv@2x.png");
+    background-image: url("../images/history-inv@2x.png");
   }
 }
