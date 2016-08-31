@@ -5,9 +5,9 @@
   "description": "HTML5 Prototype of the ColorSnapper Mac App",
   "main": "",
   "scripts": {
-    "start": "webpack-dev-server webpack/hot/dev-server ./src/index.coffee --hot --progress --port 8082 -d",
-    "build": "webpack -p",
-    "deploy": "surge --domain colorsnapper-prototype.surge.sh",
+    "start": "webpack-dev-server ./src/index.coffee --hot --progress --port 8082 -d",
+    "build": "rimraf ./build && webpack -p",
+    "deploy": "surge --project ./build --domain colorsnapper-prototype.surge.sh",
     "release": "npm run build && npm run deploy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,7 +22,6 @@
     "css-loader": "^0.6.12",
     "file-loader": "^0.5.1",
     "jquery": "^3.1.0",
-    "jquery-color": "^1.0.0",
     "jquery-mousewheel": "^3.1.11",
     "jwerty": "^0.3.2",
     "lodash": "^2.4.1",
@@ -36,7 +35,10 @@
     "webpack-dev-server": "^1.4.3"
   },
   "devDependencies": {
+    "html-loader": "^0.4.3",
+    "html-webpack-plugin": "^2.22.0",
     "json-loader": "^0.5.1",
+    "rimraf": "^2.5.4",
     "surge": "^0.18.0"
   }
 }
