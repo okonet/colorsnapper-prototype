@@ -1,25 +1,30 @@
 var path = require("path");
 var webpack = require("webpack");
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: "./src/index.coffee",
   output: {
     path: path.join(__dirname, "build"),
-    publicPath: "build/",
+    publicPath: "/",
     filename: "[name].js",
     chunkFilename: "[name].[id].js"
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      filename: "index.html",
+      template: "./index.html"
+    }),
     new webpack.ProvidePlugin({
       jQuery: "jquery",
       $: "jquery",
       _: "lodash"
-    }),
-    new webpack.HotModuleReplacementPlugin()
+    })
   ],
   module: {
     loaders: [
       { test: /\.coffee$/, loader: "coffee" },
+      { test: /\.html$/, loader: "html" },
       { test: /\.json$/, loader: "json" },
       { test: /\.css$/, loader: "style!css" },
       { test: /\.scss$/, loaders: [
