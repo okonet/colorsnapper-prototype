@@ -1,7 +1,6 @@
 require "stylesheets/screen"
 require "stylesheets/howto.scss"
 
-
 require.ensure [], () ->
   toggleDarkMode = ->
     $("body").toggleClass("theme_dark")
@@ -22,8 +21,8 @@ require.ensure [], () ->
   jwerty.key "esc", -> initialize()
   jwerty.key "ctrl+d", -> toggleDarkMode()
 
-  # $(document).ready ->
-  #   $('.howto__btn').on "click", ->
-  #     initialize()
+  $(document).ready ->
+    $('.howto__btn').on "click", ->
+      initialize()
 
-  initialize()
+  # initialize()
