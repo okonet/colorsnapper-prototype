@@ -6,7 +6,6 @@ module.exports = {
   entry: "./src/index.coffee",
   output: {
     path: path.join(__dirname, "build"),
-    publicPath: "/",
     filename: "[name].js",
     chunkFilename: "[name].[id].js"
   },
